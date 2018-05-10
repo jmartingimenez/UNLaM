@@ -1,0 +1,372 @@
+ if object_id('ventas') is not null
+  drop table ventas;
+ if object_id('libros') is not null
+  drop table libros;
+
+ create table libros(
+  codigo int identity,
+  titulo varchar(40),
+  autor varchar(30),
+  precio decimal(6,2), 
+  stock int,
+  constraint PK_libros primary key(codigo)
+ );
+
+ create table ventas(
+  numero int identity,
+  fecha datetime,
+  codigolibro int not null,
+  precio decimal (6,2),
+  cantidad int,
+  constraint PK_ventas primary key(numero),
+  constraint FK_ventas_codigolibro
+   foreign key (codigolibro) references libros(codigo)
+ );
+
+ insert into libros values('Uno','Richard Bach',15,100);
+ insert into libros values('Ilusiones','Richard Bach',18,50);
+ insert into libros values('El aleph','Borges',25,200);
+ insert into libros values('Aprenda PHP','Mario Molina',45,200);
+
+ create trigger DIS_ventas_insertar
+  on ventas
+  for insert
+  as
+   declare @stock int
+   select @stock= stock from libros
+		 join inserted
+		 on inserted.codigolibro=libros.codigo
+		 where libros.codigo=inserted.codigolibro
+  if (@stock>=(select cantidad from inserted))
+    update libros set stock=stock-inserted.cantidad
+     from libros
+     join inserted
+     on inserted.codigolibro=libros.codigo
+     where codigo=inserted.codigolibro
+  else
+  begin
+    raiserror ('Hay menos libros en stock de los solicitados para la venta', 16, 1)
+    rollback transaction
+  end
+
+ insert into ventas values('2007/04/01',1,15,1);
+
+ select *from ventas;
+ select *from libros where codigo=1;
+
+ insert into ventas values('2007/04/01',2,18,100);
+
+ insert into ventas values('2007/04/01',5,18,1);
+ //////////////////////////////////////////////////////
+ if object_id('ventas') is not null
+  drop table ventas;
+ if object_id('libros') is not null
+  drop table libros;
+
+ create table libros(
+  codigo int identity,
+  titulo varchar(40),
+  autor varchar(30),
+  editorial varchar(20),
+  precio decimal(6,2), 
+  stock int,
+  constraint PK_libros primary key(codigo)
+ );
+
+ create table ventas(
+  numero int identity,
+  fecha datetime,
+  codigolibro int not null,
+  precio decimal (6,2),
+  cantidad int,
+  constraint PK_ventas primary key(numero),
+  constraint FK_ventas_codigolibro
+   foreign key (codigolibro) references libros(codigo)
+   on delete no action
+ );
+
+ insert into libros values('Uno','Richard Bach','Planeta',15,100);
+ insert into libros values('Ilusiones','Richard Bach','Planeta',18,50);
+ insert into libros values('El aleph','Borges','Emece',25,200);
+ insert into libros values('Aprenda PHP','Mario Molina','Emece',45,200);
+
+ insert into ventas values('2006/01/01',1,15,1);
+ insert into ventas values('2007/01/01',2,18,2);
+
+ create trigger DIS_ventas_borrar
+  on ventas
+  for delete 
+ as
+   update libros set stock= libros.stock+deleted.cantidad
+   from libros
+   join deleted
+   on deleted.codigolibro=libros.codigo;
+
+ delete from ventas where numero=2; 
+
+ select *from libros where codigo=2;
+
+ select *from ventas;
+
+ create trigger DIS_libros_borrar
+  on libros
+  for delete
+  as
+   if (select count(*) from deleted) > 1
+   begin
+    raiserror('No puede eliminar más de un libro',16,1)
+    rollback transaction
+   end;
+
+ delete from libros where editorial='Emece';
+
+ delete from libros where codigo=4;
+
+ select *from libros;
+//////////////////////
+UPDATE
+/////////////////////////
+if object_id('libros') is not null
+  drop table libros;
+
+ create table libros(
+  codigo int identity,
+  titulo varchar(40),
+  autor varchar(30),
+  editorial varchar(20),
+  precio decimal(6,2), 
+  stock int,
+  constraint PK_libros primary key(codigo)
+ );
+
+ insert into libros values('Uno','Richard Bach','Planeta',15,100);
+ insert into libros values('Alicia en el pais...','Lewis Carroll','Planeta',18,50);
+ insert into libros values('El aleph','Borges','Emece',25,200);
+ insert into libros values('Aprenda PHP','Mario Molina','Nuevo siglo',45,200);
+
+ create trigger DIS_libros_actualizar
+  on libros
+  for update
+  as
+    raiserror('Los datos de la tabla "libros" no pueden modificarse', 10, 1)
+    rollback transaction;
+
+ update libros set titulo='Alicia en el pais de las maravillas' where codigo=2;
+
+ drop trigger DIS_libros_actualizar;
+
+ create trigger DIS_libros_actualizar_precio
+  on libros
+  for update
+  as
+   if update(precio)
+   begin
+    raiserror('El precio de un libro no puede modificarse.', 10, 1)
+    rollback transaction
+   end;
+
+ update libros set precio=30 where codigo=2;
+
+ update libros set titulo='Alicia en el pais de las maravillas' where codigo=2;
+
+ select *from libros;
+
+ update libros set precio=30,editorial='Emece' where codigo=1;
+
+ select *from libros;
+
+ drop trigger DIS_libros_actualizar_precio;
+
+ create trigger DIS_libros_actualizar2
+  on libros
+  for update
+  as
+   if (update(titulo) or update(autor) or update(editorial)) and
+    not (update(precio) or update(stock))
+   begin
+    select (d.titulo+'-'+ d.autor+'-'+d.editorial) as 'registro anterior',
+    (i.titulo+'-'+ i.autor+'-'+i.editorial) as 'registro actualizado'
+     from deleted as d
+     join inserted as i
+     on d.codigo=i.codigo
+   end
+   else
+   begin
+    raiserror('El precio y stock no pueden modificarse. La actualización no se realizó.', 10, 1)
+    rollback transaction
+   end;
+
+ update libros set editorial='Paidos', autor='Desconocido' where codigo>3;
+
+ update libros set editorial='Paidos', precio=30 where codigo>3;
+
+ update libros set codigo=9 where codigo>=3; 
+
+ /////////////////
+VARIOS EVENTOS
+//////////////////
+if object_id('inscriptos') is not null
+  drop table inscriptos;
+ if object_id('socios') is not null
+  drop table socios;
+ if object_id('morosos') is not null
+  drop table morosos;
+
+ create table socios(
+  documento char(8) not null,
+  nombre varchar(30),
+  domicilio varchar(30),
+  constraint PK_socios primary key(documento)
+ );
+
+ create table inscriptos(
+  numero int identity,
+  documento char(8) not null,
+  deporte varchar(20),
+  matricula char(1),
+  constraint FK_inscriptos_documento
+   foreign key (documento)
+   references socios(documento),
+  constraint CK_inscriptos_matricula check (matricula in ('s','n')),
+  constraint PK_inscriptos primary key(documento,deporte)
+ );
+ 
+ create table morosos(
+  documento char(8) not null
+ );
+
+ insert into socios values('22222222','Ana Acosta','Avellaneda 800');
+ insert into socios values('23333333','Bernardo Bustos','Bulnes 345');
+ insert into socios values('24444444','Carlos Caseros','Colon 382');
+ insert into socios values('25555555','Mariana Morales','Maipu 234');
+
+ insert into inscriptos values('22222222','tenis','s');
+ insert into inscriptos values('22222222','natacion','n');
+ insert into inscriptos values('23333333','tenis','n');
+ insert into inscriptos values('24444444','futbol','s');
+ insert into inscriptos values('24444444','natacion','s');
+
+ insert into morosos values('22222222');
+ insert into morosos values('23333333');
+
+ create trigger dis_inscriptos_insert_delete
+  on inscriptos
+  for insert,delete
+  as
+   if exists (select *from inserted join morosos 
+              on morosos.documento=inserted.documento)
+   begin
+     raiserror('El socio es moroso, no puede inscribirse en otro curso', 16, 1)
+     rollback transaction
+   end
+   else
+     if exists (select *from deleted join morosos
+	        on morosos.documento=deleted.documento)
+     begin
+       raiserror('El socio debe matriculas, no puede borrarse su inscripcion', 16, 1)
+       rollback transaction
+     end
+     else
+      if (select matricula from inserted)='n'
+       insert into morosos select documento from inserted;
+
+ insert into inscriptos values('25555555','tenis','s');
+
+ insert into inscriptos values('25555555','natacion','n');
+
+ select *from inscriptos;
+ select *from morosos;
+
+ insert into inscriptos values('25555555','basquet','s');
+
+ delete inscriptos where numero=4;
+
+ select *from inscriptos;
+
+ delete inscriptos where numero=6;
+//////////////////////
+INSTEAD OF y AFTER
+///////////////////
+if object_id('empleados') is not null
+  drop table empleados;
+ if object_id('clientes') is not null
+  drop table clientes;
+
+ create table empleados(
+  documento char(8) not null,
+  nombre varchar(30),
+  domicilio varchar(30),
+  constraint PK_empleados primary key(documento)
+ );
+
+ create table clientes(
+  documento char(8) not null,
+  nombre varchar(30),
+  domicilio varchar(30),
+  constraint PK_clientes primary key(documento)
+ );
+
+ if object_id('vista_empleados_clientes') is not null
+  drop view vista_empleados_clientes;
+
+ create view vista_empleados_clientes
+ as
+  select documento,nombre, domicilio, 'empleado' as condicion from empleados
+  union
+   select documento,nombre, domicilio,'cliente' from clientes;
+
+ create trigger DIS_empl_clie_insertar
+  on vista_empleados_clientes
+  instead of insert
+  as
+    insert into empleados 
+     select documento,nombre,domicilio
+     from inserted where condicion='empleado'
+
+    insert into clientes
+     select documento,nombre,domicilio
+     from inserted where condicion='cliente';
+
+ insert into vista_empleados_clientes values('22222222','Ana Acosta', 'Avellaneda 345','empleado');
+ insert into vista_empleados_clientes values('23333333','Bernardo Bustos', 'Bulnes 587','cliente');
+
+ select *from empleados;
+ select *from clientes;
+
+ create trigger DIS_empl_clie_actualizar
+  on vista_empleados_clientes
+  instead of update
+  as
+   declare @condicion varchar(10)
+   set @condicion = (select condicion from inserted)
+   if update(documento)
+   begin
+    raiserror('Los documentos no pueden modificarse', 10, 1)
+    rollback transaction
+   end
+   else
+   begin
+    if @condicion ='empleado'
+    begin
+     update empleados set empleados.nombre=inserted.nombre, empleados.domicilio=inserted.domicilio
+     from empleados
+     join inserted
+     on empleados.documento=inserted.documento
+    end
+    else
+     if @condicion ='cliente'
+     begin
+      update clientes set clientes.nombre=inserted.nombre, clientes.domicilio=inserted.domicilio
+      from clientes
+      join inserted
+      on clientes.documento=inserted.documento
+     end
+   end;
+
+ update vista_empleados_clientes set nombre= 'Ana Maria Acosta' where documento='22222222';
+
+ select *from empleados;
+
+ update vista_empleados_clientes set domicilio='Bulnes 1234' where documento='23333333';
+
+ select *from clientes;

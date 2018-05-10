@@ -1,0 +1,50 @@
+Aclaración 1: La materia la hice en verano. No pidio TP Final ni evaluo Magento/PHP
+Aclaración 2: Escribo de memoria, no es literal pero los temas en si son estos...
+
+
+
+1er Parcial
+===========
+
+1- Tipos de producto (simple, configurado, agrupado, etc...).
+
+2- Conversion Funnel (¿Qué es?).
+
+3- Bussiness Model Canvas (¿Qué es?, ¿Cómo conviene usarlo?, explicar los 9 bloque). 
+Recomiendo dibujar los bloquecitos (se había quejado de que solo uno lo hizo).
+
+4- Explicar el paso 2 (Crear Arquitectura) de los 5 del ciclo de vida de desarrollo
+(Esto es de la unidad 2).
+
+5- Marketing, SEO, SEM. Desarrollar (Marcaba una o dos mas cosas pero no las recuerdo, basicamente era explayar buena parte del apartado de Marketing de la Unidad 1).
+
+
+
+1er Parcial (Recuperatorio)
+===========================
+
+1- Describir tipos de Ecommerce (B2B, B2C, C2B, B2E, etc...).
+
+2- Funcionalidades B2B en contraste con las de B2C
+
+3- Bussiness Model Canvas (Lo mismo del primer parcial)
+
+4- Explicar estructuras del negocio asociadas al ecommerce 
+(Pedía al menos 3 de las 7).
+
+5- Describir los 5 pasos del ciclo de vida de desarrollo (Esto es de la Unidad 2)
+
+
+
+2do Parcial
+===========
+
+1- Describir atributos de calidad (Creo que pedía al menos 5).
+
+2- Describir el modelo usado para bases de datos ecommerce (EAV).
+
+3- Describir las formas de medir el desempeño y la escalabilidad (Son 4).
+
+4- Describir al menos 3 medios/pasarelas de pago.
+
+5- Hacer el esquema de un sistema seguro y explicarlo (Último de la Unidad 3).

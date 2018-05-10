@@ -1,0 +1,74 @@
+		/*===================================RECETA DEL DIA=====================================*/
+
+#contenedor_receta
+
+	{
+		color:red;
+		float:left;
+		margin-top:5%;
+		margin-bottom:7%;
+		margin-left:10%;
+		margin-right:auto;
+		width:80%;
+		height:auto;
+		background:rgba(51,51,51,0.7);			/*alternativa a background-color y opacity, para evitar*/
+	}											/*que la imagen quede con opacidad*/
+												/*51,51,51 es el equivalente a #333333 (hex to rgb converter)*/
+												/*0.7 seria el opacity:0.7;*/	
+#imagen_receta
+
+	{
+		float:left;
+	}
+	
+#mensaje_receta
+
+	{
+		font-family:verdana;
+		padding:1%;
+		text-align:right;
+	}	
+	
+#receta_titulo	
+
+	{
+		font-size:40px;
+		text-decoration:underline;
+		color:white;
+	}
+
+#receta_descripcion
+
+	{
+		margin-top:3%;
+		font-size:15px;
+		color:white;
+	}	
+
+		/*=========================================BOTONES=====================================*/	
+	
+#contenedor_botones	
+
+	{
+			clear:left;											/*Para que los botones queden por debajo de las img*/
+	}
+	
+.medio_boton
+	
+	{
+		float:left;												/*Para que busquen la izquierda*/
+		background-color:#333333;								/*Color del boton*/										
+		width:26.8%;											/*Este esta a ojo, para las 3 opciones*/
+		margin-top:4%;											/*Margenes con respecto a los botones*/
+		margin-bottom:4%;
+		margin-left:0.25%;
+		margin-right:0.25;
+		text-align:center;										/*Texto Centrado*/
+		padding:3%;												/*Espacio entre los bordes y el texto*/
+		font-family:verdana;
+		font-size:35px;
+		font-weight:italic;
+		opacity:0.7;
+		text-decoration:none;
+		color:white;
+	}

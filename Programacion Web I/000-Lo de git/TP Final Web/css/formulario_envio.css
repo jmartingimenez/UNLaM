@@ -1,0 +1,28 @@
+#contenedor_redireccion
+	
+	{
+		display:inline;
+		color:white;							/*Texto blanco*/
+		float:left;								/*Que busque la izquierda*/
+		margin-top:5%;							/*Margenes del contenedor principal con respecto a los bordes*/
+		margin-bottom:5%;
+		margin-left:25%;
+		margin-right:auto;
+		width:52.75%;							/*Ancho y alto del contenedor*/
+		height:auto;							/*A ojo*/
+		background-color:#333333;
+		opacity:0.7;
+		font-family:verdana;
+		font-size:15px;	
+	}
+
+#link_redireccion
+
+	{
+		float:left;
+		font-size:25px;
+		text-decoration:underline;
+		margin-left:36%;						/*Centrando a ojo*/			
+	}
+	
+

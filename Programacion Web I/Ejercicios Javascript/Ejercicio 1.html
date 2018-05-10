@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Ejercicio 1 - Javascript</title>
+			<script>
+				document.write("Tecnicatura en Desarrollo Web asociado al head<br/>");<!--ASOCIADO AL HEAD-->
+				function escribirHolaMundo2()
+					{
+						document.write("Tecnicatura en Desarrollo Web 2 asociado a una funcion en el head<br/>");
+					}
+			</script>			
+		<script type="text/javascript" src="js/Ejercicio1.js"></script>	<!--ASOCIADO A UN ARCHIVO EXTERNO-->
+	</head>
+	<body>
+		<noscript>
+			Por favor, habilite Javascript en su navegador para poder ver el contenido correctamente.<br/>
+		</noscript>
+		<script>
+			escribirHolaMundo2();
+		</script>
+		<input type="button" Value="No hagas click" onclick="javascript:mensaje()"/>
+				<!--Llamada a funcion declarada en archivo externo-->
+	</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+	<title>ParcialII</title>
+	<link rel="stylesheet" type="text/css" href="EstiloParcialII.css"/>
+	<script type="text/javascript" src="ValidarJavascript.js"> </script>
+
+
+
+</head>
+
+<body>
+	<form id="Registracion" method="post" action="mailto:marianalampa@yahoo.com.ar" onsubmit="return ValidarFormulario(this);">
+	
+		<div id="contenedor">
+
+			<div id="encabezado">
+				<p>Registrate...</p>
+			</div>
+
+			<div id="cuerpo">
+
+
+				<div class="alinear">
+					<div class="etiqueta">
+						<label>Usuario:</label>
+					</div>
+					<div class="caja">	
+						<input type="text" name="usuario"/>
+					</div>
+				</div>
+
+				<div class="alinear">
+					<div class="etiqueta">
+						<label>Password:</label>
+					</div>	
+					<div class="caja">		
+						<input type="password" name="password"/>
+					</div>
+				</div>
+
+				<div class="alinear">
+					<div class="etiqueta">
+						<label>RePassword:</label>
+					</div>	
+					<div class="caja">							
+						<input type="password" name="repassword"/>
+					</div>
+				</div>
+
+				<div class="alinear">
+					<div class="etiqueta">
+						<label>Sexo:</label>
+					</div>	
+					<div class="caja">							
+						<input type="radio" name="sexo" id="femenino" />Femenino
+						<input type="radio" name="sexo" id="masculino" />Masculino	
+					</div>
+				</div>
+
+				<div class="alinear">
+					<div class="etiqueta">
+						<label>Ocupaci&oacuten:</label>
+					</div>	
+					<div class="caja">	
+						<input type="checkbox" name="estudiante" /><label>Estudiante</label>
+						<input type="checkbox" name="deportista" /><label>Deportista</label>	
+					</div>
+				</div>
+
+				<div class="alinear">
+					<div class="caja">							
+						<input type="submit" name="aceptar" value="Enviar"/>
+						<input type="reset" name="cancelar" value="Cancelar"/>
+					</div>
+				</div>
+
+
+			</div>
+			<div id="pie">
+				<p>Marianita Lampa</p>
+				<p>Programaci&oacuten Web 2013</p>
+			</div>	
+		</div>	
+
+</body>
+</html>

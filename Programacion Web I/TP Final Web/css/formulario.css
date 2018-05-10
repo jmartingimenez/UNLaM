@@ -1,0 +1,71 @@
+#contenedor_formulario
+
+	{
+		background-color:#333333;							/*Color del contenedor*/
+		float:left;											/*Que busque la izquierda*/
+		opacity:0.7;										
+		font-size:15px;	
+		font-family:verdana;
+		color:white;
+		text-align:center;
+		margin-bottom:5%;									/*Separacion del contenedor con respecto*/
+		margin-left:25%;									/*Al banner, las esquinas y la parte baja*/
+		margin-right:5%;									/*Esta hecho a ojo..*/
+		margin-top:5%;										
+		padding-bottom:5%;									/*Espacio entre el contenido del contenedor*/
+		padding-left:16%;									/*Con respecto a los extremos del mismo*/
+		padding-right:16%;									/*(Estamos agrandando el cuadro)*/
+		padding-top:5%;										/*Tambien hecho a ojo*/
+	}	
+	
+input[type="text"], select  
+	
+	{
+		background-color: transparent;						/*Para las cajas del formulario*/
+		color:white;										/*Color del texto*/
+	}	
+
+textarea
+
+	{
+		color:white;										/*Como arriba*/	
+		background-color:transparent;						/*Como arriba*/
+		width:150%;											/*Ancho de la caja de consulta*/
+		height:20%;											/*Alto de la caja de consulta*/
+															/*(A OJO)*/	
+		margin-left:-25%;									/*Para ignorar el margen propio del contenedor*/
+															/*Y que la caja quede centrada*/
+		margin-bottom:15%;									/*Para alejar el boton de enviar*/												
+	}	
+	
+.error
+	{
+		background-color: #BC1010;					/*Color de fondo*/
+		padding: 1px 12px;							/*Para ajustar el tamaño del recuadro*/	
+		border-radius: 4px;							/*Para que las puntas no sean cuadradas*/
+		color: white;								/*Color de texto*/
+		font-weight: bold;						
+		margin-left: 16px;							/*Lo alejamos de la caja de texto*/			
+		margin-top: 0px;						
+		position: absolute;							/* NO TOCAR :) */	
+	}
+
+
+/*
+:before y :after son una especie de atributos para modificar la parte anterior o posterior de un elemento de la
+pagina
+*/
+	
+.error:before										/* Eso que se asemeja a una flecha */
+	{ 								
+		content: '';								/*Genera contenido en el HTML - Dicen que no es buena practica -*/	
+													/*Sin esa linea, la "flecha" no se visualiza*/
+		border-top: 6px solid transparent;			/*Tamaño de lo que vendria a ser la flecha*/
+		border-bottom: 6px solid transparent;		/*Tamaño de lo que vendria a ser la flecha*/
+		border-right: 6px solid #BC1010;			/*Tamaño de lo que vendria a ser la flecha*/
+		border-left: 6px solid transparent;			/*Tamaño de lo que vendria a ser la flecha*/
+		left: -12px;								/*Con esto alejamos o acercamos la flecha del recuadro*/
+		position: absolute;							/* NO TOCAR :) */	
+		top: 5px;									/*Para ajustar la posicion vertical de la flechita*/
+	}
+	

@@ -1,0 +1,177 @@
+DROP TABLE Alumno CASCADE CONSTRAINTS
+;
+DROP TABLE Autor CASCADE CONSTRAINTS
+;
+DROP TABLE Categoria CASCADE CONSTRAINTS
+;
+DROP TABLE Docente CASCADE CONSTRAINTS
+;
+DROP TABLE Editorial CASCADE CONSTRAINTS
+;
+DROP TABLE Libro CASCADE CONSTRAINTS
+;
+DROP TABLE Libro_Autor CASCADE CONSTRAINTS
+;
+IF EXISTS (SELECT * FROM dbo.SYSOBJECTS WHERE id = object_id('Libro_Autor') AND  OBJECTPROPERTY(id, 'IsUserTable') = 1)
+DROP TABLE Libro_Autor
+;
+
+DROP TABLE Localidad CASCADE CONSTRAINTS
+;
+DROP TABLE Persona CASCADE CONSTRAINTS
+;
+DROP TABLE Provincia CASCADE CONSTRAINTS
+;
+DROP TABLE Table1 CASCADE CONSTRAINTS
+;
+
+CREATE TABLE Alumno ( 
+	Id NUMBER NOT NULL,
+	datos VARCHAR2(50)
+)
+;
+
+CREATE TABLE Autor ( 
+	Id NUMBER NOT NULL,
+	datos VARCHAR2(50)
+)
+;
+
+CREATE TABLE Categoria ( 
+	Id NUMBER NOT NULL,
+	datos VARCHAR2(50)
+)
+;
+
+CREATE TABLE Docente ( 
+	Id NUMBER NOT NULL,
+	datos VARCHAR2(50)
+)
+;
+
+CREATE TABLE Editorial ( 
+	Id NUMBER NOT NULL,
+	datos VARCHAR2(50),
+	idLocalidad NUMBER NOT NULL
+)
+;
+
+CREATE TABLE Libro ( 
+	Id NUMBER NOT NULL,
+	datos VARCHAR2(50),
+	idCategoria NUMBER NOT NULL,
+	idEditorial NUMBER NOT NULL
+)
+;
+
+CREATE TABLE Libro_Autor ( 
+	idLibro NUMBER(8,2) NOT NULL,
+	idAutor NUMBER(8,2) NOT NULL
+)
+;
+
+
+CREATE TABLE Localidad ( 
+	Id NUMBER NOT NULL,
+	datos VARCHAR2(50),
+	idProvincia NUMBER
+)
+;
+
+CREATE TABLE Persona ( 
+	Id NUMBER NOT NULL,
+	datos VARCHAR2(50),
+	idLocalidad NUMBER
+)
+;
+
+CREATE TABLE Provincia ( 
+	Id NUMBER NOT NULL,
+	datos VARCHAR2(50)
+)
+;
+
+
+
+ALTER TABLE Alumno ADD CONSTRAINT PK_Persona 
+	PRIMARY KEY (Id)
+;
+
+ALTER TABLE Autor ADD CONSTRAINT PK_Persona 
+	PRIMARY KEY (Id)
+;
+
+ALTER TABLE Categoria ADD CONSTRAINT PK_Persona 
+	PRIMARY KEY (Id)
+;
+
+ALTER TABLE Docente ADD CONSTRAINT PK_Persona 
+	PRIMARY KEY (Id)
+;
+
+ALTER TABLE Editorial ADD CONSTRAINT PK_Persona 
+	PRIMARY KEY (Id)
+;
+
+ALTER TABLE Libro ADD CONSTRAINT PK_Persona 
+	PRIMARY KEY (Id)
+;
+
+ALTER TABLE Libro_Autor ADD CONSTRAINT PK_Libro_Autor 
+	PRIMARY KEY (idLibro, idAutor)
+;
+
+ALTER TABLE Localidad ADD CONSTRAINT PK_Persona 
+	PRIMARY KEY (Id)
+;
+
+ALTER TABLE Persona ADD CONSTRAINT PK_Persona 
+	PRIMARY KEY (Id)
+;
+
+ALTER TABLE Provincia ADD CONSTRAINT PK_Persona 
+	PRIMARY KEY (Id)
+;
+
+
+
+
+ALTER TABLE Alumno ADD CONSTRAINT FK_Alumno_Persona 
+	FOREIGN KEY (Id) REFERENCES Persona (Id)
+;
+
+ALTER TABLE Autor ADD CONSTRAINT FK_Autor_Persona 
+	FOREIGN KEY (Id) REFERENCES Persona (Id)
+;
+
+ALTER TABLE Docente ADD CONSTRAINT FK_Docente_Persona 
+	FOREIGN KEY (Id) REFERENCES Persona (Id)
+;
+
+ALTER TABLE Editorial ADD CONSTRAINT FK_Editorial_Localidad 
+	FOREIGN KEY (idLocalidad) REFERENCES Localidad (Id)
+;
+
+ALTER TABLE Libro ADD CONSTRAINT FK_Libro_Categoria 
+	FOREIGN KEY (idCategoria) REFERENCES Categoria (Id)
+;
+
+ALTER TABLE Libro ADD CONSTRAINT FK_Libro_Editorial 
+	FOREIGN KEY (idEditorial) REFERENCES Editorial (Id)
+;
+
+ALTER TABLE Libro_Autor ADD CONSTRAINT FK_Libro_Autor_Autor 
+	FOREIGN KEY (idAutor) REFERENCES Autor (Id)
+;
+
+ALTER TABLE Libro_Autor ADD CONSTRAINT FK_Libro_Autor_Libro 
+	FOREIGN KEY (idLibro) REFERENCES Libro (Id)
+;
+
+ALTER TABLE Localidad ADD CONSTRAINT FK_Localidad_Provincia 
+	FOREIGN KEY (idProvincia) REFERENCES Provincia (Id)
+;
+
+ALTER TABLE Persona ADD CONSTRAINT FK_Persona_Localidad 
+	FOREIGN KEY (idLocalidad) REFERENCES Localidad (Id)
+;

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Rhythm games Database</title>
+		<meta name="keyword" content="rhythm,games,stepmania,osu,ffr,guitar,flash,hero,beat,beatmania,mania,4k">
+		<meta name="description" content="Un listado de juegos musicales con sus ventajas y desventajas">
+	</head>
+	<body>
+		<div  style="border: 3px solid rgb(131,115,15);">
+			<h1>
+				<center>
+					<font color="blue">Rhythm</font>
+					<font color="red">Games</font>
+					<font color="blue">Database</font>
+				</center>	
+			</h1>
+		</div>
+		<div>
+			<p align="right">
+				<b>
+					Aqu&iacute; tenemos un listado de los <font color="red"><i>juegos musicales</i></font> mas populares.
+					Cada uno de ellos contiene una descripcion y el link a sus sitios principales correspondientes. Es
+					obvio aclarar, que existen muchos juegos mas que se iran agregando con el tiempo.
+				</b>
+			</p>
+		</div>
+		<br>
+		</br>
+		<br>
+		</br>
+		<div>
+			<table summary="listado" border="0" bgcolor="black">
+				<caption><h3><b><u>Listado actual de juegos musicales</u></b></h3></caption>
+				<col style="width: 10%;">
+				<thead>
+					<tr style="background:#B7B3B3;">
+						<th scope="col">Juego</th>
+						<th scope="col">Imagen</th>
+						<th scope="col">Review</th>
+						<th scope="col">Link</th> 
+					</tr>
+				</thead>
+				<tfoot style="background:#B7B3B3">
+					<tr>
+						<th colspan="4" scope="col">Actualizado 9 de septiembre del 2015</th>
+					</tr>
+				</tfoot>
+				<tbody style="background:#DAD8D8;">
+					<tr>
+						<th scope="row">Stepmania</th>
+						<td scope="col">
+						<img src="imagenes/stepmania.jpg" width="180" height="180" alt="Stepmania"></img></td>
+						<td scope="col">
+							<a href="seccion/stepmania.html">Stepmania es un espectacular clon de DDR, permite
+															personalizar...</a></td>
+						<td scope="col">
+							<a href="http://stepmaniaonline.net/index.php?page=downloads">Stepmania</a></td>
+					</tr>
+					<tr>
+						<th scope="row">Osu!</th>
+						<td scope="col">
+							<img src="imagenes/osu.jpg" width="180" height="180"  alt="Osu!"></img></td>
+						<td scope="col">
+							<a href="seccion/osu.html">Osu! es un juego de ritmo con multiples modos de juego...
+							</a></td>
+						<td scope="col">
+							<a href="https://osu.ppy.sh/">Osu!</a></td>
+					</tr>
+					<tr>			
+						<th scope="row">FlashFlashRevolution</th>
+						<td scope="col">
+							<img src="imagenes/ffr.jpg" width="180" height="180" alt="FFR"></img></td>
+						<td scope="col">
+							<a href="seccion/ffr.html">Flash Flash Revolution es un juego basado en DDR que 
+							no requiere descarga...</a>
+						</td>
+						<td scope="col">
+							<a href="http://www.flashflashrevolution.com">Flash Flash Revolution</a>						
+					</tr>
+					<tr>
+						<th scope="row">Guitar Flash</th>
+						<td scope="col">
+							<img src="imagenes/guitarflash.jpg" width="180" height="180" alt="guitarflash"></img></td>
+						<td scope="col">
+							<a href="seccion/guitarflash.html">Guitar Flash es un clon de Guitar Hero 
+							que no requiere descarga...</a></td>
+						<td scope="col">
+							<a href="http://www.guitarflash.com">Guitar Flash</a>
+					</tr>	
+				</tbody>
+			</table>
+		</div>
+		<div>
+			<br>
+			</br>
+			<br>
+			</br>	
+				<p><center><u><h2>Contanos cual es tu juego favorito</h2></u></center></p>	
+			<form action="seccion/formulario.html" method="get" id="form1">
+				<div>
+					<table>
+						<thead>
+						</thead>
+						<tfoot>
+						</tfoot>
+						<tbody>
+							<tr>
+								<td>Nombre:</td>
+								<td><input type="text" name="user" size="11"></input></td>
+							</tr>
+							<tr>
+								<td>Pa&iacute;s:</td>
+								<td><input type="text" name="country" size="11"></input></td>
+							</tr>
+							<tr>
+								<td>Elija su juego favorito:</td>
+								<td><select name="favgame">
+										<option value="sm">Stepmania</option>
+										<option value="osu">Osu!</option>
+										<option value="ffr">Flash Flash Revolution</option>
+										<option value="gf">Guitar Flash</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td>Descargas packs o canciones regularmente para tu juego?</td>
+								<td><input type="checkbox" name="descarga"></input></td>
+							</tr>
+							<tr>
+								<td>Jugas online tu juego favorito?</td>
+								<td><input type="checkbox" name="online"></input></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</form>	
+				<!--ESTA FUERA DEL FORMULARIO PERO PERTENECE AL MISMO SEGUN W3SCHOOLs -->
+				<center><button type="submit" form="form1">Enviar</button></center>	
+				<!--EL ATRIBUTO 'id' ES PARA REFERIRSE A UN DETERMINADO FORMULARIO(POR SI HAY 2 O MAS)-->
+		</div>
+	</body>
+</html>

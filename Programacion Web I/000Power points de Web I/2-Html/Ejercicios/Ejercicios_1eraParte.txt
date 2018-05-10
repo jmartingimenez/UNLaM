@@ -1,0 +1,10 @@
+1) 	a) Generar una página con las marcas mínimas que debe tener.  
+	b) En el cuerpo de la misma escriba el nombre de la materia y el ciclo lectivo.
+	c) Grabe el archivo con el nombre Ejercicio1.html.
+
+2) 	a) Genere un nuevo archivo (Ejercicio2.html) a partir del primero.
+	b) Agregue un Título
+	c) Agregue un resumen de los contenidos de la página y palabras claves.
+	d) Grabe el archivo.
+	
+	

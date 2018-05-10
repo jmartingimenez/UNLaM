@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Practica numero 1</title>
+	<link rel="stylesheet" type="text/css" href="p1.css"/>
+	<script type="text/javascript" src="p1.js"></script>
+</head>
+<body>
+	<noscript>Active Javascript</noscript>
+	<div id="contenedor">
+		<div id="arriba">
+			Registrate...
+		</div>
+		<div id="medio">
+			<form id="inscripcion" action="http://www.google.com.ar">
+				Usuario:<br/>
+				<input type="text" name="Usuario" id="name"/><br/>
+				Password:<br/>
+				<input type="password" name="Contrasenia" id="pass"/><br/>
+				Reingrese Password<br/>
+				<input type="password" name="Repassword" id="repass"/><br/>
+				Sexo:<br/>
+				<input type="radio" name="sexo" id="masculino"/>Masculino
+				<input type="radio" name="sexo" id="femenino"/>Femenino<br/>
+				<select id="generacion">
+					<option value="0">---</option>
+					<option value="1">80</option>
+					<option value="2">90</option>
+				</select><br/>
+				E-Mail<br/>	
+				<input type="text" name="correo" id="mail"/><br/>
+				<input type="submit" value="Env&iacute;ar" onclick=" return validacion()"/>	
+				<input type="reset" value="Limpiar"/>	
+			</form>
+		</div>
+		<div id="abajo">
+			<input type="button" name="vernombre" value="ver nombre de alumno" id="showname" onclick="mostrar_nombre()"/>
+	</div>
+	</div>
+</body>
+</html>

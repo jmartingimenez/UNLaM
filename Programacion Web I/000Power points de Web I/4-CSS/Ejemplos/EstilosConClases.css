@@ -1,0 +1,9 @@
+﻿H1  { 
+ font-size : 12pt; 
+ color:White;
+ font-family : verdana, arial; 
+ text-align : center; 
+ background-color :blue; 
+} 
+.fondonegroletrasblancas {background-color:black;color:white;font-size:10;font-family:Verdana} 
+.letrasamarillasitalicas {color:Yellow;font-style:italic;}

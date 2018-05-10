@@ -1,0 +1,41 @@
+body
+	{
+		background:rgba(200,200,200,1);
+	}
+	
+input[type="text"],[type="password"],select,textarea
+
+	{
+		background-color:yellow;
+		margin-top:2%;
+		margin-bottom:2%;
+	}
+	
+#contenedor_formulario
+	{
+		
+		background-color:white;
+		font-family:verdana;
+		font-size:14px;
+		font-weight:bold;
+		text-align:justify;
+		width:90%;
+		margin:0 auto;
+		display:block;
+	}
+
+fieldset
+	{
+		border: 3px solid;
+		border-color:grey;	
+	}	
+
+	
+.campo_centrado
+	{
+		width:28%;
+		margin:0 auto;
+	}	
+	
+
+

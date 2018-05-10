@@ -1,0 +1,1 @@
+exec sp_attach_db 'AdventureWorks', 'C:\Archivos de programa\Microsoft SQL Server\MSSQL.1\MSSQL\Data\AdventureWorks_Data.mdf'

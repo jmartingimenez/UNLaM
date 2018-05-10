@@ -1,0 +1,62 @@
+#contenedor{
+width: 960px;
+height:500px;
+
+	
+}
+
+#encabezado{
+height: 100px;
+background-color: blue;
+font-family:arial;
+font-size: 20px;
+font-weight: bold;
+padding-left: 420px;
+padding-top: 10px;
+	
+}
+
+#cuerpo{
+background-color:lightblue ;
+height: 330px;
+
+	
+}
+
+#pie{
+background-color: lightgreen;
+height:70px;
+padding: 5px;
+padding-left: 400px;
+text-decoration: underline;
+	
+}
+
+.alinear{
+padding-top: 15px;
+padding-left: 350px;
+
+
+}
+
+.etiqueta{
+
+float: left;
+margin:5px;
+margin-top: 5px;
+
+
+}
+
+
+.caja{
+padding-left: 100px;
+padding-top: 5px;
+
+}
+
+
+
+
+
+

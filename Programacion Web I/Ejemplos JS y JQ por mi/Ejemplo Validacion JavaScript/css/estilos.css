@@ -1,0 +1,14 @@
+*{padding: 0;}
+
+#encabezado{background-color:grey;height:10%;text-align:center;border: 1px solid black;margin-bottom:5px;}
+
+#contenido{background-color:grey;height:auto;text-align:center;border: 1px solid black;margin-bottom:5px;}
+
+#pdpagina{background-color:grey;height:10%;text-align:center;border:1px solid black;}
+
+#formulario{margin-top:5%;}
+
+.boton{margin-top:1%;cursor:pointer;}
+
+#divform{border:1px solid black;height:auto;width:200px;margin:0 auto;padding:10px;margin-top:1%;}
+

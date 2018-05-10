@@ -1,0 +1,37 @@
+body {
+    color: #000000;
+    font: 85% arial,helvetica,sans-serif;
+}
+
+.containingbox {
+    border: 1px solid #000000;
+    height: 400px;
+    width: 400px;
+}
+
+.floatleft {
+    background-color: #FF6633;
+    float: left;
+    height: 100px;
+    width: 100px;   /* Con Float aplicado, el ancho es obligatorio, caso contrario es impredecible. 
+						Que sucede si se amplia el ancho para el ejemplo de FloatLeftConsecutivos.html?   */
+}
+
+.floatright {
+    background-color: #cc66ff;
+    float: right;
+    height: 100px;
+    width: 100px;
+}
+
+.chico{
+    background-color: #ccdd33;
+    float: left;
+    height: 50px;
+    width: 100px;
+}
+
+.clear {
+	background-color: #aa5514;
+    clear:both;
+}

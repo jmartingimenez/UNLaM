@@ -1,0 +1,511 @@
+BODY
+{
+	BACKGROUND-COLOR: white;
+	FONT-FAMILY: "Verdana", sans-serif;
+	FONT-SIZE: 100%;
+	MARGIN-LEFT: 20px;
+	MARGIN-TOP: 0px
+}
+A:link
+{
+	COLOR: #cc6633;
+	TEXT-DECORATION: underline
+}
+A:visited
+{
+	COLOR: #cc6633;
+}
+A:active
+{
+	COLOR: #cc6633;
+}
+A:hover
+{
+	COLOR: #cc3300;
+	TEXT-DECORATION: underline
+}
+P
+{
+	FONT-FAMILY: "Verdana", sans-serif;
+	FONT-SIZE: 70%;
+	LINE-HEIGHT: 12pt;
+	MARGIN-BOTTOM: 0px;
+	MARGIN-LEFT: 10px;
+	MARGIN-RIGHT: 10px;
+	MARGIN-TOP: 10px
+}
+FORM {
+	MARGIN-BOTTOM: 0px
+}
+TD {
+	COLOR: black; FONT-SIZE: 8pt
+}
+P {
+	FONT-SIZE: 8pt
+}
+.smallText {
+	FONT-SIZE: 60%
+}
+.color {
+	COLOR: #ff7d00
+}
+.colorCode {
+	COLOR: #800000
+}
+B.black {
+	COLOR: black; FONT-SIZE: 10px; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+B.red {
+	COLOR: red; FONT-SIZE: 10px; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+PRE {
+	BACKGROUND-COLOR: #fdedbb; FONT: 9pt "Courier New", Courier, mono; PADDING-BOTTOM: 5pt; PADDING-LEFT: 5pt; PADDING-RIGHT: 5pt; PADDING-TOP: 5pt; WHITE-SPACE: pre; WIDTH: 100%
+}
+CODE {
+	COLOR: #990000; FONT-FAMILY: "Courier New", Courier, mono
+}
+DIV.menu {
+	BORDER-RIGHT: #000080 1px solid; BORDER-TOP: #000080 1px solid; FONT-WEIGHT: bold; PADDING-BOTTOM: 2px; MARGIN: 1px; BORDER-LEFT: #000080 1px solid; CURSOR: hand; COLOR: black; PADDING-TOP: 0px; BORDER-BOTTOM: #000080 1px solid; BACKGROUND-COLOR: #CDE5FF
+}
+DIV.link {
+	PADDING-BOTTOM: 5px; MARGIN-LEFT: 12px; PADDING-TOP: 5px
+}
+DIV.item {
+	FONT-WEIGHT: normal; MARGIN: 0px 0px 10px; TEXT-INDENT: 0px; LINE-HEIGHT: 12pt; FONT-STYLE: normal; TEXT-ALIGN: left; FONT-VARIANT: normal
+}
+.tablecell1 {
+	BACKGROUND-COLOR: #F0FAFF
+}
+.tablehdr {
+	BACKGROUND-COLOR: #CDE5FF
+}
+
+
+.DiagramTitle {
+	COLOR: #000080;
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 100%;
+}
+.DiagramLabel {
+	font-style : italic;
+	font-weight : bold;
+}
+.LinkTitle {
+	COLOR: #000080;
+	FONT-SIZE: 80%;
+}
+
+.ObjectDetails
+{
+	BORDER-BOTTOM: #ffffff 0px solid;
+	BORDER-COLLAPSE: collapse;
+	BORDER-LEFT: #ffffff 0px solid;
+	BORDER-RIGHT: #ffffff 0px solid;
+	BORDER-TOP: #ffffff 0px solid;
+	FONT-SIZE: 70%;
+	MARGIN-LEFT: 10px
+}
+.ObjectDetailsTopic {
+	font-style : italic;
+	COLOR: #000080;
+}
+.ObjectDetailsValue {
+}
+.ObjectTitle {
+	COLOR: #000080;
+	FONT-WEIGHT: bold;
+	FONT-SIZE: 100%;
+	TEXT-DECORATION: underline
+}
+.ObjectSubTitle {
+	COLOR: #000080;
+	FONT-SIZE: 70%;
+}
+.ObjectSubTitleIntReq {
+	COLOR: #000080;
+	FONT-SIZE: 70%;
+	font-style : italic;
+}
+.ObjectSubTitleConstraint {
+	COLOR: #000080;
+	FONT-SIZE: 70%;
+	font-style : italic;
+}
+.ObjectSubTitleScenario {
+	COLOR: #000080;
+	FONT-SIZE: 70%;
+	font-style : italic;
+}
+.ObjectSubTitleTaggedValues {
+	COLOR: #000080;
+	FONT-SIZE: 70%;
+	font-style : italic;
+}
+.ObjectLinkTitle {
+	COLOR: #000080;
+	FONT-SIZE: 70%;
+	font-style : italic;
+}
+.ObjectScenarioName {
+	FONT-SIZE: 70%;
+	TEXT-DECORATION: underline
+}
+.ObjectScenarioDesc {
+	FONT-SIZE: 70%;
+}
+
+.AttribTableHeading {
+	FONT-WEIGHT: bold;
+	BACKGROUND-COLOR: #CDE5FF;
+	padding-left : 5;
+	padding-right : 5;
+	padding-top : 5;
+	padding-bottom : 5;
+	border-right : thin ridge;
+	border-bottom : thin ridge;
+}
+.AttribTableRow {
+	BACKGROUND-COLOR: #EAF4FF;
+	padding-left : 5;
+	padding-right : 5;
+	padding-top : 5;
+	padding-bottom : 5;
+	border-right : thin ridge;
+	border-bottom : thin ridge;
+}
+.AttribTable
+{
+	padding-left : 5;
+	padding-right : 5;
+	padding-top : 5;
+	padding-bottom : 5;
+	width : 90%;
+	border-left : thin ridge;
+	border-top : thin ridge;
+}
+.AttribTableField1 {
+	padding-left : 5;
+	padding-right : 5;
+	padding-top : 5;
+	padding-bottom : 5;
+	FONT-SIZE: 60%;
+	vertical-align : top;
+}
+.AttribTableField2 {
+	padding-left : 5;
+	padding-right : 5;
+	padding-top : 5;
+	padding-bottom : 5;
+}
+
+.OperationTableHeading {
+	FONT-WEIGHT: bold;
+	BACKGROUND-COLOR: #CDE5FF;
+	padding-left : 5;
+	padding-right : 5;
+	padding-top : 5;
+	padding-bottom : 5;
+	border-right : thin ridge;
+	border-bottom : thin ridge;
+}
+.OperationTableRow {
+	BACKGROUND-COLOR: #EAF4FF;
+	padding-left : 5;
+	padding-right : 5;
+	padding-top : 5;
+	padding-bottom : 5;
+	border-right : thin ridge;
+	border-bottom : thin ridge;
+	vertical-align : top;
+}
+
+.TestTableHeading {
+	FONT-WEIGHT: bold;
+	BACKGROUND-COLOR: #FFCCCC;
+	padding-left : 5;
+	padding-right : 5;
+	padding-top : 5;
+	padding-bottom : 5;
+	border-right : thin ridge;
+	border-bottom : thin ridge;
+}
+.TestTableRow {
+	BACKGROUND-COLOR: #FFE6F3;
+	padding-left : 5;
+	padding-right : 5;
+	padding-top : 5;
+	padding-bottom : 5;
+	border-right : thin ridge;
+	border-bottom : thin ridge;
+	vertical-align : top;
+}
+
+.TaskTableHeading {
+	FONT-WEIGHT: bold;
+	BACKGROUND-COLOR: #99CC66;
+	padding-left : 5;
+	padding-right : 5;
+	padding-top : 5;
+	padding-bottom : 5;
+	border-right : thin ridge;
+	border-bottom : thin ridge;
+}
+.TaskTableRow {
+	BACKGROUND-COLOR: #E2FDD9;
+	padding-left : 5;
+	padding-right : 5;
+	padding-top : 5;
+	padding-bottom : 5;
+	border-right : thin ridge;
+	border-bottom : thin ridge;
+	vertical-align : top;
+}
+
+.MaintTableHeading {
+	FONT-WEIGHT: bold;
+	BACKGROUND-COLOR: #FFFF99;
+	padding-left : 5;
+	padding-right : 5;
+	padding-top : 5;
+	padding-bottom : 5;
+	border-right : thin ridge;
+	border-bottom : thin ridge;
+}
+.MaintTableRow {
+	BACKGROUND-COLOR: #FFFFDD;
+	padding-left : 5;
+	padding-right : 5;
+	padding-top : 5;
+	padding-bottom : 5;
+	border-right : thin ridge;
+	border-bottom : thin ridge;
+	vertical-align : top;
+}
+
+
+
+
+
+.OperationTable
+{
+	padding-left : 5;
+	padding-right : 5;
+	padding-top : 5;
+	padding-bottom : 5;
+	width : 90%;
+	border-left : thin ridge;
+	border-top : thin ridge;
+}
+
+
+.issuetable
+{
+	BACKGROUND-COLOR: #ffffe8;
+	BORDER-COLLAPSE: collapse;
+	COLOR: #000000;
+	FONT-SIZE: 100%;
+	MARGIN-BOTTOM: 10px;
+	MARGIN-LEFT: 13px;
+	MARGIN-TOP: 0px
+}
+.issuetitle
+{
+	BACKGROUND-COLOR: #ffffff;
+	BORDER-BOTTOM: #dcdcdc 1px solid;
+	BORDER-TOP: #dcdcdc 1px;
+	COLOR: #003366;
+	FONT-WEIGHT: normal
+}
+.header
+{
+	BACKGROUND-COLOR: #cecf9c;
+	BORDER-BOTTOM: #ffffff 1px solid;
+	BORDER-LEFT: #ffffff 1px solid;
+	BORDER-RIGHT: #ffffff 1px solid;
+	BORDER-TOP: #ffffff 1px solid;
+	COLOR: #000000;
+	FONT-WEIGHT: bold
+}
+.issuehdr
+{
+	BACKGROUND-COLOR: #E0EBF5;
+	BORDER-BOTTOM: #dcdcdc 1px solid;
+	BORDER-TOP: #dcdcdc 1px solid;
+	COLOR: #000000;
+	FONT-WEIGHT: normal
+}
+.issuenone
+{
+	BACKGROUND-COLOR: #ffffff;
+	BORDER-BOTTOM: 0px;
+	BORDER-LEFT: 0px;
+	BORDER-RIGHT: 0px;
+	BORDER-TOP: 0px;
+	COLOR: #000000;
+	FONT-WEIGHT: normal
+}
+.content
+{
+	BACKGROUND-COLOR: #e7e7ce;
+	BORDER-BOTTOM: #ffffff 1px solid;
+	BORDER-LEFT: #ffffff 1px solid;
+	BORDER-RIGHT: #ffffff 1px solid;
+	BORDER-TOP: #ffffff 1px solid;
+	PADDING-LEFT: 3px
+}
+.issuecontent
+{
+	BACKGROUND-COLOR: #ffffff;
+	BORDER-BOTTOM: #dcdcdc 1px solid;
+	BORDER-TOP: #dcdcdc 1px solid;
+	PADDING-LEFT: 3px
+}
+H1
+{
+	BACKGROUND-COLOR: #0033A6;
+	BORDER-BOTTOM: #000080 6px solid;
+	COLOR: #ffffff;
+	FONT-SIZE: 130%;
+	FONT-WEIGHT: normal;
+	MARGIN: 0em 0em 0em -20px;
+	PADDING-BOTTOM: 8px;
+	PADDING-LEFT: 30px;
+	PADDING-TOP: 16px
+}
+H2
+{
+	COLOR: #000000;
+	FONT-SIZE: 80%;
+	FONT-WEIGHT: bold;
+	MARGIN-BOTTOM: 3px;
+	MARGIN-LEFT: 10px;
+	MARGIN-TOP: 20px;
+	PADDING-LEFT: 0px
+}
+H3
+{
+	COLOR: #000000;
+	FONT-SIZE: 80%;
+	FONT-WEIGHT: bold;
+	MARGIN-BOTTOM: -5px;
+	MARGIN-LEFT: 10px;
+	MARGIN-TOP: 20px
+}
+H4
+{
+	COLOR: #000000;
+	FONT-SIZE: 70%;
+	FONT-WEIGHT: bold;
+	MARGIN-BOTTOM: 0px;
+	MARGIN-TOP: 15px;
+	PADDING-BOTTOM: 0px
+}
+UL
+{
+	COLOR: #000000;
+	FONT-SIZE: 90%;
+	LIST-STYLE: square;
+	MARGIN-BOTTOM: 0pt;
+	MARGIN-TOP: 0pt
+}
+OL
+{
+	COLOR: #000000;
+	FONT-SIZE: 70%;
+	LIST-STYLE: square;
+	MARGIN-BOTTOM: 0pt;
+	MARGIN-TOP: 0pt
+}
+LI
+{
+	LIST-STYLE: square;
+	MARGIN-LEFT: 0px
+}
+.foot
+{
+BACKGROUND-COLOR: #ffffff;
+BORDER-BOTTOM: #cecf9c 1px solid;
+BORDER-TOP: #cecf9c 2px solid
+}
+.settings
+{
+MARGIN-LEFT: 25PX;
+}
+.help
+{
+TEXT-ALIGN: right;
+margin-right: 10px;
+}
+
+.FooterTable
+{
+	padding-left : 5;
+	padding-right : 5;
+	padding-top : 5;
+	padding-bottom : 5;
+	width : 100%;
+}
+
+.Footer
+{
+	BACKGROUND-COLOR: #E9E9E9;
+	FONT-WEIGHT: bold;
+	COLOR: Gray;
+	padding-left : 5;
+	padding-right : 7;
+	padding-top : 7;
+	padding-bottom : 5;
+	text-align : center;
+}
+
+.FooterDetails
+{
+	BACKGROUND-COLOR: #FFFFFF;
+	vertical-align : top;
+}
+
+.HeaderTable
+{
+	padding-left : 5;
+	padding-right : 5;
+	padding-top : 5;
+	padding-bottom : 5;
+	width : 100%;
+}
+.Header
+{
+	BACKGROUND-COLOR: #E9E9E9;
+	FONT-WEIGHT: bold;
+	COLOR: Gray;
+	padding-left : 5;
+	padding-right : 5;
+	padding-top : 7;
+	padding-bottom : 7;
+	text-align : center;
+}
+.HeaderDetails
+{
+	BACKGROUND-COLOR: #FFFFFF;
+	vertical-align : top;
+}
+
+.GlossTableHeading {
+	FONT-WEIGHT: bold;
+	BACKGROUND-COLOR: #CDE5FF;
+	padding-left : 5;
+	padding-right : 5;
+	padding-top : 5;
+	padding-bottom : 5;
+	border-right : thin ridge;
+	border-bottom : thin ridge;
+}
+
+.GlossTableRow {
+	BACKGROUND-COLOR: #EAF4FF;
+	padding-left : 5;
+	padding-right : 5;
+	padding-top : 5;
+	padding-bottom : 5;
+	border-right : thin ridge;
+	border-bottom : thin ridge;
+}

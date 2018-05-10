@@ -1,0 +1,189 @@
+		
+		/*=======================================OPCIONES GENERALES=======================================*/
+
+noscript
+
+	{
+		background-color:#ff6666;
+		font-family:verdana;
+		font-size:38.5px;
+		margin-left:0.05%;
+	}
+
+    #btnArriba
+    {
+		  background-color:white;
+		  position:fixed; /*evita que se muevan*/
+		  width:54px;
+		  height:54px;
+		  bottom:10px;
+		  opacity:0.5; /*hace que las imágenes sean un poco transparentes*/
+		  white-space:nowrap;
+		  cursor: pointer;
+		  display:none;
+    }
+
+    #btnArriba:hover
+    {
+		opacity:0.8;
+    }
+
+    #btnArriba{
+		background:transparent url(../imagenes/arriba.png) no-repeat top left;
+		right:15px;
+    }
+	
+body
+
+	{
+		width:100%;							
+		border-collapse:collapse;			/*Quitando los margenes del body*/
+		margin:0%;							/*IDEM*/
+		padding:0%;							/*IDEM*/
+	}
+	
+img, video, object 
+
+	{
+		max-width:100%; 					/*Se supone q nunca van a pasar el ancho del contenedor*/
+	}
+
+	
+a:link,a:visited							/*Para que se vea igual si ya le diste click o no*/
+
+	{
+		display:block;						/*Para que todo el cuadro sea clickeable*/
+		text-decoration:none;				/*Para quitarle el subrayado en el link*/
+		color:white;						/*Siempre color blanco*/
+	
+	}		
+	
+		/*=======================================BANNER=======================================*/	
+	
+#logo
+{
+	z-index:9999;
+	position:absolute;
+	height:200px;
+	width:200px;
+	margin-top:60px;
+	margin-left:20px;
+}	
+#contenedor_menu
+
+	{
+		list-style-type:none;				/*Para quitar los puntos*/
+		/*opacity:0.9;						/*La opacidad, mas bajo, mas suave*/
+		text-align:center;					/*Para centrar el texto dentro de cada opcion*/
+		margin:0;							/*Para que desaparezcan los margenes de la lista*/		
+		padding:0%;							/*IDEM*/
+	}	
+	
+.boton_menu
+
+	{
+		display:block;						/*Hace toda el area clickeable, no solo el texto*/
+		border-left-style:solid;			/*Para esos bordes tipo puntitos*/
+		border-width:double;				/*Para que sean finitos los bordes*/	
+		float:left;							/*Uno al lado del otro buscando la izquierda*/
+		background-color:#4C4C4C;			/*Color de fondo*/
+		padding:1%;							/*Con esto agrandamos los cuadros*/
+		width:11.85em;						/*Asi no se amontonan las opciones (A ojo), requiere el display:block*/
+											/*Sin em estaba en 12.05%*/
+	}
+
+.boton_menu:hover
+
+	{
+		background-color:#737373;
+		color:#269900;
+	}	
+
+.opcion
+
+	{
+		font-family:verdana;				/*Tipo de fuente para el texto dentro de cada opcion*/
+		font-weight:bold;					/*Dentro de los menues*/
+		color:white;
+	}
+
+	
+
+	
+		/*=========================================ZONA MEDIA=====================================*/
+
+#zona_medio
+
+	{
+		background-size:100% 100%;								/*Que se ajuste al tamaño*/		
+		background:url(../Imagenes/ensalada.jpg) no-repeat;		/*img de la ensalada*/
+		width:100%;
+		height:auto;											/*Altura. Deberia ajustarse automaticamente*/
+		overflow:hidden;										/*Para que la imagen baje*/
+		margin-top:-4%;
+	}															
+
+#barra_pie_de_banner
+
+	{
+		text-align:left;										/*Para el texto del horario*/
+		font-family:verdana;
+		background-color:#4C4C4C;
+		font-size:2em/*30px antes*/;
+		font-weight:bold;					
+		color:white;		
+		border-top:solid 4px;									/*Bordes negros arriba*/
+		border-bottom:solid 4px;								/*Bordes negros abajo*/
+		margin-bottom:0%;										/*Espacio entre el borde bajo y lo que siga dsp*/
+		border-bottom-color:#4C4C4C;
+	}	
+
+#barra_pie_de_banner img
+
+	{
+		float:right;
+	}	
+	
+#barra_pie_de_banner a
+
+	{
+		display:inline;
+		padding:0;												/*Quitando margenes entre texto e imagenes*/
+		margin:0;												/*Quitando margenes entre texto e imagenes*/
+	}
+	
+		/*=======================================PIE DE PAGINA=====================================*/		
+		
+#pie_de_pagina 
+
+	{
+		margin:0%;													/*Quitando margenes y padding*/
+		padding:0%;													/*IDEM*/
+		border-bottom:none;
+		border-left:none;
+		border-right:none;
+		border-top:solid 4px;
+		border-color:black;
+		overflow:hidden;											/*Para que se vea el color de fondo*/
+		list-style-type:none;										/*Quitandole los puntitos a los items de lista*/
+		background-color:#4C4C4C;									/*Color de fondo*/
+	}
+
+
+#pie_de_pagina img
+
+	{
+		/*display:block;												/*Parece no hacer falta*/
+		width:100%;
+		height:5em;													/*Tamaño de las imagenes*/
+	}	
+	
+#pie_de_pagina li
+
+	{
+		float:left;
+		list-style-type:none;									/*Para quitar los puntos*/
+		margin:2%;		
+	}
+
+

@@ -1,0 +1,29 @@
+﻿a:link 
+{
+    text-decoration:none;
+    color:#0000cc;
+} 
+
+a:visited 
+{
+    text-decoration:none;
+    color:#ffcc33;
+} 
+
+a:active 
+{
+    text-decoration:none;
+    color:#ff0000;
+} 
+
+a:hover 
+{
+    text-decoration:underline;
+    color:#999999;
+    font-weight:bold
+} 
+
+#EstiloUnico{  
+    font-size: 14pt;  
+    font-family: Verdana;  
+}  

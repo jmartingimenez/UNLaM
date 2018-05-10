@@ -1,0 +1,73 @@
+Sobre Anonimato en internet
+---------------------------------------------
+---------------------------------------------
+---------------------------------------------
+*****************************Posibles ejemplos de motivos*****************************
+
+Censura/Restricciones: Ejemplos, China, Corea del Norte, Birmania, Cuba
+
+http://es.wikipedia.org/wiki/Censura_en_Internet
+http://es.wikipedia.org/wiki/Censura_de_Internet_en_la_Republica_Popular_China
+http://es.wikipedia.org/wiki/Kwangmyong_(intranet) 
+http://en.wikipedia.org/wiki/Internet_in_Burma#Censorship
+http://es.wikipedia.org/wiki/Internet_en_Cuba
+---------------------------------------------
+---------------------------------------------
+---------------------------------------------
+
+*****************************Sobre Proxy*****************************
+
+Proxy
+
+http://es.wikipedia.org/wiki/Proxy
+http://es.wikipedia.org/wiki/Privoxy
+---------------------------------------------
+---------------------------------------------
+---------------------------------------------
+
+*****************************Ejemplos de redes alternas*****************************
+
+Alternativas 
+
+http://es.wikipedia.org/wiki/Freenet
+http://es.wikipedia.org/wiki/Tor_(red_de_anonimato)
+http://es.wikipedia.org/wiki/I2P
+http://www.tecnomundo.net/2015/01/la-internet-illegal-de-cuba/
+---------------------------------------------
+---------------------------------------------
+---------------------------------------------
+Sobre Deep Web
+
+http://es.wikipedia.org/wiki/Internet_profunda
+http://www.elladodelmal.com/2013/09/de-paseo-por-la-deep-web.html
+http://www.elladodelmal.com/2013/09/como-ser-anonimo-en-internet-la-red-tor.html
+http://www.elladodelmal.com/2014/07/tor-confirma-que-el-anonimato-se-rompio.html
+(el segundo y el tercer link es mas sobre el tema del rastreo)
+
+
+*****************************Terrorismo*****************************
+
+Ejemplos de organizaciones terroristas usando Deep Web (ISIS)
+
+http://post.sintaxisweb.es/2015/01/12/internet-terrorismo-yihadista/
+http://www.deepweb.es/la-yihab-y-el-terrorismo-en-la-deep-web/
+
+*****************************Comercio anonimo*****************************
+
+Sobre Bitcoin
+---------------------------------------------
+---------------------------------------------
+---------------------------------------------
+http://es.wikipedia.org/wiki/Bitcoin
+http://es.wikipedia.org/wiki/Litecoin
+---------------------------------------------
+---------------------------------------------
+---------------------------------------------
+
+Caso SilkRoad
+---------------------------------------------
+---------------------------------------------
+---------------------------------------------
+http://es.wikipedia.org/wiki/Silk_Road
+http://www.elladodelmal.com/2013/10/el-fbi-acaba-con-silk-road-el-mercado.html
+https://www.fayerwayer.com/2013/10/como-el-fbi-encontro-al-fundador-de-silk-road/

@@ -1,0 +1,12 @@
+1) 	a) Genere un nuevo archivo (Ejercicio4.html) a partir del archivo Ejercicio1.html. 
+	b) Defina una fuente Arial y en negrita para la materia, y una fuente Verdana e italica para el ciclo lectivo.
+	c) Agregue un título que indique "Universidad Nacional de La Matanza".
+	d) Agregue un subtítulo que indique "Desarrollador de Aplicaciones Web".
+	e) Grabe el archivo.
+	
+2) 	a) Genere una página página principal con dos hipervínculos a las páginas pagina2.html y pagina3.html
+	b) En las dos páginas secundarias disponer hipervínculos a la página principal.
+    c) Grabe el archivo con el nombre Ejercicio5.html
+
+3) 	a) Genere un nuevo archivo (Ejercicio6.html) a partir del archivo Ejercicio1.html
+	b) Confeccione una lista ordenada con tres lenguajes de programación.

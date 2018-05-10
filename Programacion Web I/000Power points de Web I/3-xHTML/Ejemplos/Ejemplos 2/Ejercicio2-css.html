@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
+ 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Ejercicio 2 - Aplicando Estilos a Tablas</title>
+
+<style type="text/css">
+	table
+	{ 
+		font-family: Verdana;
+		font-weight: normal;
+		font-size: 11px;
+		color: #404040;
+		width: 320px;
+		background-color: #fafafa;
+		border: 1px #6699CC solid;
+		border-collapse: collapse;
+		border-spacing: 0px;
+		margin-top: 0px;
+	}
+
+	table.planilla th
+	{ 	
+		background-color: #BEC8D1;
+		text-align: center;
+		font-weight: bold;
+		color: #404040;
+	}
+	
+	table.planilla th.PrimeraLinea
+	{ 	
+		border-bottom: 2px solid #6699CC;
+	}
+	
+	table.planilla th.UltimaLinea
+	{ 	
+		border-top: 2px solid #6699CC;
+	}	
+
+</style>
+
+</head>
+ 
+<body>
+ 
+<h1>Pedido de Electrónica</h1>
+<table summary="Listado de Productos" class="planilla" cellspacing="0">
+  <tr>
+    <th class="PrimeraLinea" scope="col">Nombre producto</th>
+    <th class="PrimeraLinea" scope="col">Precio unitario</th>
+    <th class="PrimeraLinea" scope="col">Unidades</th>
+    <th class="PrimeraLinea" scope="col">Subtotal</th>
+  </tr>
+ 
+  <tr>
+    <td>Reproductor MP4 (16 GB)</td>
+    <td align="center">$105</td>
+    <td align="center">2</td>
+    <td align="right">$210</td>
+  </tr>
+ 
+  <tr>
+    <td>Fundas de colores</td>
+    <td align="center">$2</td>
+    <td align="center">5</td>
+    <td align="right">$10</td>
+  </tr>
+ 
+  <tr>
+    <td>Reproductor MP3 (4 GB)</td>
+    <td align="center">$60</td>
+    <td align="center">2</td>
+    <td align="right">$120</td>
+  </tr>
+ 
+  <tr>
+    <th class="UltimaLinea" scope="row">TOTAL</th>
+    <th class="UltimaLinea"><strong>-</strong></th>
+    <th class="UltimaLinea"><strong>9</strong></th>
+    <th class="UltimaLinea" align="right"><strong>$340</strong></th>
+  </tr>
+</table>
+ 
+</body>
+ 
+</html>

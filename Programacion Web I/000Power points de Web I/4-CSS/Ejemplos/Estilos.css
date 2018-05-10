@@ -1,0 +1,26 @@
+﻿P  { 
+ font-size : 10pt; 
+ font-family : helvetica, arial; 
+ font-weight :  bold; 
+}  
+
+TD  { 
+ font-size : 10pt; 
+ font-family : verdana, arial; 
+ text-align : left; 
+ background-color : #666666; 
+} 
+
+BODY  { 
+ background-color : #006600;
+ font-family : arial; 
+ color : White; 
+} 
+  
+H1  { 
+ font-size : 30pt; 
+ font-family : verdana, arial; 
+ text-decoration : underline; 
+ text-align : center; 
+ background-color :Maroon; 
+} 

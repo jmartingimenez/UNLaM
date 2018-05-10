@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Practica de Formulario</title>
+		<meta name="keywords" content="formulario,parcial"/>
+		<meta name="description" content="Esto es una practica para el parcial"/>
+		<link rel="stylesheet" type="text/css" href="css/estilo.css"/>
+	</head>
+	<body>
+		<div id="contenedor_formulario">
+			<form action="http://www.google.com.ar" method="get">
+				<fieldset>
+					<legend>Contacto</legend>
+						<div>
+							<span>
+								Nombre
+								<input type="text" name="name" maxlength="20" size="15"/>
+							</span>
+							<span>
+								Apellido
+								<input type="text" name="surname" maxlength="20" size="15"/>
+							</span>							
+							<span>
+								DNI
+								<input type="text" name="dni" maxlength="8" size="8"/>
+							</span>		
+							<span>
+								Telefono
+								<input type="text" name="tel" maxlength="11" size="11"/>
+							</span>	
+						</div>	
+						<div class="campo_centrado">
+								E-Mail
+								<input type="text" name="mail" maxlength="20" size="20"/>
+						</div>
+						<div>
+							<span>
+								Password
+								<input type="password" name="pass" maxlength="10" size="10"/>
+							</span>
+							<span>
+								Desea suscribirse?
+								<input type="checkbox" name="aceptar"/>
+							</span>
+							<span>
+								Provincia
+								<select name="provincia">
+									<option value="00">- - - - - - -</option>
+									<option value="01">Buenos aires</option>
+									<option value="02">Capital Federal</option>
+									<option value="03">Salta</option>
+								</select>
+							</span>
+						</div>
+						<div class="campo_centrado">
+							<span>
+								Dejanos un comentario<br/>
+								<textarea cols="20" rows="8"></textarea>
+							</span>
+							
+						</div>
+						<div>
+							<span>
+								D&iacute;a
+								<input type="text" name="day" maxlength="2" size="1"/>
+							</span>	
+							<span>
+								Mes
+								<input type="text" name="month" maxlength="2" size="1"/>
+							</span>								
+							<span>
+								A&ntilde;o
+								<input type="text" name="year" maxlength="4" size="2"/>
+							</span>								
+						</div>						
+						<div>
+							<span>
+								<input type="reset" name="reset" value="Borrar datos"/>
+							</span>
+							<span>
+								<input type="submit" name="send" value="Enviar"/>
+							</span>
+						</div>
+				</fieldset>	
+			</form>
+		</div>	
+	</body>
+</html>

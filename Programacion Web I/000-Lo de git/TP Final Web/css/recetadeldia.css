@@ -1,0 +1,67 @@
+#contenedor_receta
+
+	{
+		color:white;							/*Texto blanco*/
+		float:left;								/*Que busque la izquierda*/
+		margin-top:5%;							/*Margenes del contenedor principal con respecto a los bordes*/
+		margin-bottom:7%;
+		margin-left:25%;
+		margin-right:auto;
+		width:50%;								/*Ancho y alto del contenedor*/
+		height:auto;
+		background:rgba(51,51,51,0.7);			/*alternativa a background-color y opacity, para evitar*/
+	}											/*que la imagen quede con opacidad*/
+												/*51,51,51 es el equivalente a #333333 (hex to rgb converter)*/
+												/*0.7 seria el opacity:0.7;*/
+												
+#imagen_receta
+
+	{
+		float:left;
+		margin-bottom:8%;						/*Para que el texto debajo quede mas separado*/
+		width:50%;
+	}												
+	
+#mensaje_receta									/*Este en si, seria el contenedor del texto*/
+
+	{
+		font-family:verdana;
+		padding:1%;
+	}	
+	
+#receta_titulo
+
+	{
+		font-size:30px;
+		text-align:center;
+		border-bottom-style:solid;				/*La suerte de 'underline'*/
+	}	
+	
+#receta_listado
+
+	{
+		text-align:left;						/*Las listas alistadas a la izquierda*/	
+		font-size:15px;	
+		width:45%;								/*Acorde al porcentaje usado para la imagen y la descripcion*/
+												/*solo debajo de la imagen*/
+		float:right;							/*Que busque la derecha*/
+	}	
+	
+#receta_listado li	
+
+	{
+		list-style:circle;
+		list-style-position:inside;
+		font-size:15px;
+	}	
+	
+#receta_descripcion
+	
+	{
+		clear:left;
+		font-size:15px;
+		margin-top:1%;							/*Para alejar un poco la descripcion de la foto que esta arriba*/	
+		width:50%;								/*Acorde al porcentaje usado para la descripcion y la imagen*/
+		font-family:verdana;	
+		text-align:justify; 					/*Justificando el texto*/
+	}	

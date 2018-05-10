@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
+ 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Ejercicio 3 - Formulario</title>
+</head>
+ 
+<body>
+ 
+<h3>Rellena tu CV</h3>
+ 
+<form action="Ejercicio1.html" method="post" enctype="multipart/form-data">
+Nombre <br/>
+<input type="text" name="nombre" value="" size="20" maxlength="30" />
+ 
+<br/>
+ 
+Apellidos <br/>
+<input type="text" name="apellidos" value="" size="50" maxlength="80" />
+ 
+<br/>
+ 
+Contraseña <br/>
+<input type="password" name="contrasena" value="" maxlength="10" />
+ 
+<br/>
+ 
+DNI <br/>
+<input type="text" name="dni" value="" size="10" maxlength="9" />
+ 
+<br/>
+ 
+Sexo <br/>
+<input type="radio" name="sexo" value="hombre" checked="checked" /> Hombre <br/>
+<input type="radio" name="sexo" value="mujer" /> Mujer
+ 
+<br/><br/>
+ 
+Incluir mi foto <input type="file" name="foto" />
+
+ 
+<br/><br/>
+
+Conocimientos:  <br/>
+<select multiple="multiple" size="5" id="temasDeInteres" name="temasDeInteres">
+    <option value="3105">Administración de bases de datos</option>
+    <option value="3106">Análisis y programación</option>
+    <option value="3107">Arquitectura</option>
+    <option value="3108">Calidad</option>
+    <option value="3109">ERP, CRM, Business Intelligence</option>
+    <option value="3110">Gestión de proyectos</option>
+</select>
+
+<br/><br/>
+ 
+<input name="suscribir" type="checkbox" value="suscribir" checked="checked"/> Suscribirme al boletín de novedades
+ 
+<br/><br/>
+ 
+
+<input type="submit" name="enviar" value="Guardar cambios" />
+<input type="reset" name="limpiar" value="Borrar los datos introducidos" />
+ 
+ 
+</form>
+ 
+</body>
+ 
+</html>

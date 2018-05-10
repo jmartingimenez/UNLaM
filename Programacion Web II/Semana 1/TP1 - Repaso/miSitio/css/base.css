@@ -1,0 +1,107 @@
+			/*=============================OPCIONES GENERALES=============================*/
+
+body{
+	margin: 0%;											/*Para que por default alcance todo*/
+	padding: 0%;										/*IDEM arriba*/
+	font-family: sans-serif;
+}
+
+.opcionSi{
+	background-color: black;
+}
+
+
+.resaltado{
+	color: #FF6600;
+	font-weight: bold;
+}
+
+			/*=============================ENCABEZADO====================================*/
+
+#encabezado{
+	background-color: black;							/*Color de fondo para el encabezado*/
+	border-top-style: solid;							/*Haciendo el borde de arriba*/
+	border-color: #FF6600;								/*Color obtenido desde http://imgr.co*/
+}
+
+#logo{
+	padding-top: .5em;									/*Alejando un poco la imagen del limite*/						
+	padding-left: 3em;									/*Para que no llege al borde, haciendo juego con el cuerpo*/
+}
+
+#barraMenu{
+	background-image: url("../imagenes/fondobarra2.png");/*Borde naranja*/
+	padding-left: 3em;									
+	font-size: 18px;
+}
+
+#barraMenu ul{
+	margin: 0%;
+	padding: 0%;
+}
+
+#barraMenu li{
+	list-style-type: none;								/*Quitando puntos/astericos, etc.*/
+	display: inline-block;								/*Ver opcione en linea*/
+	text-align: center;									/*Centrando el texto dentro de cada opcion*/
+	padding: .15em;										/*Expandiendo cada opcion*/
+}
+
+li a{
+	text-decoration: none;								/*Para quitarle lo subrayado a los link de la barra*/
+	color: white;										/*Color de letra*/
+}
+
+			/*=============================CUERPO DEL SITIO==============================*/
+
+#fondo{
+	background-image: url("../imagenes/fondobarra.png");/*Imagen gris en degradado*/
+	background-repeat: no-repeat;						/*Para que no se repita*/
+	background-size: 100% 100%;							/*Que ocupe todo el div*/
+	padding-bottom: 1.5em;								/*Agrandandolo un poco (a ojo)*/
+}
+
+#sitioBase{
+	margin-left: 3.5em;									/*Margenes del sitio*/
+	margin-right: 3.5em;
+	padding-bottom: 2em;								/*Alejando un poco el borde del medio*/
+}
+
+			/*=============================PIE DEL SITIO================================*/
+
+#pie{
+	margin-top: 0;									/*Alejando un poco el borde del medio*/
+	border-style: solid;								/*Tipo de borde*/
+	border-color: transparent;							/*Que no se vean los bordes...*/
+	border-top-color: #FF6600;							/*... salvo el de arriba*/
+}
+
+#mensajePie{
+
+	text-align: center;									/*Para centrar*/
+
+}
+
+#imgFlechaIzq{
+	background-image: url("../imagenes/flecha.png");	/*Imagen de flecha*/
+	background-repeat: no-repeat;
+	padding: .5em;										/*Alejando un poco*/
+	width: auto;			
+	display: inline-block;
+	vertical-align: 50%;
+}
+
+#textoPie{
+	padding: 10px;
+	width: 55%;
+	display: inline-block;
+}
+
+#imgFlechaDer{
+	background-image: url("../imagenes/flecha2.png");	/*Imagen de flecha*/
+	background-repeat: no-repeat;
+	padding: .5em;										/*Alejando un poco*/
+	width: auto;
+	display: inline-block;
+	vertical-align: 50%;
+}

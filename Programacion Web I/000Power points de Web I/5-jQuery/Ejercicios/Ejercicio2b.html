@@ -1,0 +1,29 @@
+<html>
+<head>
+  <script src="http://code.jquery.com/jquery-1.7rc2.js">
+  </script>
+
+<script>
+
+$(document).ready(inicializarEventos);
+
+function inicializarEventos()
+{
+  var x;
+  x=$("#boton1");
+  x.click(presionBoton)
+}
+
+function presionBoton()
+{
+  alert("Se presionó el botón");
+}
+
+
+</script>
+</head>
+<body>
+	<input type="button" id="boton1" />
+</body>
+
+<html>

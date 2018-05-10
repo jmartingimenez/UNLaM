@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Test Google Maps</title>
+    <script src="http://maps.googleapis.com/maps/api/js?language=es-ES"></script>
+    <script>
+		var lastMarker;		//Variable global que guardara el ultimo lugar clickeado    
+        function loadMap() {
+
+            var mapOptions = {
+                /*Las 2 coordenadas de abajo apuntan a un lugar random que elegi. Se supone que cuando el usuario
+                en un futuro quiera modificar su locacion, se captura lat y long y se le centra
+                el mapa en base al lugar que eligio la ultima vez*/
+                center:new google.maps.LatLng(17.97873309555617,-33.3984375),			
+                zoom:2,				//12 es bueno para hacer zoom en un lugar ya marcado previamente				
+                panControl: false,
+                zoomControl: false,
+                scaleControl: false,
+                mapTypeControl:false,
+                streetViewControl:true,
+                overviewMapControl:true,
+                rotateControl:true,
+                mapTypeId:google.maps.MapTypeId.ROADMAP
+            };
+
+
+            var map = new google.maps.Map(document.getElementById("contenedorMapa"),mapOptions);
+
+
+            google.maps.event.addListener(map, "rightclick", function(event) {
+            	if(lastMarker)		lastMarker.setPosition(event.latLgn); 
+          		var lat = event.latLng.lat();
+		        var lng = event.latLng.lng();
+		        document.getElementById("coordenada").innerHTML="<h3>latitud: "+lat+"<br/>longitud: "+lng+"</h3>";
+		        lastMarker = new google.maps.Marker({		
+		        position: new google.maps.LatLng(lat,lng),
+		        map: map,
+		        draggable:false});
+
+
+/*==================================================================================*/
+//Esto es un copy-paste asqueroso (te saca pais, ciudad y mas cosas). Solo muestro el pais
+var latlng;
+latlng = new google.maps.LatLng(lat,lng);
+document.getElementById("pais").innerHTML="";
+new google.maps.Geocoder().geocode({'latLng' : latlng}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+        if (results[1]) {
+            var country = null, countryCode = null, city = null, cityAlt = null;
+            var c, lc, component;
+            for (var r = 0, rl = results.length; r < rl; r += 1) {
+                var result = results[r];
+
+                if (!city && result.types[0] === 'locality') {
+                    for (c = 0, lc = result.address_components.length; c < lc; c += 1) {
+                        component = result.address_components[c];
+
+                        if (component.types[0] === 'locality') {
+                            city = component.long_name;
+                            break;
+                        }
+                    }
+                }
+                else if (!city && !cityAlt && result.types[0] === 'administrative_area_level_1') {
+                    for (c = 0, lc = result.address_components.length; c < lc; c += 1) {
+                        component = result.address_components[c];
+
+                        if (component.types[0] === 'administrative_area_level_1') {
+                            cityAlt = component.long_name;
+                            break;
+                        }
+                    }
+                } else if (!country && result.types[0] === 'country') {
+                    country = result.address_components[0].long_name;
+                    countryCode = result.address_components[0].short_name;
+                }
+
+                if (city && country) {
+                    break;
+                } 
+
+            }
+
+           document.getElementById("pais").innerHTML="<h3>Pa&iacute;s: "+country+"</h3>";
+        } 
+    }
+});
+
+/*===================================================================================*/
+           	});            
+        }
+    </script>
+</head>
+<body onload="loadMap()">
+	<div id="contenedorMapa" style="width:500px; height:400px;float:left;"></div>
+	<div id="instrucciones">
+		Hace click derecho en algun lugar del mapa para setear una nueva coordenada.<br/>
+		Le puse para que no se pueda arrastrar, ya que al arrastrar, la coordenada no cambia automaticamente
+		y no ten&iacute;a ganas de pelear con eso.<br/>
+		Esta pensado para que al hacer click derecho en algun lugar se guarde la lat y long de ese punto.<br/>
+		Cuando ya existe una coordenada, si se clickea en otro lado, se sobreescribe la anterior.<br/>
+	</div><br/>
+	<div id="coordenada"><h3>Hace click derecho en el mapa para ver la coordenada</h3></div>
+	<div id="pais"></div>
+</body>
+</html>

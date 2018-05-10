@@ -1,0 +1,17 @@
+#contenedor
+	{	
+		border: 8px solid;
+		background-color:#73849E;
+		font-style:italic;
+		font-size:40px;
+		text-align:center;
+		z-index:1;
+	}
+
+#banner
+	{
+		background: url(../img/tomori.jpg) no-repeat;
+		background-size:100% 100%;
+		border: 3px solid #ff0032;
+
+	}

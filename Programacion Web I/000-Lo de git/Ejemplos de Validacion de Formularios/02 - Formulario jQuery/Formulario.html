@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Prueba de validaci&oacute;n de formulario - JQ</title>
+		<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
+		<link rel="stylesheet" href="estilos/msjerror.css"/>			
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script type="text/javascript" src="jquery-ui-1.11.4/jquery-ui.js"></script>		
+		<script type="text/javascript" src="js/formulario.js"></script>
+		<script>
+		  $(function()
+			{
+				$("#datepicker").datepicker();
+			});
+		</script>	
+	</head>
+	<body>
+		<noscript>Active Javascript</noscript>
+		<form id="contacto" action="http://www.google.com.ar">
+			Nombre<br/>
+				<input type="text" name="nombre" id="name" class="campo"/><br/>
+			Edad<br/>
+				<input type="text" name="edad" id="age" class="campo"/><br/>
+			E-Mail<br/>
+			<input type="text" name="correo" id="mail" class="campo"/><br/>
+			Fecha de nacimiento<br/>
+			<input type="text" name="fecha" id="datepicker" class="campo"/><br/>			
+			Mensaje<br/>
+			<textarea cols="16" rows="8" name="msj" id="mensaje"></textarea><br/>	
+			<input type="button" id="send" name="enviar" value="Env&iacute;ar" onclick="validacion_formulario()"/>
+		</form>
+	</body>
+</html>

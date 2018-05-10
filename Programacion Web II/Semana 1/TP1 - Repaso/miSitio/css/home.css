@@ -1,0 +1,99 @@
+a{
+	color: #FF6600;
+}
+
+#panelIzq{
+	float: left;
+	width: 45%;
+	height: auto;
+}
+
+#panelDer{
+	float: right;
+	width: 45%;
+	height: auto;
+}
+
+.msjPanel{
+	color: #FF6600;
+	font-family: verdana;
+	font-size: 1.5em;
+}
+
+.segundoMsj{
+	color: grey;
+}
+
+#panelBienvenida{
+	border-style: solid;
+	border-color: transparent;
+	border-top-color: grey;
+	border-width: .1em; 
+	padding-top: .5em;
+	font-weight: bold;
+	color: grey;
+	font-size: 15px;
+}
+
+#botonRegistro{
+	display: inline-block;
+	margin-top: 1em;
+}
+
+#invitacion{
+	display: inline-block;
+	width: 85%;
+	font-size: .9em;
+	margin-left: -.5em;
+	vertical-align: 60%;
+	color: grey;
+	background-image: url("../imagenes/fondobarra.png");
+	background-repeat: no-repeat;
+	background-size: 200% 200%;/*Esta exagerado aproposito para ocultar como pude lo blanco de la propia imagen*/
+}							   /*Queda mal*/	
+
+#panelLogin{
+	padding: .75em;
+	border-style: solid;
+	border-color: black;
+	background-color: white;
+	text-align: center;
+	color: grey;
+}
+
+input[type="text"]{
+	background-color: transparent;
+	border-style: thin;
+	border-color: grey; 
+}
+
+#contenedorPlatos{
+	margin-top: 1em;
+	display: inline-block;
+	width: 100%;
+	height:auto;
+	text-align: center;			/*Para centrar la imagenes de abajo*/
+}
+
+#contenedorPlatos img{
+	vertical-align: top;		/*Quedaba algo de espacio entre el borde inferior y la imagen*/
+}
+
+.plato{
+	display: inline-block;
+	border-style: solid;
+	border-color: black; 
+	background-color: black;
+	text-align: left;
+	margin-right: 2em;		/*No supe justificar la imagene, el valor es a ojo*/
+	margin-left: 2em;		/*IDEM arriba*/
+}
+
+.nombrePlato{
+	font-size: 11px;
+	color: white;
+}
+
+
+
+

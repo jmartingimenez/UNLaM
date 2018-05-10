@@ -1,0 +1,8 @@
+1) 	a) Generar un formulario con todos los elementos HTML posible para realizar la registración de un Usuario (Nombre, Apellido, DNI, 
+		Fecha de Nacimiento, Localidad, Provincia, Sexo, Hobbies)
+	b) Genere un nuevo archivo (Registracion.html). 
+	
+2) 	a) Generar un formulario para realizar el login de una aplicación
+	b) Grabe el archivo con el nombre Login.html
+
+	

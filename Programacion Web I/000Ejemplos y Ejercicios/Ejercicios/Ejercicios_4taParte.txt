@@ -1,0 +1,3 @@
+1)	a) Generar una página principal donde exista una tabla
+    b) La tabla debe muestrar en la primer columna los nombre de los alumnos dela materia, la segunda su dni y la tercera su email.
+	c) Grabe el archivo con el nombre Ejercicio7.html

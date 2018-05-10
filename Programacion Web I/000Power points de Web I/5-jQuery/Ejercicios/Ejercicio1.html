@@ -1,0 +1,49 @@
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="http://code.jquery.com/jquery-1.7rc2.js">
+  </script>
+  <script> 
+  
+  	function AgregarConJSNativo(){
+  		var body = document.getElementById('uno');
+  		
+  		var input = document.createElement('input');
+		input.type='text';
+		input.name='test';
+		input.value = "Hola";
+		input.size = 10;
+
+  		body.appendChild(input);
+
+	}
+	
+	function AgregarConJQuery(){
+		$('<input type="text" />').attr({
+		    name: 'test',
+		    value: 'Hola',
+		    size: 10
+		}).appendTo($('#tres'));
+
+	}
+  </script>
+  
+</head>
+<body>
+  <p id="uno">uno</p> 
+  
+  <div>
+  	<p>dos</p>
+  </div> 
+  
+  <p id="tres">tres</p>
+
+  <input type="button" id="btnBoton" value="Ejemplo1" onClick="AgregarConJSNativo()"/>
+
+  <input type="button" id="btnBoton" value="Ejemplo2" onClick="AgregarConJQuery()"/>
+
+</body>
+</html>

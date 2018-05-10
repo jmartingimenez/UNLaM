@@ -1,0 +1,2334 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="Germán López" CONTENT="SQL">
+   <META NAME="Template" CONTENT="C:\ARCHIVOS DE PROGRAMA\MICROSOFT OFFICE\OFFICE\html.dot">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.03 [es] (Win95; I) [Netscape]">
+   <TITLE>Introduccion al Lenguaje Estructurado de Consultas. J. Hoffman (SQL)</TITLE>
+</HEAD>
+<BODY LINK="#0000FF" VLINK="#800080" BGCOLOR="#FFFFA0">
+
+<H1>
+<FONT COLOR="#000080"><FONT SIZE=+2>Introducci&oacute;n al Lenguaje Estructurado
+de Consultas (SQL)&nbsp;</FONT></FONT>
+<HR SIZE=6 WIDTH="100%"></H1>
+<B><FONT COLOR="#0000FF">Versi&oacute;n 3.63</FONT></B>
+
+<P><FONT SIZE=-1>&nbsp;&nbsp;<FONT COLOR="#000080">&nbsp; <I>Esta p&aacute;gina
+es un tutorial de Structured Query Language ("Lenguaje Estructurado de
+consultas"),(tambi&eacute;n conocido como SQL) y es un esfuerzo pionero
+en la Word Wide Web como primer tutorial comprensible de SQL existente
+en Internet. SQL permite a los usuarios el acceso a un sistema de manejo
+de bases de datos relacional, como son Oracle, Sybase, Informix, Microsoft
+SQL Server, Access, y otras, permitiendo ver a los usuarios los datos que
+los usuarios quieren ver. SQL asimismo permite a los usuarios definir los
+datos en una base de datos, y manipular estos datos. Esta p&aacute;gina
+describir&aacute; como usar SQL, y dar&aacute; ejemplos. El SQL usado en
+este documento es "ANSI", o est&aacute;ndar SQL, y no SQL caracter&iacute;stico
+de un sistema de manejo de bases de datos espec&iacute;fico, el cual ser&aacute;
+visto en la secci&oacute;n "SQL no est&aacute;ndar".</I></FONT></FONT>
+
+<P>
+<HR SIZE=7 WIDTH="100%">
+
+<P><B><FONT COLOR="#FF00FF">&Iacute;NDICE</FONT></B>
+
+<P><A HREF="#CAPÍTULO_1_Introducción">CAPITULO 1.Introducci&oacute;n</A>
+
+<P><FONT SIZE=-1><A HREF="#Bases_de_la_sentencia_SELECT">Bases de la sentencia
+SELECT</A></FONT>
+<BR><FONT SIZE=-1><A HREF="#Selección_Condicional">Selecci&oacute;n condicional</A></FONT>
+<BR><FONT SIZE=-1><A HREF="#Operadores_Relacionales">Operadores relacionales</A></FONT>
+<BR><FONT SIZE=-1><A HREF="#Condiciones_Complejas">Condiciones compuestas</A></FONT>
+<BR><FONT SIZE=-1><A HREF="#IN_">IN &amp; BETWEEN</A></FONT>
+<BR><FONT SIZE=-1><A HREF="#Usando_LIKE">Usando LIKE</A></FONT>
+
+<P><A HREF="#CAPÍTULO_2___Uniones">CAPITULO 2. Uniones</A>
+
+<P><FONT SIZE=-1><A HREF="#Uniones">Uniones</A></FONT>
+<BR><FONT SIZE=-1><A HREF="#Claves">Claves</A></FONT>
+<BR><FONT SIZE=-1><A HREF="#Creando_una_Unión">Realizando una uni&oacute;n</A></FONT>
+<BR><FONT SIZE=-1><A HREF="#Distinct">Eliminando duplicados</A></FONT>
+<BR><FONT SIZE=-1><A HREF="#Alias">Alias &amp; In/Subconsultas</A></FONT>
+
+<P><FONT SIZE=-1>&nbsp;</FONT>
+<BR><A HREF="#CAPÍTULO_3__Miscellaneous_de_Sentencias_">CAPITULO 3. Miscel&aacute;neo
+de sentencias SQL</A>
+<BR><FONT SIZE=-1><A HREF="#Funciones_Agregadas">Funciones agregadas</A></FONT>
+<BR><FONT SIZE=-1><A HREF="#Vistas">Vistas</A></FONT>
+<BR><FONT SIZE=-1><A HREF="#Creando_nuevas_vistas">Creando nuevas tablas</A></FONT>
+<BR><FONT SIZE=-1><A HREF="#Modificando_tablas">Modificando tablas</A></FONT>
+<BR><FONT SIZE=-1><A HREF="#Añadiendo_Datos">A&ntilde;adiendo datos</A></FONT>
+<BR><FONT SIZE=-1><A HREF="#Borrando_datos">Borrando datos</A></FONT>
+<BR><FONT SIZE=-1><A HREF="#Actualizando_datos">Actualizando datos</A></FONT>
+
+<P><FONT SIZE=-1>&nbsp;</FONT>
+<BR><A HREF="#CAPÍTULO_4__Miscellaneous_de_Tópicos">CAP&Iacute;TULO 4.&nbsp;
+Miscel&aacute;neo de T&oacute;picos</A>
+
+<P><FONT SIZE=-1><A HREF="#indices">Indices</A></FONT>
+<BR><FONT SIZE=-1><A HREF="#GROUP_BY">GROUP BY &amp; HAVING</A></FONT>
+<BR><FONT SIZE=-1><A HREF="#Más_subconsultas">M&aacute;s subconsultas</A></FONT>
+<BR><FONT SIZE=-1><A HREF="#Exists_">EXISTS &amp; ALL</A></FONT>
+<BR><FONT SIZE=-1><A HREF="#UNION">UNION &amp; Otras uniones</A></FONT>
+<BR>&nbsp;
+<BR><A HREF="#CAPÍTULO_5__SQL_EMBEBIDO">CAP&Iacute;TULO 5. SQL embebido</A>
+<BR>&nbsp;
+<BR><A HREF="#CAPÍTULO_6__Tópicos_Avanzados">CAP&Iacute;TULO 6. Preguntas
+SQL comunes &amp; T&oacute;picos Avanzados</A>
+
+<P><FONT SIZE=-1><A HREF="#BM1FN">Primera Forma Normal</A></FONT>
+<BR><FONT SIZE=-1><A HREF="#BM2FN">Segunda Forma Normal</A></FONT>
+<BR><FONT SIZE=-1><A HREF="#BM3FN">Tercera Forma Normal</A></FONT>
+<BR><FONT SIZE=-1><A HREF="#uno_a_uno">Relaci&oacute;n Uno-a-Uno</A></FONT>
+<BR><FONT SIZE=-1><A HREF="#uno_a_muchos">Relaci&oacute;n Uno-a-Muchos</A></FONT>
+<BR><FONT SIZE=-1><A HREF="#muchos_a_muchos">Relaci&oacute;n Muchos-a-Muchos</A></FONT>
+
+<P><A HREF="#CAPÍTULO_7__SQL_no_estándar">CAP&Iacute;TULO 7. SQL no est&aacute;ndar</A>
+<BR>&nbsp;
+<BR><A HREF="#CAPÍTULO_8__Resumen_de_Sintaxi_">CAP&Iacute;TULO 8. Resumen
+de sintaxis &amp; Links Importantes</A>
+
+<P><FONT SIZE=-1><A HREF="#Resumen_de_sintaxi">Resumen de sintaxis</A></FONT>
+<BR><FONT SIZE=-1><A HREF="#Links_importantes">Links importantes</A></FONT>
+
+<P><A HREF="#Agradecimientos_">Agradecimientos</A>
+<CENTER>
+<HR SIZE=3 WIDTH="100%"></CENTER>
+
+<CENTER><A NAME="CAPÍTULO_1_Introducción"></A><FONT COLOR="#000080"><FONT SIZE=+1>CAP&Iacute;TULO
+1. Introducci&oacute;n</FONT></FONT></CENTER>
+
+<HR SIZE=3 WIDTH="100%">
+<BR>&nbsp;
+
+<P><FONT SIZE=-1>&nbsp;</FONT>
+<BR><A NAME="Bases_de_la_sentencia_SELECT"></A><B><FONT COLOR="#000080"><FONT SIZE=-1>Bases
+de la sentencia SELECT</FONT></FONT></B>
+
+<P><FONT SIZE=-1>En una BD relacional, los datos son almacenados en tablas.
+Un ejemplo de tabla puede contener el DNI, el nombre y la Direcci&oacute;n:</FONT>
+<BR>&nbsp;
+<BR>&nbsp;
+<TABLE BORDER CELLPADDING=5 WIDTH="838" BORDERCOLOR="#000000" >
+<TR>
+<TD VALIGN=TOP COLSPAN="6">
+<CENTER><FONT SIZE=-1>Tabla_direcciones_empleados</FONT></CENTER>
+</TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="17%"><FONT SIZE=-1>DNI</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="17%"><FONT SIZE=-1>Apellidos</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="17%"><FONT SIZE=-1>Nombre</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="17%"><FONT SIZE=-1>Direcci&oacute;n</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="17%"><FONT SIZE=-1>Ciudad</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="17%"><FONT SIZE=-1>Provincia</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="17%"><FONT SIZE=-1>23987739</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="17%"><FONT SIZE=-1>Garc&iacute;a</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="17%"><FONT SIZE=-1>Antonio</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="17%"><FONT SIZE=-1>C/ Mayor 2</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="17%"><FONT SIZE=-1>Valencia</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="17%"><FONT SIZE=-1>Valencia</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="17%"><FONT SIZE=-1>45623890</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="17%"><FONT SIZE=-1>L&oacute;pez</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="17%"><FONT SIZE=-1>Juan</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="17%"><FONT SIZE=-1>Pl. Ayuntamiento</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="17%"><FONT SIZE=-1>Alicante</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="17%"><FONT SIZE=-1>Alicante</FONT></TD>
+</TR>
+</TABLE>
+<FONT SIZE=-1>&nbsp;</FONT>
+<BR><FONT SIZE=-1>Ahora, vamos a ver que habr&iacute;a que hacer para ver
+las direcciones de todos los empleados. Utiliza la sentencia SELECT de
+la siguiente manera:</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>SELECT
+Nombre, Apellidos, Direcci&oacute;n, Ciudad, Provincia</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>FROM Tabla_direcciones_empleados;</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>Los siguiente es el resultado de tu consulta de la BD:</FONT>
+
+<P><FONT SIZE=-1>&nbsp;Nombre&nbsp;&nbsp;&nbsp;&nbsp; Apellidos&nbsp;&nbsp;&nbsp;&nbsp;
+Direcci&oacute;n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Ciudad&nbsp;&nbsp;&nbsp;&nbsp; Provincia</FONT>
+<BR><B>&nbsp;------------------------------------------------------</B>
+<BR><FONT SIZE=-1>&nbsp;Antonio&nbsp;&nbsp;&nbsp;&nbsp; Garc&iacute;a&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+C/ Mayor2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Valencia Valencia</FONT>
+<BR><FONT SIZE=-1>&nbsp;Juan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+L&oacute;pez&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Pl. Ayuntamiento&nbsp; Alicante&nbsp;&nbsp; Alicante</FONT>
+
+<P><FONT SIZE=-1>&nbsp;</FONT>
+<BR><FONT SIZE=-1>La explicaci&oacute;n de lo que acabas de hacer es la
+siguiente, has preguntado por todos los datos de la Tabla_direcciones_empleados,
+y espec&iacute;ficamente, has preguntado por la columnas llamadas Nombre,
+Apellidos, Direcci&oacute;n, Ciudad y Provincia. Date cuenta que los nombre
+de las columnas y los nombres de las tablas no tienen espacios...&eacute;stos
+deben ser escritos con una palabra; y que la sentencia acaba con un punto
+y coma (;). La forma general para una sentencia SELECT, recuperando&nbsp;
+las filas de una tabla es:</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>SELECT
+NombreColumna, NombreColumna, ...</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>FROM NombreTabla;</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>Para coger todas las columnas de una tabla sin escribir
+todos los nombres de columna, usa:</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>SELECT
+* FROM NombreTabla;</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>Cada administrador de BD's (DBMS, "Data Management System")
+y tipo de software de BD's tienen diferentes m&eacute;todos para identificarse
+en la base de datos e introducir comandos SQL.</FONT>
+
+<P>
+<HR SIZE=3 WIDTH="100%">
+<BR><FONT SIZE=-1>&nbsp;</FONT>
+<BR><A NAME="Selección_Condicional"></A><B><FONT COLOR="#000080"><FONT SIZE=-1>Selecci&oacute;n
+Condicional</FONT></FONT></B>
+
+<P><FONT SIZE=-1>&nbsp;</FONT>
+<BR><FONT SIZE=-1>Para un mayor estudio de la sentencia SELECT, echa un
+vistazo a una nueva tabla de ejemplo:</FONT>
+<BR>&nbsp;
+<BR>&nbsp;
+<BR>&nbsp;
+<TABLE BORDER CELLPADDING=5 WIDTH="838" BORDERCOLOR="#000000" >
+<TR>
+<TD VALIGN=TOP COLSPAN="4">
+<CENTER><FONT SIZE=-1>Tabla_estadistica_empleados</FONT></CENTER>
+</TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>Cod_empleado</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>Salario</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>Beneficios</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>Cargo</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>101</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>75000</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>15000</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>Encargado</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>105</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>65000</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>15000</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>Encargado</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>152</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>60000</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>15000</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>Encargado</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>215</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>60000</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>12500</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>Encargado</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>244</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>50000</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>12000</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>T&eacute;cnico</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>300</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>45000</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>10000</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>T&eacute;cnico</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>335</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>40000</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>10000</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>T&eacute;cnico</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>400</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>32000</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>7500</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>Aprendiz</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>441</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>28000</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>7500</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="25%"><FONT SIZE=-1>Aprendiz</FONT></TD>
+</TR>
+</TABLE>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P>
+<HR SIZE=3 WIDTH="100%">
+<BR><FONT COLOR="#000080"><FONT SIZE=-1>&nbsp;<A NAME="Operadores_Relacionales"></A><B>Operadores
+Relacionales</B></FONT></FONT>
+<BR>&nbsp;
+
+<P><FONT SIZE=-1>Hay seis operadores relacionales en SQL, y despu&eacute;s
+de introducirlos, veremos como usarlos:</FONT>
+<BR>&nbsp;
+<CENTER><TABLE BORDER WIDTH="468" BORDERCOLOR="#000000" >
+<TR>
+<TD VALIGN=CENTER><FONT SIZE=-1>=</FONT></TD>
+
+<TD VALIGN=CENTER><FONT SIZE=-1>Igual</FONT>&nbsp;</TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER><FONT SIZE=-1>&lt; &oacute; !=</FONT></TD>
+
+<TD VALIGN=CENTER><FONT SIZE=-1>No igual (ver manual para m&aacute;s informaci&oacute;n)</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER><FONT SIZE=-1>&lt;</FONT></TD>
+
+<TD VALIGN=CENTER><FONT SIZE=-1>Menor que</FONT>&nbsp;</TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER>&nbsp;</TD>
+
+<TD VALIGN=CENTER><FONT SIZE=-1>Mayor que</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER><FONT SIZE=-1>&lt;=</FONT></TD>
+
+<TD VALIGN=CENTER><FONT SIZE=-1>Menor o igual a</FONT>&nbsp;</TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER><FONT SIZE=-1>=</FONT></TD>
+
+<TD VALIGN=CENTER><FONT SIZE=-1>Mayor o igual que</FONT>&nbsp;</TD>
+</TR>
+</TABLE></CENTER>
+<FONT SIZE=-1>La cl&aacute;usula <B><FONT COLOR="#000080">WHERE</FONT>
+</B>es usada para especificar que s&oacute;lo ciertas filas de la tabla
+sean mostradas, bas&aacute;ndose en el criterio descrito en esta cl&aacute;usula
+WHERE. Es m&aacute;s f&aacute;cil de entender viendo un par de ejemplos:</FONT><FONT SIZE=-1></FONT>
+
+<P><FONT SIZE=-1>Si quieres ver el Cod_empleado de aquellos que tengan
+un salario por encima de 50.000, usa la siguiente expresi&oacute;n:</FONT>
+
+<P><FONT SIZE=-1>&nbsp;</FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>SELECT
+Cod_empleado</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>FROM Tabla_estadistica_empleados</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>WHERE
+Salario = 50000;</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>Observa que el signo = (mayor o igual que) ha sido usado,
+ya que queremos ver listados juntos aquellos que ganen m&aacute;s de 50.000
+o igual a 50.000 . Esto muestra:</FONT>
+
+<P><FONT SIZE=-1>Cod_empleado</FONT>
+<BR><FONT SIZE=-1>---------------</FONT>
+<BR><FONT SIZE=-1>010</FONT>
+<BR><FONT SIZE=-1>105</FONT>
+<BR><FONT SIZE=-1>152</FONT>
+<BR><FONT SIZE=-1>215</FONT>
+<BR><FONT SIZE=-1>244</FONT>
+
+<P><FONT SIZE=-1>La descripci&oacute;n WHERE Salario = 50.000, es conocida
+como condici&oacute;n. Lo mismo puede ser utilizado para la columnas de
+tipo texto:</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>SELECT
+Cod_empleado</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>FROM Tabla_estadistica_empleados</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>WHERE
+Cargo = 'Encargado';</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>Esto muestra la c&oacute;digo de todos los encargados.
+Generalmente, con las columnas de texto, usa igual o no igual a, y comprueba
+que el texto que aparece en la condici&oacute;n est&aacute; dentro de comillas
+simples.</FONT>
+
+<P>
+<HR SIZE=3 WIDTH="100%">
+<BR>&nbsp;
+<BR><A NAME="Condiciones_Complejas"></A><B><FONT COLOR="#000080"><FONT SIZE=-1>M&aacute;s
+Condiciones Complejas: Condiciones Compuestas</FONT></FONT></B>
+
+<P><FONT SIZE=-1>&nbsp;</FONT>
+<BR><FONT SIZE=-1>El operador AND junta dos o m&aacute;s condiciones, y
+muestra s&oacute;lo las filas que satisfacen TODAS las condiciones listadas.
+Por ejemplo:</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>SELECT
+Cod_empleado</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>FROM Tabla_estadistica_empleados</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>WHERE
+Salario 40000 AND Cargo = ‘T&eacute;cnico’</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>El operador OR junta dos o m&aacute;s condiciones, y devuelve
+una fila si ALGUNA de las condiciones listadas en verdadera. Para ver todos
+aquellos que ganan menos de 40.000 o tienen menos de 10.000 en beneficios
+listados juntos, usa la siguiente consulta:</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>SELECT
+ID_EMPLEADO</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>FROM TABLA_ESTADISTICA_EMPLEADOS</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>WHERE
+SALARIO &lt; 40000 OR BENEFICIOS &lt; 10000;</FONT></FONT></FONT>
+<BR><FONT SIZE=-1>&nbsp;</FONT>
+<BR><FONT SIZE=-1>AND &amp; OR pueden ser combinadas, por ejemplo:</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>SELECT
+ID_EMPLEADO</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>FROM TABLA_ESTADISTICA_EMPLEADOS</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>WHERE
+CARGO = 'Encargado' AND SALARIO 60000 OR BENEFICIOS 12000;</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>Primero, SQL encuentra las filas donde el salario es mayor
+de 60.000 y la columna del cargo es igual a Encargado, una vez tomada esta
+nueva lista de filas, SQL buscar&aacute; si hay otras filas que satisfagan
+la condici&oacute;n AND previa o la condici&oacute;n&nbsp; que la columna
+de los Beneficios sea mayor de 12.000. Consecuentemente, SQL solo muestra
+esta segunda nueva lista de filas, recordando que nadie con beneficios
+sobre 12.000 ser&aacute; excluido ya que el operador OR incluye una fila
+si el resultado de alguna de las partes es VERDADERO.</FONT>
+<BR><FONT SIZE=-1>Date cuenta que la operaci&oacute;n AND se ha hecho primero.</FONT>
+
+<P><FONT SIZE=-1>Para generalizar este proceso, SQL realiza las operaciones
+AND para determinar las filas donde las operaciones AND se mantienen VERDADERO
+(recordar: todas las condiciones son verdaderas), entonces estos resultados
+son usados para comparar con las condiciones OR, y solo muestra aquellas
+filas donde las condiciones unidas por el operador OR se mantienen ciertas
+para alguna de las partes de la condici&oacute;n..</FONT>
+
+<P><FONT SIZE=-1>Para realizar OR antes de AND, p.e., si quisieras ver
+una lista de empleados ganando un gran salario (50.000) o con un gran beneficio
+(10.000), y s&oacute;lo quieres que lo mire para los empleados con el cargo
+de Encargado, usa par&eacute;ntesis:</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>SELECT
+ID_EMPLEADO</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>FROM TABLA_ESTADISTICA_EMPLEADOS</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>WHERE
+CARGO = 'Encargado' AND (SALARIO 50000 OR BENEFICIO 10000);</FONT></FONT></FONT>
+
+<P>
+<HR SIZE=3 WIDTH="100%">
+
+<P><A NAME="IN_"></A><B><FONT COLOR="#000080"><FONT SIZE=-1>IN &amp; BETWEEN</FONT></FONT></B>
+
+<P><FONT SIZE=-1>&nbsp;</FONT>
+<BR><FONT SIZE=-1>Un m&eacute;todo f&aacute;cil de usar condiciones compuestas
+es usando IN o BETWEEN. Por ejemplo si tu quieres listar todos los encargados
+y T&eacute;cnico:</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>SELECT
+ID_EMPLEADO</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>FROM TABLA_ESTADISTICA_EMPLEADOS</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>WHERE
+CARGO IN ('Encargado', 'T&eacute;cnico');</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>&nbsp;O para listar aquellos que ganen m&aacute;s o 30.000,
+pero menos o igual que 50.000, usa:</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>SELECT
+ID_EMPLEADO</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>FROM TABLA_ESTADISTICA_EMPLEADOS</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>WHERE
+SALARIO BETWEEN 30000 AND 50000;</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>&nbsp;Para listar todos los que no est&aacute;n en este
+rango, intenta:</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>SELECT
+ID_EMPLEADO</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>FROM TABLA_ESTADISTICA_EMPLEADOS</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>WHERE
+SALARIO NOT BETWEEN 30000 AND 50000;</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>&nbsp;</FONT>
+<BR><FONT SIZE=-1>De forma similar, NOT IN lista todas las filas excluyendo
+aquellas de la lista IN.</FONT>
+
+<P>
+<HR SIZE=3 WIDTH="100%">
+<BR>&nbsp;
+<BR><A NAME="Usando_LIKE"></A><B><FONT COLOR="#000080"><FONT SIZE=-1>Usando
+LIKE</FONT></FONT></B>
+
+<P><FONT SIZE=-1>&nbsp;Observa la Tabla_estadistica_empleados, y di que
+quieres ver todas las personas en las cuales su apellido comience por "l":,
+intenta:</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>SELECT
+ID_EMPLEADO</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>WHERE
+APELLIDOS LIKE 'L%';</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>FROM TABLA_ESTADISTICA_EMPLEADOS</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>&nbsp;El tanto por ciento (%) es usado para representar
+un posible car&aacute;cter (sirve como comod&iacute;n), ya sea n&uacute;mero,
+letra o puntuaci&oacute;n, o para seleccionar todos los caracteres que
+puedan aparecer despu&eacute;s de "L". Para encontrar las personas con
+el apellidos terminado en "L", usa ‘%L’, o si quieres la ‘L’ en medio de
+la palabra ‘%L%’. El ‘%’ puede ser usado en lugar de cualquier car&aacute;cter
+en la misma posici&oacute;n relativa a los caracteres dados. NOT LIKE muestra
+filas que no cumplen la descripci&oacute;n dada. Otras posibilidades de
+uso de LIKE, o cualquiera de las condiciones anteriores son posibles, aunque
+depende de qu&eacute; DBMS est&eacute;s usando; lo m&aacute;s usual es
+consultar el manual, o tu administrador de sistema sobre la posibilidades
+del sistema, o s&oacute;lo para estar seguro de que lo que est&aacute;s
+intentando hacer es posible y correcto. &Eacute;ste tipo de peculiaridades
+ser&aacute;n discutidas m&aacute;s adelante. Esta secci&oacute;n s&oacute;lo
+pretende dar una idea de las posibilidades de consultas que pueden ser
+escritas en SQL.</FONT>
+<CENTER>
+<HR SIZE=3 WIDTH="100%"><A NAME="CAPÍTULO_2___Uniones"></A><FONT COLOR="#000080"><FONT SIZE=+1>CAP&Iacute;TULO
+2.&nbsp; Uniones</FONT></FONT></CENTER>
+
+<HR SIZE=3 WIDTH="100%">
+<BR>&nbsp;
+
+<P><A NAME="Uniones"></A><B><FONT COLOR="#000080"><FONT SIZE=-1>Uniones</FONT></FONT></B>
+
+<P><FONT SIZE=-1>&nbsp;</FONT>
+<BR><FONT SIZE=-1>En esta secci&oacute;n, s&oacute;lo estudiaremos las
+uniones de uni&oacute;n, y intersecci&oacute;n, que en general son las
+m&aacute;s usadas.</FONT>
+
+<P><FONT SIZE=-1>Un buen dise&ntilde;o de una BD sugiere que cada lista
+de tabla de datos sea considerada como una simple entidad, y que la informaci&oacute;n
+detallada puede ser obtenida, en una BD relacional, usando tablas adicionales
+y&nbsp; uniones.</FONT>
+
+<P><FONT SIZE=-1>Primero considera los siguientes ejemplos de tablas:</FONT>
+<BR>&nbsp;
+<BR>&nbsp;
+<TABLE BORDER CELLPADDING=5 WIDTH="838" BORDERCOLOR="#000000" >
+<TR>
+<TD VALIGN=TOP COLSPAN="3">
+<CENTER><FONT SIZE=-1>Propietarios_Antig&uuml;edades</FONT></CENTER>
+</TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>ID_Propietario</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>ApellidoPropietario</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>NombrePropietario</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>01</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>Jones</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>Bill</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>02</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>Smith</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>Bob</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>15</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>Lawson</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>Patricia</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>21</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>Akins</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>Jane</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>50</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>Fowler</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>Sam</FONT></TD>
+</TR>
+</TABLE>
+<FONT SIZE=-1>&nbsp;</FONT>
+<BR>&nbsp;
+<BR>&nbsp;
+<TABLE BORDER CELLPADDING=5 WIDTH="838" BORDERCOLOR="#000000" >
+<TR>
+<TD VALIGN=TOP COLSPAN="2">
+<CENTER><FONT SIZE=-1>Pedidos</FONT></CENTER>
+</TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="50%"><FONT SIZE=-1>ID_Propietario</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="50%"><FONT SIZE=-1>ProductoPedido</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="50%"><FONT SIZE=-1>02</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="50%"><FONT SIZE=-1>Table</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="50%"><FONT SIZE=-1>02</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="50%"><FONT SIZE=-1>Armario</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="50%"><FONT SIZE=-1>21</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="50%"><FONT SIZE=-1>Silla</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="50%"><FONT SIZE=-1>15</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="50%"><FONT SIZE=-1>Espejo</FONT></TD>
+</TR>
+</TABLE>
+<FONT SIZE=-1>&nbsp;</FONT>
+<BR>&nbsp;
+<BR>&nbsp;
+<TABLE BORDER CELLPADDING=5 WIDTH="838" BORDERCOLOR="#000000" >
+<TR>
+<TD VALIGN=TOP COLSPAN="3">
+<CENTER><FONT SIZE=-1>Antig&uuml;edades</FONT></CENTER>
+</TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>ID_vendedor</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>ID_comprador</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>Producto</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>01</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>50</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>Cama</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>02</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>15</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>Table</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>15</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>02</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>Silla</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>21</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>50</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>Espejo</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>50</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>01</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>Armario</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>01</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>21</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>Cabinet</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>02</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>21</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>Cofee Table</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>15</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>50</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>Cahair</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>01</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>15</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>Jewelry Box</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>02</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>21</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>Pottery</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>21</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>02</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>Librer&iacute;a</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>50</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>01</FONT></TD>
+
+<TD VALIGN=TOP WIDTH="33%"><FONT SIZE=-1>Plant Stand</FONT></TD>
+</TR>
+</TABLE>
+<FONT SIZE=-1>&nbsp;</FONT>
+
+<P>
+<HR SIZE=3 WIDTH="100%">
+<BR><FONT SIZE=-1>&nbsp;</FONT>
+<BR><A NAME="Claves"></A><B><FONT COLOR="#000080"><FONT SIZE=-1>Claves&nbsp;</FONT></FONT></B>
+
+<P><FONT SIZE=-1>Primero, vamos a estudiar el concepto de claves. Una&nbsp;<A NAME="clave_primaria"></A><B><FONT COLOR="#000080">clave
+primaria</FONT></B> es una columna o conjunto de columnas que identifican
+un&iacute;vocamente el resto de datos en cualquiera fila. Por ejemplo,
+en la tabla Propietarios_Antig&uuml;edades, la columna ID_Propietario identifica
+un&iacute;vocamente esa fila. Esto significa dos cosas: dos filas no pueden
+tener el mismo ID_Propietario y, aunque dos propietarios tuvieran el mismo
+nombre y apellidos, la columna ID_Propietario verifica que no ser&aacute;n
+confundidos, porque la columna ID_Propietario podr&aacute; ser usada por
+el Administrador de la Base de Datos (DBMS) para diferenciarlos, aunque
+los nombres sean los mismos.</FONT>
+
+<P><FONT SIZE=-1>&nbsp;Una&nbsp;<A NAME="clave_ajena"></A><B><FONT COLOR="#000080">clave
+ajena</FONT></B> es una columna en una tabla que es clave primaria en otra
+tabla, lo que significa que cada dato en una columna con una clave ajena
+debe de corresponder con datos, en otra tabla, cuya columna es clave primaria.
+En el lenguaje DBMS esta correspondencia es conocida como&nbsp;<A NAME="integridad_referencial"></A>integridad
+referencial. Por ejemplo, en la tabla Antig&uuml;edades, tanto el ID_comprador
+como el ID_vendedor son claves ajenas de la clave primaria de la tabla
+Propietarios_Antig&uuml;edades (ID_Propietario; por supuesto, se tiene
+que tener un propietario antiguo antes de poder comprar o vender cualquier
+producto), por lo tanto, en ambas tablas, las columnas ID son usadas para
+identificar los propietarios o compradores y vendedores, y por lo tanto
+ID_Propietario es la clave primaria de la tabla Propietarios_Antig&uuml;edades.
+En otras palabras, todos estos datos "ID" son usados para referirse a los
+propietarios, compradores, o vendedores de antig&uuml;edades, sin necesidad
+de usar sus nombres reales.</FONT>
+
+<P>
+<HR SIZE=3 WIDTH="100%">
+<BR>&nbsp;
+<BR><A NAME="Creando_una_Unión"></A><B><FONT COLOR="#000080"><FONT SIZE=-1>Creando
+una Uni&oacute;n</FONT></FONT></B>
+
+<P><FONT SIZE=-1>El prop&oacute;sito de estas claves es el poder referirse
+a datos de diferentes tablas, sin tener que repetir los datos en cada una
+de ellas, este es el poder de las bases de datos relacionales. Por ejemplo,
+se pueden encontrar los nombres de los que han comprado una silla sin tener
+que listar el nombre completo de el comprador en la tabla Antig&uuml;edades...puedes
+conseguir el nombre relacionando aquellos que compraron una silla con los
+nombres en la tabla de Propietarios_Antig&uuml;edades usando el ID_Propietario,
+el cual relaciona los datos en las dos tablas. Para encontrar los nombres
+de aquellos que compraron una silla, usa la siguiente consulta:</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>SELECT
+APELLIDOPROPIETARIO, NOMBREPROPIETARIO</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>FROM PROPIETARIOS_ANTIG&Uuml;EDADES,
+ANTIG&Uuml;EDADES</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>WHERE
+ID_COMPRADOR = ID_PROPIETARIO AND PRODUCTO = 'Silla';</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>Date cuenta de lo siguiente sobre la consulta... las tablas
+involucradas en la relaci&oacute;n son listadas en la cl&aacute;usula FROM
+de la sentencia. En la cl&aacute;usula WHERE, primero observa que el PRODUCTO=’Silla’
+restringe el listado a aquellos que han comprado una silla. Segundo, observa
+como las columnas ID son relacionadas de una tabla a otra por el uso de
+la cl&aacute;usula ID_COMPRADOR=ID_PROPIETARIO. S&oacute;lo cuando los
+ID coinciden y el objeto comprado es una silla (por el AND), los nombres
+de la tabla Propietarios_Antig&uuml;edades ser&aacute;n listados. Debido
+a que la condici&oacute;n de uni&oacute;n usada es el signo igual, esta
+uni&oacute;n se denomina intersecci&oacute;n. El resultado de esta consulta
+son dos nombres: Smith, Bob &amp; Fowler, Sam.</FONT>
+
+<P><FONT SIZE=-1>Para evitar ambig&uuml;edades se puede poner el nombre
+de la tabla antes del de la columna, algo como:</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>SELECT
+PROPIETARIOS_ANTIG&Uuml;EDADES.APELLIDOPROPIETARIO, PROPIETARIOS_ANTIG&Uuml;EDADES.NOMBREPROPIETARIO</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>FROM PROPIETARIOS_ANTIG&Uuml;EDADES,
+ANTIG&Uuml;EDADES</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>WHERE
+ANTIG&Uuml;EDADES.ID_COMPRADOR = PROPIETARIOS_ANTIG&Uuml;EDADES.ID_PROPIETARIO
+AND ANTIG&Uuml;EDADES.PRODUCTO = 'Silla';</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>&nbsp;Sin embargo, como los nombres de las columnas en
+cada tabla son diferentes, esto no es necesario.</FONT>
+
+<P>
+<HR SIZE=3 WIDTH="100%">
+<BR><FONT SIZE=-1>&nbsp;</FONT>
+<BR><A NAME="Distinct"></A><B><FONT COLOR="#000080"><FONT SIZE=-1>DISTINCT
+y Eliminando Duplicados</FONT></FONT></B>
+
+<P><FONT SIZE=-1>Consideremos que quieres ver los ID y los nombres de toda
+aquellas persona que haya vendido una antig&uuml;edad. Obviamente,&nbsp;
+quieres una lista donde cada vendedor sea listado una vez, y no quieres
+saber cu&aacute;ntos art&iacute;culos a vendido una persona, solamente
+el nombre de las personas que han vendido alguna antig&uuml;edad (para
+contar, ver la secci&oacute;n pr&oacute;xima <A HREF="#Funciones Agregadas">Funciones
+Agregadas</A>). Esto significa que necesitaras decir en SQL que quieres
+eliminar las filas de vendedores duplicadas, y s&oacute;lo listar cada
+persona una vez. Para hacer esto, uso la palabra clave <B><FONT COLOR="#000080">DISTINCT</FONT></B>.</FONT>
+
+<P><FONT SIZE=-1>Primero, necesitaremos una intersecci&oacute;n para la
+tabla de Propietarios_Antig&uuml;edades para conseguir los datos detallados
+de las personas, apellidos y nombre.</FONT>
+
+<P><FONT SIZE=-1>Sin embargo, recuerda que la columna ID_vendedor de la
+tabla Antig&uuml;edades es una clave ajena para la tabla Propietarios_Antig&uuml;edades,
+y por tanto, un vendedor podr&iacute;a ser listado m&aacute;s de una vez,
+por cada producto de la tabla Antig&uuml;edades, listando el ID y sus datos,
+como queremos eliminar m&uacute;ltiples coincidencias del ID_vendedor en
+nuestra lista, usaremos DISTINCT en la columna donde las repeticiones pueden
+ocurrir.</FONT>
+
+<P><FONT SIZE=-1>Para complicarlo un poco m&aacute;s, adem&aacute;s queremos
+la lista ordenada alfab&eacute;ticamente por el Apellido, despu&eacute;s
+por el Nombre, y por &uacute;ltimo por su ID_Propietario. Para ello, usaremos
+la clausula <B><FONT COLOR="#000080">ORDER BY</FONT></B>.</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>SELECT
+DISTINCT ID_VENDEDOR, APELLIDOPROPIETARIO, NOMBREPROPIETARIO</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>FROM ANTIG&Uuml;EDADES,
+PROPIETARIOS_ANTIG&Uuml;EDADES</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>WHERE
+ID_VENDEDOR = ID_PROPIETARIO</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>ORDER
+BY APELLIDOPROPIETARIO, NOMBREPROPIETARIO, ID_PROPIETARIO;</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>En este ejemplo, obtendremos un listado de todos los propietarios,
+en orden alfab&eacute;tico por el Apellido. Para futuras referencias (y
+si alguien pregunta), este tipo de uniones son consideradas en la categor&iacute;a
+de&nbsp;<A NAME="uniones_interiores"></A><B><FONT COLOR="#000080">uniones
+interiores</FONT></B>.</FONT>
+
+<P>
+<HR SIZE=3 WIDTH="100%">
+<BR><A NAME="Alias"></A><B><FONT COLOR="#000080"><FONT SIZE=-1>Alias &amp;
+In/Subconsultas</FONT></FONT></B>
+
+<P><FONT SIZE=-1>En esta secci&oacute;n, hablaremos sobre los Alias, In
+y el uso de las subconsultas, y como &eacute;stas pueden ser usadas en
+un ejemplo con tres tablas. Primero, observa esta consulta que imprime
+el apellido de aquellos propietarios que han formulado un pedido y en qu&eacute;
+consiste &eacute;ste, solamente listando aquellos cuyos pedidos pueden
+ser atendidos (esto es, hay un vendedor que posee el producto pedido)</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>SELECT
+OWN.APELLIDOPROPIETARIO Apellido, ORD.PRODUCTOPEDIDO Producto Pedido</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>FROM PEDIDOS
+ORD, PROPIETARIOS_ANTIG&Uuml;EDADES OWN</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>WHERE
+ORD.ID_PROPIETARIO = OWN.ID_PROPIETARIO</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>AND ORD.PRODUCTOPEDIDO
+IN</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;
+(SELECT PRODUCTO</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;
+FROM ANTIG&Uuml;EDADES);</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>Esto devuelve:</FONT>
+
+<P><FONT SIZE=-1>Apellidos Producto Pedido</FONT>
+<BR><FONT SIZE=-1>--------------------------------</FONT>
+<BR><FONT SIZE=-1>Smith&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Table</FONT>
+<BR><FONT SIZE=-1>Smith&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Armario</FONT>
+<BR><FONT SIZE=-1>Akins&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Silla</FONT>
+<BR><FONT SIZE=-1>Lawson&nbsp;&nbsp;&nbsp;&nbsp; Espejo</FONT>
+
+<P><FONT SIZE=-1>&nbsp;Hay algunas cosas a tener en cuenta sobre esta consulta:</FONT>
+<OL>
+<LI>
+<FONT SIZE=-1>Primero, el "Apellido" y el "Producto Pedido" en las l&iacute;neas
+Select devuelve los t&iacute;tulos en la salida.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>El OWN &amp; ORD son <B>alias</B>; &eacute;stos son dos nuevos
+nombres para las dos tablas listadas en la cl&aacute;usula FROM que son
+usado como pref&iacute;jos para toda las notaciones con punto de los nombres
+de las columnas en la consulta (ver arriba). Esto elimina ambig&uuml;edades,
+especialmente en la cl&aacute;usula de intersecci&oacute;n WHERE donde
+ambas tablas tienen la columna ID_Propietario, y la notaci&oacute;n con
+punto dice al SQL que estamos refiri&eacute;ndonos de dos diferentes ID_Propietario
+de dos tablas diferentes.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Observa que la tabla de Pedidos est&aacute; utilizada primero
+en la cl&aacute;usula FROM; esto asegura que el listado hecho bas&aacute;ndose
+en esta tabla, y la tabla AntiquesOwners, es solamente usado para la informaci&oacute;n
+complementaria (apellidos).</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>M&aacute;s importante, el AND en la cl&aacute;usula WHERE
+fuerza en la subconsulta el ser invocada ("=ANY" or "=SOME", son dos equivalente
+usos de IN). Qu&eacute; significa esto, la subconsulta se realiza, devolviendo
+todos los productos que pertenecen a alguien de la tabla de Antig&uuml;edades,
+como si no hubiera la cl&aacute;usula WHERE. As&iacute; pues, para que
+una fila de la tabla de Pedidos sea listada, el ProductoPedido debe de
+ser devuelto en la lista de productos con propietario de la tabla de Antig&uuml;edades,
+&eacute;sta lista un producto s&oacute;lo si el pedido puede ser cumplido
+por otro propietario. Puedes pensar que este es el camino: la subconsulta
+devuelve un conjunto de productos los cuales son comparados con los de
+la tabla Pedidos; la condici&oacute;n In es verdadera s&oacute;lo si el
+producto deseado est&aacute; en el conjunto devuelto de la tabla Antig&uuml;edades.
+Adem&aacute;s, date cuenta que este caso, en el que hay una antig&uuml;edad
+disponible para cada demanda, obviamente no ser&aacute; siempre el caso.
+Adem&aacute;s, observa que cuando IN, "=ANY", o "=SOME" es usada, estas
+palabras claves se refieren a cualquier posible fila seleccionada, no a
+columnas seleccionadas...esto es, no puedes poner m&uacute;ltiples columnas
+en una.</FONT></LI>
+</OL>
+<FONT SIZE=-1>&nbsp;</FONT>
+<CENTER>
+<HR SIZE=3 WIDTH="100%"><A NAME="CAPÍTULO_3__Miscellaneous_de_Sentencias_"></A><B><FONT COLOR="#000080"><FONT SIZE=+1>CAP&Iacute;TULO
+3. Miscel&aacute;neo de Sentencias SQL</FONT></FONT></B></CENTER>
+
+<HR SIZE=3 WIDTH="100%">
+<BR><FONT SIZE=-1>&nbsp;</FONT>
+<BR><A NAME="Funciones_Agregadas"></A><B><FONT COLOR="#000080"><FONT SIZE=-1>Funciones
+Agregadas</FONT></FONT></B>
+
+<P><FONT SIZE=-1>&nbsp;</FONT>
+<BR><FONT SIZE=-1>Vamos a ver cinco importantes funciones agregadas:&nbsp;<A NAME="SUM"></A><B><FONT COLOR="#000080">SUM</FONT></B>,&nbsp;<A NAME="AVG"></A><B><FONT COLOR="#000080">AVG</FONT></B>,&nbsp;<A NAME="MAX"></A><B><FONT COLOR="#000080">MAX</FONT>
+
+
+
+</B>,&nbsp;<A NAME="MIN"></A><B><FONT COLOR="#000080">MIN</FONT></B>
+y&nbsp;<A NAME="COUNT"></A><B><FONT COLOR="#000080">COUNT</FONT></B>. Son
+llamadas funciones agregadas porque resumen el resultado de una consulta.</FONT>
+<BR>&nbsp;
+<BR>&nbsp;
+<CENTER><TABLE BORDER WIDTH="592" BORDERCOLOR="#000000" >
+<TR>
+<TD VALIGN=CENTER><FONT SIZE=-1>SUM ()</FONT></TD>
+
+<TD VALIGN=CENTER><FONT SIZE=-1>devuelve el total de todas las fila, satisfaciendo
+todas las condiciones de una columna dada, cuando la columna dada es num&eacute;rica.</FONT>&nbsp;</TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER><FONT SIZE=-1>AVG ()&nbsp;</FONT></TD>
+
+<TD VALIGN=CENTER><FONT SIZE=-1>devuelve la media de una columna dada.</FONT>&nbsp;</TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER><FONT SIZE=-1>MAX ()</FONT></TD>
+
+<TD VALIGN=CENTER><FONT SIZE=-1>devuelve el mayor valor de una columna
+dada.</FONT>&nbsp;</TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER><FONT SIZE=-1>MIN ()</FONT></TD>
+
+<TD VALIGN=CENTER><FONT SIZE=-1>devuelve el menor valor en una columna
+dada.</FONT>&nbsp;</TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER><FONT SIZE=-1>COUNT(*)&nbsp;</FONT></TD>
+
+<TD VALIGN=CENTER><FONT SIZE=-1>devuelve el n&uacute;mero de filas que
+satisfacen las condiciones.</FONT>&nbsp;</TD>
+</TR>
+</TABLE></CENTER>
+&nbsp;
+
+<P><FONT SIZE=-1>Viendo las tablas del principio del documento, veamos
+tres ejemplos:</FONT>
+<BR><FONT SIZE=-1>&nbsp;</FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>SELECT
+SUM(SALARIO), AVG(SALARIO)</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>FROM TABLA_ESTADISTICA_EMPLEADOS;</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>&nbsp;Esta consulta muestra el total de todos los salarios
+de la tabla, y la media salarial de todas las entradas en la tabla.</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>SELECT
+MIN(BENEFICIOS)</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>FROM TABLA_ESTADISTICA_EMPLEADOS</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>WHERE
+CARGO = 'Encargado';</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>Esta consulta devuelve el menor valor de la columan de
+beneficios, de los empleados que son Managers, la cual es 12.500.</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>SELECT
+COUNT(*)</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>FROM TABLA_ESTADISTICA_EMPLEADOS</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>WHERE
+CARGO = 'T&eacute;cnico';</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>Esta consulta nos dice cuantos empleados tienen la categor&iacute;a
+de T&eacute;cnico (3).</FONT>
+
+<P>
+<HR SIZE=3 WIDTH="100%">
+<BR>&nbsp;
+<BR><A NAME="Vistas"></A><B><FONT COLOR="#000080"><FONT SIZE=-1>Vistas</FONT></FONT></B>
+
+<P><FONT SIZE=-1>&nbsp;</FONT>
+<BR><FONT SIZE=-1>En SQL, tu puedes (comprueba tu DBA) tener acceso a crear
+vistas por ti mismo. Lo que una vista hace es permitirte asignar resultados
+de una consulta a una tabla nueva y personal , que puedes usar en otras
+consultas, pudiendo utilizar el nombre dado a la tabla de tu vista en la
+cl&aacute;usula FROM. Cuando accedes a una vista, la consulta que est&aacute;
+definida en la sentencia que crea tu lista est&aacute; relacionada (generalmente),
+y los resultados de esta consulta son como cualquier otra tabla en la consulta
+que escribiste invocando tu vista. Por ejemplo, para crear una vista:</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>CREATE
+VIEW ANTVIEW AS SELECT PRODUCTOPEDIDO FROM PEDIDOS;</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>Ahora, escribe una consulta usando esta vista como tabla,
+donde la tabla es una listado de todos los Productos Pedidos de la tabla
+Pedidos:</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>SELECT
+ID_VENDEDOR</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>FROM ANTIG&Uuml;EDADES,
+ANTVIEW</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>WHERE
+PRODUCTOPEDIDO = PRODUCTO;</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>Esta consulta muestra todos los ID_vendedor de la tabla
+de Antig&uuml;edades donde el producto, en esta tabla, aparece en la vista
+Antview, la cual no es m&aacute;s que todos los Productos Desired de la
+tabla Pedidos. El listado es generado yendo uno por uno por los Productos
+Antig&uuml;os hasta donde hay una coincidencia con la vista Antview. Las
+vistas pueden ser usadas para restringir el acceso a las bases de datos,
+as&iacute; como para simplificar una consulta compleja.</FONT>
+
+<P>
+<HR SIZE=3 WIDTH="100%">
+
+<P><A NAME="Creando_nuevas_vistas"></A><B><FONT COLOR="#000080"><FONT SIZE=-1>Creando
+nuevas tablas</FONT></FONT></B>
+
+<P><FONT SIZE=-1>Toda&nbsp; tabla de una base de datos debe de ser creada
+alguna vez... veamos como hemos creado la tabla de Pedidos:</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>CREATE
+TABLE PEDIDOS</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;
+(ID_PROPIETARIO INTEGER NOT NULL,</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;
+PRODUCTOPEDIDO CHAR(40) NOT NULL);</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>&nbsp;Esta sentencia devuelve el nombre de la tabla e
+informa a la DBMS sobre cada columna en la tabla. Observa que esta sentencia
+usa tipos de datos gen&eacute;ricos, y que los tipos de datos pueden ser
+diferentes dependiendo del DBMS que estes usando. Algunos tipos de datos
+gen&eacute;ricos son:</FONT>
+
+<P><FONT SIZE=-1>- <B><FONT COLOR="#000080">Char(x)</FONT></B> - Una columna
+de caracteres, donde x es el n&uacute;mero m&aacute;ximo de caracteres
+permitido en la columna.</FONT>
+<BR><FONT SIZE=-1>- <B><FONT COLOR="#000080">Integer </FONT></B>– Una columna
+de n&uacute;meros enteros, positivos o negativos.</FONT>
+<BR><FONT SIZE=-1>- <B><FONT COLOR="#000080">Decimal(x, y)</FONT></B> –
+Una columna de n&uacute;meros decimales, donde x es el n&uacute;mero m&aacute;ximo
+de digitos del n&uacute;mero decimal en la columna e y el n&uacute;mero
+m&aacute;ximo de d&iacute;gitos despu&eacute;s del punto decimal. Ejemplo:
+(4,2): 99.99.</FONT>
+<BR><FONT SIZE=-1>- <B><FONT COLOR="#000080">Date</FONT></B> - Una columna
+fecha tiene un formato especial en cada DBMS.</FONT>
+<BR><FONT SIZE=-1>- <B><FONT COLOR="#000080">Logical</FONT></B> – Una columna
+que s&oacute;lo puede tomar dos valores: TRUE o FALSE (verdadero o falso).</FONT>
+
+<P><FONT SIZE=-1>&nbsp;Otra nota, NOT NULL significa que la columna debe
+tener un valor en cada fila. Si NULL es usado, la columna podr&iacute;a
+tener un valor vacio en una de sus filas.</FONT>
+
+<P>
+<HR SIZE=3 WIDTH="100%">
+<BR>&nbsp;
+<BR><FONT SIZE=-1>&nbsp;</FONT>
+<BR><A NAME="Modificando_tablas"></A><B><FONT COLOR="#000080"><FONT SIZE=-1>Modificando
+Tablas</FONT></FONT></B>
+
+<P><FONT SIZE=-1>Vamos a a&ntilde;adir una columna a la tabla Antig&uuml;edades
+para permitir introducir el precio de un producto dado:</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>ALTER TABLE
+ANTIG&Uuml;EDADES ADD (PRECIO DECIMAL(8,2) NULL);</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>Los datos para esta nueva columna pueden ser actualizados
+o insertados como se muestra a continuaci&oacute;n.</FONT>
+
+<P>
+<HR SIZE=3 WIDTH="100%">
+
+<P><A NAME="Añadiendo_Datos"></A><B><FONT COLOR="#000080"><FONT SIZE=-1>A&ntilde;adiendo
+Datos</FONT></FONT></B>
+
+<P><FONT SIZE=-1>&nbsp;</FONT>
+<BR><FONT SIZE=-1>Para insertar filas en una tabla, haz lo siguiente:</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>INSERT
+INTO ANTIG&Uuml;EDADES VALUES (21, 01, 'Ottoman', 200.00);</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>Esto inserta los datos en la tabla, como una nueva fila,
+columna por columna, en el orden pre-definido. Veamos como modificar el
+orden y dejar el Precio en blanco:</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>INSERT
+INTO ANTIG&Uuml;EDADES (ID_COMPRADOR, ID_VENDEDOR, PRODUCTO)</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>VALUES
+(01, 21, 'Ottoman');</FONT></FONT></FONT>
+
+<P>
+<HR SIZE=3 WIDTH="100%">
+
+<P><A NAME="Borrando_datos"></A><B><FONT COLOR="#000080"><FONT SIZE=-1>Borrando
+datos</FONT></FONT></B>
+
+<P><FONT SIZE=-1>&nbsp;Vamos a borrar esta nueva fila de al base de datos:</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>DELETE
+FROM ANTIG&Uuml;EDADES</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>WHERE
+PRODUCTO = 'Ottoman';</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>&nbsp;Pero si hay otra fila que contiene ‘Ottoman’, esta
+fila tambi&eacute;n ser&aacute; borrada. Para diferenciar la fila de otra,
+lo que haremos ser&aacute; a&ntilde;adir datos:</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>DELETE
+FROM ANTIG&Uuml;EDADES</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>WHERE
+PRODUCTO = 'Ottoman' AND ID_COMPRADOR = 01 AND ID_VENDEDOR = 21;</FONT></FONT></FONT>
+
+<P>
+<HR SIZE=3 WIDTH="100%">
+
+<P><A NAME="Actualizando_datos"></A><B><FONT COLOR="#000080"><FONT SIZE=-1>Actualizando
+Datos</FONT></FONT></B>
+
+<P><FONT SIZE=-1>Vamos a actualizar el Precio en una fila que todav&iacute;a
+no tiene el precio:</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>UPDATE
+ANTIG&Uuml;EDADES SET PRECIO = 500.00 WHERE PRODUCTO = 'Silla';</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>Esto pone el precio de todas las sillas a 500.00, como
+en el caso anterior, a&ntilde;adiendo m&aacute;s condicionantes en la cl&aacute;usula
+WHERE, podemos especificar m&aacute;s aquellas filas que queremos modificar.</FONT>
+
+<P><FONT SIZE=-1>&nbsp;</FONT>
+<CENTER>
+<HR SIZE=3 WIDTH="100%"><A NAME="CAPÍTULO_4__Miscellaneous_de_Tópicos"></A><B><FONT COLOR="#000080"><FONT SIZE=+1>CAP&Iacute;TULO
+4. Miscel&aacute;neo de T&oacute;picos</FONT></FONT></B></CENTER>
+
+<HR SIZE=3 WIDTH="100%">
+<BR>&nbsp;
+
+<P><FONT SIZE=-1>&nbsp;</FONT>
+<BR><A NAME="indices"></A><B><FONT COLOR="#000080"><FONT SIZE=-1>&Iacute;ndices&nbsp;</FONT></FONT></B>
+
+<P><FONT SIZE=-1>&nbsp;</FONT>
+<BR><FONT SIZE=-1>Los &iacute;ndices permiten a DBMS acceder a los datos
+m&aacute;s r&aacute;pidamente (esto no ocurre en todos los sistemas). El
+sistema crea esta estructura de datos interna (el &iacute;ndice) con la
+cual se es posible seleccionar filas, cuando la selecci&oacute;n se basa
+en columnas indexadas, esto se hace m&aacute;s r&aacute;pidamente. Este
+&iacute;ndice le dice a la DBMS donde esta cierta fila dando el valor de
+una columna indexada, como un libro, cuyo &iacute;ndice te dice en que
+p&aacute;ginas aparece una cierta palabra. Vamos a crear un &iacute;ndice
+por el ID_Propietario en la tabla Propietarios_Antig&uuml;edades:</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>CREATE
+INDEX OID_IDX ON PROPIETARIOS_ANTIG&Uuml;EDADES (ID_PROPIETARIO);</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>Ahora en los nombres:</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>CREATE
+INDEX NAME_IDX ON PROPIETARIOS_ANTIG&Uuml;EDADES (APELLIDOPROPIETARIO,
+NOMBREPROPIETARIO);</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>Para borrar un &iacute;ndice, utiliza la sentencia DROP:</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>DROP INDEX
+OID_IDX;</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>As&iacute; mismo, tambi&eacute;n puedes "borrar" una tabla
+(DROP TABLE nombretabla). En el segundo ejemplo, el &iacute;ndice se mantine
+en las dos columnas, agregado junto.</FONT>
+
+<P><FONT SIZE=-1>Algunos DBMS no fuerzan la existencia de claves primarias;
+en otras palabra, la unicidad de una columna no es forzada autom&aacute;ticamente.
+Lo que significa que, por ejemplo, si intento insertar otra fila dentro
+de la tabla Propietarios_Antig&uuml;edades con el ID_Propietario de 02,
+algunos sistemas lo permitir&aacute;n hacer, incluso, si esta columna es
+la &uacute;nica de la tabla (cada fila se supone que es diferente). Una
+forma de evitar esto es crear un &uacute;nico &iacute;ndice en la columna
+que queramos que sea la clave primaria para forzar al sistema a prohibir
+los duplicados.</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>CREATE
+UNIQUE INDEX OID_IDX ON PROPIETARIOS_ANTIG&Uuml;EDADES (ID_PROPIETARIO);</FONT></FONT></FONT>
+
+<P>
+<HR SIZE=3 WIDTH="100%">
+
+<P><A NAME="GROUP_BY"></A><B><FONT COLOR="#000080"><FONT SIZE=-1>GROUP
+BY &amp; HAVING</FONT></FONT></B>
+
+<P><FONT SIZE=-1>&nbsp;</FONT>
+<BR><FONT SIZE=-1>Un uso especial de GROUP BY es asociar una funci&oacute;n
+agregada (especialmente COUNT) con grupos de filas. Primero, imagina que
+la tabla Antig&uuml;edades tiene la columna Precio, y que cada fila tiene
+un valor para esta columna. Queremos ver el precio del producto m&aacute;s
+caro comprado por cada comprador. Tenemos que decirle a SQL que agrupe
+cada tipo de compra, y nos diga la compra que tenga el m&aacute;ximo precio:</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>SELECT
+ID_COMPRADOR, MAX(PRECIO)</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>FROM ANTIG&Uuml;EDADES</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>GROUP
+BY ID_COMPRADOR;</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>Ahora, queremos decir que s&oacute;lo queremos ver la
+precio m&aacute;ximo de la compra si &eacute;ste es sobre $1000, as&iacute;
+que usamos la cl&aacute;usula HAVING:</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>SELECT
+ID_COMPRADOR, MAX(PRECIO)</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>FROM ANTIG&Uuml;EDADES</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>GROUP
+BY ID_COMPRADOR</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>HAVING
+PRECIO 1000;</FONT></FONT></FONT>
+
+<P>
+<HR SIZE=3 WIDTH="100%">
+
+<P><A NAME="Más_subconsultas"></A><B><FONT COLOR="#000080"><FONT SIZE=-1>M&aacute;s
+subconsultas</FONT></FONT></B>
+
+<P><FONT SIZE=-1>&nbsp;</FONT>
+<BR><FONT SIZE=-1>Otro uso com&uacute;n de las subconsultas involucra el
+uso de operadores para permitir a una condici&oacute;n WHERE incluir la
+salida de un Select de una subconsulta. Primero, lista los compradores
+que compraron un producto caro (el precio del producto es $100 mayor que
+la media de precio de todos los productos):</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>SELECT
+ID_COMPRADOR</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>FROM ANTIG&Uuml;EDADES</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>WHERE
+PRECIO</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;
+(SELECT AVG(PRECIO) + 100</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;
+FROM ANTIG&Uuml;EDADES);</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>La subconsulta calcula la media del Precio m&aacute;s
+$100, y usando esta figura, los ID_Propietario son impresos por cada producto
+que cuesta m&aacute;s. Se puede usar DISTINCT ID_PROPIETARIO, para eliminar
+duplicados.</FONT>
+
+<P><FONT SIZE=-1>Lista los apellidos de aquellos de la tabla AntiqueOwner,
+S&Oacute;LO si han comprado un producto:</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>SELECT
+APELLIDOPROPIETARIO</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>FROM PROPIETARIOS_ANTIG&Uuml;EDADES</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>WHERE
+ID_PROPIETARIO IN</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;
+(SELECT DISTINCT ID_COMPRADOR</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;
+FROM ANTIG&Uuml;EDADES);</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>La subconsulta devuelve la lista de compradores, y el
+apellido es impreso para un Antique Owner si y s&oacute;lo si el ID_Propietario
+aparece en la lista de la subconsulta (tambi&eacute;n llamada lista de
+candidatos). Nota: en algunas DBMS, el igual puede ser usado de la misma
+forma que IN, aunque, por previsi&oacute;n, IN es una mejor elecci&oacute;n.</FONT>
+
+<P><FONT SIZE=-1>Para un ejemplo de actualizaci&oacute;n, nosotros sabemos
+que el hombre que compr&oacute; la librer&iacute;a tiene el Nombre equivocado
+en la base de datos, &eacute;ste deber&iacute;a ser John:</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>UPDATE
+PROPIETARIOS_ANTIG&Uuml;EDADES</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>SET NOMBREPROPIETARIO
+= 'John'</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>WHERE
+ID_PROPIETARIO =</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;
+(SELECT ID_COMPRADOR</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;
+FROM ANTIG&Uuml;EDADES</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;
+WHERE PRODUCTO = 'Librer&iacute;a');</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>Primero, la subconsulta encuentra el ID_comprador de la
+persona(s) que compr&oacute; la librer&iacute;a, despu&eacute;s la consulta
+de salida actualiza el apellido.</FONT>
+
+<P><FONT SIZE=-1>Recuerda esta regla sobre las subconsultas: cuando tienes
+una subconsulta como parte de una condici&oacute;n WHERE, la cl&aacute;usula
+Selec en la subconsulta tiene que tener columnas que concuerden en n&uacute;mero
+y tipo con aquellas que formen parte de la condici&oacute;n WHERE de la
+subconsulta. En otras palabras, si tienes "WHERE ColumnName = (SELECT...);",
+Select debe de tener s&oacute;lo una columna en ella, para coincidir con
+la salida en la cl&aacute;usula Where, y estas deber&aacute;n de coincidir
+en tipo</FONT>
+
+<P>
+<HR SIZE=3 WIDTH="100%">
+
+<P><A NAME="Exists_"></A><B><FONT COLOR="#000080"><FONT SIZE=-1>EXISTS
+&amp; ALL</FONT></FONT></B>
+
+<P><FONT SIZE=-1>&nbsp;</FONT>
+<BR><FONT SIZE=-1>EXISTS usa una subconsulta como condici&oacute;n, donde
+la condici&oacute;n es verdadera si la subconsulta devuelve alguna fila,
+y falsa si la subconsulta no devuelve ninguna fila; esta es una caracter&iacute;stica
+no intuitiva con s&oacute;lo algunos usos. Sin embargo, si un empleado
+quiere ver la lista de Owners s&oacute;lo si hay sillas disponibles, intenta:</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>SELECT
+NOMBREPROPIETARIO, APELLIDOPROPIETARIO</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>FROM PROPIETARIOS_ANTIG&Uuml;EDADES</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>WHERE
+EXISTS</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;
+(SELECT *</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;
+FROM ANTIG&Uuml;EDADES</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;
+WHERE PRODUCTO = 'Silla');</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>Si hay alguna silla en la columna Antig&uuml;edades, la
+subconsulta devolver&aacute; una o varias filas, haciendo la cl&aacute;usula
+EXISTS verdadera, haciendo que SQL liste los Antique Owners. Si no ha habido
+sillas, ninguna fila ser&aacute; devuelta por la subconsulta.</FONT>
+
+<P><FONT SIZE=-1>ALL es otra construcci&oacute;n poco usual , como las
+consultas ALL pueden ser usadas con diferentes y simples m&eacute;todos,
+veamos un ejemplo de consulta:</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>SELECT
+ID_COMPRADOR, PRODUCTO</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>FROM ANTIG&Uuml;EDADES</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>WHERE
+PRECIO = ALL</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;
+(SELECT PRECIO</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;
+FROM ANTIG&Uuml;EDADES);</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>Esto devolver&aacute; el precio de producto m&aacute;s
+alto (o m&aacute;s de un producto si hay un empate), y su comprador. La
+subconsulta devuelve una lista de todos los precios de la tabla Antig&uuml;edades,
+y la consulta de salida va fila por fila de la tabla Antig&uuml;edades
+y si el precio es mayor o igual a todos (o ALL) precios en la lista, es
+listado, dando el precio del producto m&aacute;s caro. La raz&oacute;n
+de "=" es que el mayor precio en la lista puede ser igual al de la lista,
+ya que este producto est&aacute; en la lista de precios.</FONT>
+
+<P>
+<HR SIZE=3 WIDTH="100%">
+<BR>&nbsp;
+
+<P><B><FONT COLOR="#000080"><FONT SIZE=-1>UNION &amp; Uniones de salida</FONT></FONT></B>
+
+<P><FONT SIZE=-1>Hay ocasiones donde puedes querer ver los resultados de
+m&uacute;ltiples consultas a la vez combinando sus salidas; usa&nbsp;<A NAME="UNION"></A>UNION.
+Por ejemplo, si queremos ver todos los ID_COMPRADOR de la tabla de Antig&uuml;edades
+junto con los ID_PROPIETARIO de la tabla de PEDIDOS, usaremos:</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>SELECT
+ID_COMPRADOR</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>FROM ANTIG&Uuml;EDADES</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>UNION</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>SELECT
+ID_PROPIETARIO</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>FROM PEDIDOS;</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>SQL requiere que la lista de Select (de columnas) coincida,
+columna por columna, en el tipo de datos. En este caso ID_comprador y ID_Propietario
+son del mismo tipo (integer). Adem&aacute;s, SQL elimina autom&aacute;ticamente
+los duplicados cuando se usa UNION (como si ellos fuera dos "conjuntos");
+en las consultas simples, tienes que usar DISTINCT.</FONT>
+
+<P><FONT SIZE=-1>La uni&oacute;n de salida es usada cuando una consulta
+de uni&oacute;n est&aacute; "unida" con filas no incluidas en la uni&oacute;n,
+y son especialmente &uacute;tiles si las "flags" son incluidas. Primero
+observa la consulta:</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>SELECT
+ID_PROPIETARIO, 'is in both Pedidos &amp; Antig&uuml;edades'</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>FROM PEDIDOS,
+ANTIG&Uuml;EDADES</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>WHERE
+ID_PROPIETARIO = ID_COMPRADOR</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>UNION</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>SELECT
+ID_COMPRADOR, 'is in Antig&uuml;edades only'</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>FROM ANTIG&Uuml;EDADES</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>WHERE
+ID_COMPRADOR NOT IN</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;
+(SELECT ID_PROPIETARIO</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;
+FROM PEDIDOS);</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>Esta consulta hace una uni&oacute;n para listar todos
+los propietarios que est&aacute;n en ambas tablas, y pone una l&iacute;nea
+etiqueta despu&eacute;s de ID repitiendo la cita. La UNION une esta lista
+con al siguiente lista. La segunda lista es generada primero listando aquellos
+ID que no est&aacute;n en la tabla Pedidos, generando una lista de ID excluidos
+de la consulta de uni&oacute;n. Entonces, cada fila en la tabla Antig&uuml;edades
+es escaneada, y si el ID_comprador no est&aacute; en esta lista de exclusi&oacute;n,
+es listado con su cita etiqueta. Debe haber un modo m&aacute;s sencillo
+de hacer esta lista, pero es dif&iacute;cil generar la informativa cita
+de texto.</FONT>
+
+<P><FONT SIZE=-1>Este concepto es muy &uacute;til en situaciones donde
+la clave primaria est&aacute; relacionada con una clave ajena, pero el
+valor de la clave ajena para algunas claves primarias es NULL. Por ejemplo,
+en una tabla, la clave primaria es vendedor, y en otra tabla es clientes,
+con el nombre de los vendedores en la misma fila. Sin embargo, si un vendedor
+no tiene clientes, el nombre de esta persona no aparecer&aacute; en la
+tabla de clientes. La uni&oacute;n de salida es usada si el listado de
+todos los vendedores va ha ser impreso, junto con sus clientes, aunque
+el vendedor no est&eacute; en la tabla de clientes, pero est&aacute; en
+la tabla de vendedores. En otro caso, el vendedor ser&aacute; listado con
+cada cliente.</FONT>
+
+<P>
+<HR SIZE=3 WIDTH="100%">
+<CENTER><A NAME="CAPÍTULO_5__SQL_EMBEBIDO"></A><FONT COLOR="#000080"><FONT SIZE=+1>CAP&Iacute;TULO
+5. SQL EMBEBIDO</FONT></FONT></CENTER>
+
+<HR SIZE=3 WIDTH="100%">
+<BR>&nbsp;
+<BR><A NAME="SQL_embebido"></A><B><FONT COLOR="#000080"><FONT SIZE=-1>SQL
+embebido</FONT></FONT></B>
+
+<P><FONT SIZE=-1>Un feo ejemplo (no escribas un programa como este ...esto
+es s&oacute;lo con prop&oacute;sitos educativos)</FONT>
+
+<P><FONT COLOR="#008000"><FONT SIZE=-1>&nbsp;/* - Para verlo, aqu&iacute;
+tienes un programa ejemplo que usa SQL embebido. SQL embebido permite</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>a los programadores conectar con
+una base de datos e incluir c&oacute;digo SQL en su programa, y poder usar,</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>manipular y procesar datos de la
+base de datos..</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>- Este ejemplo de programa en C
+(usando SQL embebido) imprimir&aacute; un informe.</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>- Este programa deber&aacute; ser
+precompilado para las sentencias SQL, antes de la compilaci&oacute;n normal.</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>- Las partes EXEC SQL son las mismas
+(est&aacute;ndar), pero el c&oacute;digo C restante deber&aacute; ser cambiado,</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>incluyendo la declaraci&oacute;n
+de variables si est&aacute;s usando un lenguaje diferente.</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>-SQL embebido cambia de sistema
+a sistema, as&iacute; que, una vez m&aacute;s, comprueba la documentaci&oacute;n,
+especialmente la declaraci&oacute;n</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>de variables y procedimientos,
+en donde las consideraciones del DBMS y el sistema operativo son cruciales.</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>*/</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>/* ***************************************************/</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>/* ESTE PROGRAMA NO ES COMPILABLE
+O EJECUTABLE */</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>/* SU PROPOSITO ES S&Oacute;LO
+DE SEVIR DE EJEMPLO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+*/</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>/****************************************************/</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>#include &lt;stdio.h</FONT>></FONT>
+
+<P><FONT COLOR="#008000"><FONT SIZE=-1>/* Esta secci&oacute;n declara las
+variables locales, estas deber&aacute;n ser las variables que tu programa
+use, pero tambi&eacute;n</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>las variables SQL podr&aacute;n
+ser utilizadas para tomar o dar valores */</FONT></FONT>
+
+<P><FONT COLOR="#008000"><FONT SIZE=-1>EXEC SQL BEGIN DECLARE SECTION;</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>&nbsp;&nbsp;&nbsp; int ID_comprador;</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>&nbsp;&nbsp;&nbsp; char Nombre[100],
+Apellidos[100], Producto[100];</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>EXEC SQL END DECLARE SECTION;</FONT></FONT>
+
+<P><FONT COLOR="#008000"><FONT SIZE=-1>/* Esto incluye la variable SQLCA
+, aqu&iacute; puede haber alg&uacute;n error si se compilase. */</FONT></FONT>
+
+<P><FONT COLOR="#008000"><FONT SIZE=-1>EXEC SQL INCLUDE SQLCA;</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>main() {</FONT></FONT>
+
+<P><FONT COLOR="#008000"><FONT SIZE=-1>/* Este es un posible camino para
+conectarse con la base de datos */</FONT></FONT>
+
+<P><FONT COLOR="#008000"><FONT SIZE=-1>EXEC SQL CONNECT UserID/Password;</FONT></FONT>
+
+<P><FONT COLOR="#008000"><FONT SIZE=-1>/* Este c&oacute;digo informa si
+est&aacute;s conectado a la base de datos o si ha habido alg&uacute;n error
+durante la conexi&oacute;n*/</FONT></FONT>
+
+<P><FONT COLOR="#008000"><FONT SIZE=-1>if(sqlca.sqlcode)</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>{</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>&nbsp;&nbsp;&nbsp; printf(Printer,
+"Error conectando al servidor de la base de datos.\n");</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>&nbsp;&nbsp;&nbsp; exit();</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>&nbsp;}</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>printf("Conectado al servidor de
+la base de datos.\n");</FONT></FONT>
+
+<P><FONT COLOR="#008000"><FONT SIZE=-1>/* Esto declara un "Cursor". &Eacute;ste
+es usado cuando una consulta devuelve m&aacute;s de una fila, y una operaci&oacute;n
+va a ser realizada en cada fila resultante de la consulta. Con cada fila
+establecida por esta consulta, lo usare en el informe. Despu&eacute;s "Fetch"
+ser&aacute; usado para sacar cada fila, una a una, pero para la consulta
+que est&aacute; actualmente ejecutada, se usar&aacute; el estamento "Open".
+El "Declare" simplemente establece la consulta.*/</FONT></FONT>
+
+<P><FONT COLOR="#008000"><FONT SIZE=-1>EXEC SQL DECLARE ProductoCursor
+CURSOR FOR</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+SELECT PRODUCTO, ID_COMPRADOR</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+FROM ANTIG&Uuml;EDADES</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ORDER BY PRODUCTO;</FONT></FONT>
+
+<P><FONT COLOR="#008000"><FONT SIZE=-1>EXEC SQL OPEN ProductoCursor;</FONT></FONT>
+
+<P><FONT COLOR="#008000"><FONT SIZE=-1>&nbsp;/* +-- Podr&iacute;as desear
+poner un bloque de chequeo de errores aqu&iacute;. --+ */</FONT></FONT>
+
+<P><FONT COLOR="#008000"><FONT SIZE=-1>/* Fetch pone los valores de la
+"siguiente" fila de la consulta en las variables locales, respectivamente.
+Sin embargo, un "priming fetch" (tecnica de programaci&oacute;n) debe ser
+hecha antes. Cuando el cursor est&aacute; fuera de los datos, un c&oacute;digo
+SQL debe de ser generado para permitirnos salir del bucle. Para simplificar,
+el bucle ser&aacute; dejado cuando ocurra cualquier c&oacute;digo SQL,
+incluso si es una c&oacute;digo de error. De otra manera, un c&oacute;digo
+de chequeo espec&iacute;fico deber&iacute;a de ser preparado*/</FONT></FONT>
+
+<P><FONT COLOR="#008000"><FONT SIZE=-1>EXEC SQL FETCH ProductoCursor INTO
+:Producto, :ID_comprador;</FONT></FONT>
+
+<P><FONT COLOR="#008000"><FONT SIZE=-1>while(!sqlca.sqlcode)</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>{</FONT></FONT>
+
+<P><FONT COLOR="#008000"><FONT SIZE=-1>/* Con cada fila, adem&aacute;s
+hacemos un par de cosas. Primero, aumentamos el precio $5 (honorarios por
+tramitaciones) y extraemos el nombre del comprador para ponerlo en el informe.
+Para hacer esto, usaremos Update y Select, antes de imprimir la l&iacute;nea
+en la pantalla. La actuaclizaci&oacute;n, sin embargo, asume que un comprador
+dado s&oacute;lo ha comprado uno de todos los productos dados, o sino,
+el precio ser&aacute; incrementado demasiadas veces. Por otra parte, una
+"FilaID" podr&iacute;a haber sido utilizada (ver documentaci&oacute;n).
+Adem&aacute;s observa los dos puntos antes de los nombres de las variables
+locales cuando son usada dentro de sentencias de SQL.*/</FONT></FONT>
+
+<P><FONT COLOR="#008000"><FONT SIZE=-1>&nbsp;&nbsp;&nbsp; EXEC SQL UPDATE
+ANTIG&Uuml;EDADES</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>&nbsp;&nbsp;&nbsp; SET PRECIO =
+PRECIO + 5</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>&nbsp;&nbsp;&nbsp; WHERE PRODUCTO
+= :Producto AND ID_COMPRADOR = :ID_comprador;</FONT></FONT>
+
+<P><FONT COLOR="#008000"><FONT SIZE=-1>&nbsp;&nbsp;&nbsp; EXEC SQL SELECT
+NOMBREPROPIETARIO, APELLIDOPROPIETARIO</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>&nbsp;&nbsp;&nbsp; INTO :Nombre,
+:Apellidos</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>&nbsp;&nbsp;&nbsp; FROM PROPIETARIOS_ANTIG&Uuml;EDADES</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>&nbsp;&nbsp;&nbsp; WHERE ID_COMPRADOR
+= :ID_comprador;</FONT></FONT>
+
+<P><FONT COLOR="#008000"><FONT SIZE=-1>&nbsp;&nbsp;&nbsp; printf("%25s
+%25s %25s", Nombre, Apellidos, Producto);</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>/* Feo informe- s&oacute;lo para
+propositos de ejemplo!. Veamos la siguiente fila */</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>&nbsp;&nbsp;&nbsp; EXEC SQL FETCH
+ProductoCursor INTO :Producto, :ID_comprador;</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>}</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>/* Cierra el cursor, entrega los
+cambios (ver debajo), y sale del programa */</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>EXEC SQL CLOSE ProductoCursor;</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>EXEC SQL COMMIT RELEASE;</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>exit();</FONT></FONT>
+<BR><FONT COLOR="#008000"><FONT SIZE=-1>}</FONT></FONT>
+
+<P>
+<HR SIZE=3 WIDTH="100%">
+<CENTER><A NAME="CAPÍTULO_6__Tópicos_Avanzados"></A><FONT COLOR="#000080"><FONT SIZE=+1>CAP&Iacute;TULO
+6. Cuestiones Comunes &amp; T&oacute;picos Avanzados</FONT></FONT></CENTER>
+
+<HR SIZE=3 WIDTH="100%">
+
+<P><B><FONT SIZE=-1><I>&iquest;Por qu&eacute; no puede preguntar simplemente
+por las tres primeras filas de la tabla</I>? </FONT></B><FONT SIZE=-1>Porque
+en las bases de datos relacionales, las filas son insertadas en un orden
+particular, esto es, el sistema las inserta en un orden arbitrario; as&iacute;,
+que s&oacute;lo puedes pedir filas usando un v&aacute;lida construcci&oacute;n
+SQL, como ORDER BY, etc.</FONT><FONT SIZE=-1></FONT>
+
+<P><B><FONT SIZE=-1><I>&iquest;Qu&eacute; es eso de DDL y DML?</I>. </FONT></B><FONT SIZE=-1>DDL
+(Data Definition Language) se refiere a (en SQL) a la sentencia de creaci&oacute;n
+de tabla... DML (Data Manipulation Language) se refiere a las sentencia
+Select, Update, Insert y Delete.</FONT><FONT SIZE=-1></FONT>
+
+<P><B><FONT SIZE=-1><I>&iquest;No son las tablas de las bases de datos
+como ficheros?</I> </FONT></B><FONT SIZE=-1>Bueno, el DBMS almacena los
+datos en ficheros declarados por los administrados del sistema antes de
+que nuevas tablas son creadas (en grandes sistemas), pero el sistema almacena
+los datos en un formato especial, y puede diseminar los datos de una tabla
+sobre muchos archivos. En el mundo de la base de datos, un conjunto de
+archivos creados por la base de datos es llamado "tablespace". En general,
+en peque&ntilde;os sistemas, todos lo relacionado con una base de datos
+(definiciones y todo los datos de la tabla) son guardados en un archivo.</FONT><FONT SIZE=-1></FONT>
+
+<P><FONT SIZE=-1><B><I>&iquest;S&oacute;n las tablas de datos como hojas
+diseminadas? </I></B>No, por dos razones. Primeras, las hojas diseminadas
+pueden tener datos en una celda, pero una celda es m&aacute;s que una simple
+intersecci&oacute;n de fila-columna. Dependiendo del software de diseminaci&oacute;n
+de hojas, una celda puede contener formulas y formatos, los cuales no pueden
+ser tenidos por una tabla de una base de datos. Segundo, las celdas diseminadas
+son usualmente dependientes de datos en otras celdas. En las bases de datos,
+las celdas son independientes, excepto que las columnas est&eacute;n l&oacute;gicamente
+relacionadas (por suerte, una fila de columnas, describe, en conjunto,
+una entidad), y, cada fila en una tabla es independiente del resto de filas.</FONT><FONT SIZE=-1></FONT>
+
+<P><B><FONT SIZE=-1><I>&iquest;C&oacute;mo puedo importar un archivo texto
+de datos dentro de una base de datos?</I> </FONT></B><FONT SIZE=-1>Bueno,
+no puedes hacerlo directamente... debes usar una utilidad, como "Oracle’s
+SQL*Loader", o escribir un programa para cargar los datos en la base de
+datos. Un programa para hacerlo simplemente ir&iacute;a de registro en
+registro de un archivo texto, dividi&eacute;ndolo en columnas, y haciendo
+un Insert dentro de la base de datos.</FONT><FONT SIZE=-1></FONT>
+
+<P><I><FONT SIZE=-1><B>&iquest;Qu&eacute; es un esquema?</B> </FONT></I><FONT SIZE=-1>Un
+esquema es un conjunto l&oacute;gico de tablas, como la base de datos Antig&uuml;edades
+arriba... usualmente, se piensa en &eacute;l simplemente como "la base
+de datos", pero una base de datos puede contener m&aacute;s de un esquema.
+Por ejemplo, un esquema estrella est&aacute; compuesto de tablas, donde
+una gran y central tabla tiene toda la informaci&oacute;n importante, con
+la que se accede, v&iacute;a claves ajenas, a tablas dimensionales, las
+cuales tienen informaci&oacute;n de detalle, y pueden ser usadas en una
+uni&oacute;n para crear informes detallados.</FONT><FONT SIZE=-1></FONT>
+
+<P><B><I><FONT SIZE=-1>&iquest;Hay alg&uacute;n filtro en general que puede
+usar para hacer mis consultas SQL y bases de datos mejores y m&aacute;s
+r&aacute;pidas (optimizadas)?</FONT></I><FONT SIZE=-1> </FONT></B><FONT SIZE=-1>Puedes
+intentar, si puedes, evitar expresiones en Selects, tales como SELECT ColumnaA
++ Columna B, etc. La consulta optimizada de la base de datos, la porci&oacute;n
+de la DBMS que determina el mejor camino para conseguir los datos deseados
+fuera de la base de datos, tiene expresiones de tal forma que puede requerir
+m&aacute;s tiempo recuperar los datos que si las columnas fueran seleccionadas
+de forma normal, y las expresiones se manejaran <B>program&aacute;ticamente.</B></FONT>
+<UL>
+<LI>
+<FONT SIZE=-1>Si estas usando una uni&oacute;n, trata de tener las columnas
+unidas por &iacute;ndices (desde ambas tablas).</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Cuando tengas dudas, &iacute;ndice.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>A no ser que tengas m&uacute;ltiples cuentas o consultas
+complejas, usa COUNT(*) (el n&uacute;mero de filas generadas por la consulta)
+mejor que COUNT(Nombre_Columna).</FONT></LI>
+</UL>
+<I><FONT SIZE=-1><B>&iquest;Qu&eacute; es normalizaci&oacute;n?</B> </FONT></I><FONT SIZE=-1>Normalizaci&oacute;n
+es una t&eacute;cnica de dise&ntilde;o de bases de datos que sugiere un
+cierto criterio en la construcci&oacute;n del dise&ntilde;o de una tabla
+(decidir que columnas tendr&aacute; cada tabla, y creando la estructura
+de claves), donde la idea es eliminar la redundancia de los datos no-claves
+entre tablas. Normalizaci&oacute;n se refiere usualmente a condiciones
+de forma, y s&oacute;lo introducir&eacute; las tres primeras, aunque es
+usual el uso de otras m&aacute;s avanzadas, como la cuarta, quinta, Boyce-Codd...)</FONT>
+<BR>&nbsp;
+<UL>
+<LI>
+<FONT SIZE=-1>La&nbsp;<A NAME="BM1FN"></A><B><FONT COLOR="#000080">Primera
+Forma Normal</FONT></B> se refiere a mover los datos en diferentes tablas
+donde los datos de cada tabla son de tipo similar, dando a cada tabla una
+clave primaria.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Poner los datos en la&nbsp;<A NAME="BM2FN"></A><B><FONT COLOR="#000080">Segunda
+Forma Normal</FONT></B> se refiere a remover a otras tablas datos que s&oacute;lo
+dependen de parte de la clave. Por ejemplo, si hubiera dejado los nombres
+de antiguos propietarios en la tabla de productos, esta no estar&aacute;
+en la Segunda Forma Normal, porque los datos ser&aacute;n redundantes;
+el nombre ser&aacute; repetido para cada producto del que se sea propietario;
+teniendo en cuenta que los nombres est&aacute;n almacenados en su propia
+tabla. Los nombre en si mismos no tienen nada que hacer con los productos,
+s&oacute;lo las identidades de los compradores y vendedores.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>La&nbsp;<A NAME="BM3FN"></A><B><FONT COLOR="#000080">Tercera
+Forma Normal</FONT></B> involucra deshacerse de todo aquello de las tablas
+que no dependa solamente de la clave primaria. Solo incluye informaci&oacute;n
+que es dependiente de la clave, y mueve a otras tablas que son independientes
+de la clave primaria, y crea claves primarias para las nuevas tablas.</FONT></LI>
+</UL>
+<FONT SIZE=-1>&nbsp;Hay alguna redundancia en cada forma, y si los datos
+est&aacute;n en la 3FN , tambi&eacute;n lo estar&aacute;n en la 1FN y en
+la 2FN, y si lo est&aacute;n en la 2FN, tambi&eacute;n lo estar&aacute;n
+en la 1FN. En t&eacute;rminos de dise&ntilde;o de datos, almacenar los
+datos, de tal manera, que cualquier columna no-clave primaria est&eacute;
+en dependencia s&oacute;lo de la entera clave primaria. Si observas el
+ejemplo de base de datos, ver&aacute;s que la &uacute;nica forma de navegar
+atrav&eacute;s de la base de datos es utilizando uniones usando columnas
+clave.</FONT>
+
+<P><FONT SIZE=-1>Otros dos importantes puntos en una base de datos es usar
+buenos, consistentes, l&oacute;gicos, y enteros nombres para las tablas
+y las columnas, y usar nombres completos en la base de datos tambi&eacute;n.
+En el &uacute;ltimo punto, mi base de datos es falta de nombres, as&iacute;
+que uso c&oacute;digos num&eacute;ricos para la identificaci&oacute;n.
+Es, usualmente, mejor, si es posible, tener claves que, por si misma, sea
+expliquen, por ejemplo, a clave mejor puede ser las primeras cuatro letras
+del apellido y la primera inicial del propietario, como JONEB por Bill
+Jones (o para evitar redundancias, a&ntilde;adir un n&uacute;mero, JONEB1,
+JONEB2 ...).</FONT><FONT SIZE=-1></FONT>
+
+<P><FONT SIZE=-1>&nbsp;</FONT>
+<BR><FONT SIZE=-1><B><I>&iquest;Cu&aacute;l es la diferencia entre una
+simple consulta de fila y una m&uacute;ltiple consulta de filas y por qu&eacute;
+es importante conocer la diferencia?</I></B> Primero, para cubrir lo obvio,
+una consulta de una s&oacute;lo fila es una consulta que s&oacute;lo devuelve
+una fila como resultado, y una consulta de m&uacute;ltiples filas es una
+consulta que devuelve m&aacute;s de una fila como resultado. Si una consulta
+devuelva una fila o m&aacute;s esto depende enteramente del dise&ntilde;o
+(o esquema) de las tablas de la base de datos. Como escritor de consultas,
+debes conocer el esquema, estar seguro de incluir todas las condiciones,
+y estructurar tu sentencia SQL apropiadamente, de forma que consigas el
+resultado deseado (aunque sea una o m&uacute;ltiples filas). Por ejemplo,
+si quieres estar seguro que una consulta de la tabla Propietarios_Antig&uuml;edades
+devuelve s&oacute;lo una fila, considera una condici&oacute;n de igualdad
+de la columna de la clave primaria, ID_Propietario.&nbsp; Tres razones
+vienen inmediatamente a la mente de por qu&eacute; esto es importante.
+Primero, tener m&uacute;ltiples filas cuando t&uacute; s&oacute;lo esperabas
+una, o viceversa, puede significar que la consulta es err&oacute;nea, que
+la base de datos est&aacute; incompleta, o simplemente, has aprendido algo
+nuevo sobre tus datos. Segundo, se est&aacute;s usando una sentencia Update
+o Delete, debes de estar seguro que la sentencia que est&aacute;s escribiendo
+va a hacer la operaci&oacute;n en la fila (o filas) que t&uacute; quieres...
+o sino, estar&aacute;s borrando o actualizando m&aacute;s filas de las
+que quer&iacute;as. Tercero, cualquier consulta escrita en SQL embebido
+debe necesitar ser construida para completar el programa l&oacute;gico
+requerido. Si su consulta, por otra parte, devuelve m&uacute;ltiples filas,
+deber&aacute;s usar la sentencia Fetch, y muy probablemente, alg&uacute;n
+tipo de estructura de bucle para el procesamiento iterativo de las filas
+devueltas por la consulta.</FONT><FONT SIZE=-1></FONT>
+
+<P><B><FONT SIZE=-1><I>&iquest;Qu&eacute; hay de las relaciones?</I> </FONT></B><FONT SIZE=-1>Otra
+cuesti&oacute;n de dise&ntilde;o... el t&eacute;rmino "relaciones" usualmente
+se refiere a las relaciones entre claves ajenas y primarias entre tablas.
+Este concepto es importante porque cuando las tablas de una base de datos
+relacional es dise&ntilde;ada, estas relaciones debe de ser definidas porque
+determinan que columnas son o no claves primarias o claves ajenas. Debes
+de haber oido algo sobre el Diagrama de Entidad-Relaci&oacute;n, que es
+una vista gr&aacute;fica de las tablas en el esquema de una base de datos,
+con l&iacute;neas conectando columnas relacionadas entre tablas. Mira el
+diagrama en el final de esta secci&oacute;n o algunos de los sitios debajo
+relacionados con &eacute;ste t&oacute;pico, ya que hay diferentes maneras
+de dibujar diagramas de E-R. Pero primero, veamos cada tipo de relaci&oacute;n
+...</FONT>
+<UL>
+<LI>
+<FONT SIZE=-1>Una&nbsp;<A NAME="uno_a_uno"></A><B><FONT COLOR="#000080">relaci&oacute;n
+Uno-a-Uno</FONT></B> significa que tu tienes una columna clave primaria
+que est&aacute; relacionada con una columna clave ajena, y que para cada
+valor de la clave primaria, hay un valor de clave ajena. Por ejemplo, en
+el primer ejemplo, la EmployeeAddressTable, nosotros a&ntilde;adimos una
+columna ID_EMPLEADO. Entonces, la EmployeeAddressTable est&aacute; relacionada
+con la Tabla_estadistica_empleados (segundo ejemplo de tabla) por medio
+de este ID_EMPLEADO. Espec&iacute;ficamente, cada empleado en la EmployeeAddressTable
+tiene estad&iacute;sticas (un fila de datos) en la Tabla_estadistica_empleados.
+Incluso, piensa que este es un ejemplo efectuado, es una relaci&oacute;n
+de "1-1". Adem&aacute;s, ten en cuenta, el "tiene" en fuerte... cuando
+se expresa una relaci&oacute;n, es importante describir la relaci&oacute;n
+con un verbo.</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Las otras dos tipos de relaciones pueden o no puede usar
+claves primarias l&oacute;gicas y claves ajenas necesariamente... esto
+es estrictamente una llamada del sistema. La primera de &eacute;stas es
+la<A NAME="uno_a_muchos"></A><B> </B><FONT COLOR="#000080">relaci&oacute;n
+Uno-a-Muchos</FONT> ("1-M"). Esto significa que para cada valor de la columna
+en una tabla, hay uno o m&aacute;s valores relaciones en otra tabla. Habr&aacute;
+que a&ntilde;adir de forma necesaria claves en el dise&ntilde;o o, posiblemente,
+alg&uacute;n tipo de columna identificador deber&aacute; ser usado para
+establecer la relaci&oacute;n. Un ejemplo podr&iacute;a ser que para todos
+ID_Propietario en la tabla Propietarios_Antig&uuml;edades, hubier&aacute;n
+uno o mas (cero tambi&eacute;n pude ser) productos comprados en la tabla
+Antig&uuml;edades (verbo: comprar).</FONT></LI>
+
+<LI>
+<FONT SIZE=-1>Finalmente, la&nbsp;<A NAME="muchos_a_muchos"></A><B><FONT COLOR="#000080">relaci&oacute;n
+de Muchos-a-Mucho</FONT>s</B> ("M-M") generalmente no involucra claves,
+y usualmente involucra columnas identificativas. La inusual ocurrencia
+de un "M-M" significa que una columna en una tabla est&aacute; relacionada
+con otra columna en otra tabla, y para cada valor de uno de estas dos columnas,
+hay uno o m&aacute;s valores relacionados en la correspondiente columna
+en la otra tabla (y viceversa), o m&aacute;s com&uacute;nmente posible,
+dos tablas tienen una relaci&oacute;n "1-M" para cada una (dos relaciones,
+una 1-M para cada camino). Un (malo) ejemplo o &eacute;sta m&aacute;s com&uacute;n
+situaci&oacute;n podr&iacute;a ser si tuvieras una base de datos que asignara
+trabajo, donde una tabla tuviera una fila por cada empleado y trabajo asignado,
+y otra tabla tuviera una fila por trabajo por cada uno de los trabajadores
+asignados. Aqu&iacute;, podr&iacute;as tener m&uacute;ltiples filas por
+cada empleado en la primera tabla, o pro cada trabajo asignado, y m&uacute;ltiples
+filas por cada trabajo en la segunda tabla, una por empleado asignado al
+proyecto. Estas tablas tienen un M-M: cada empleado en la primera tabla
+puede tener tantos trabajos asignados de la segunda tabla como trabajos
+haya en ella, y cada trabajo puede tener tanto empleados como empleados
+haya en la primera tabla. Esto es la punta del iceberg en este t&oacute;pico...
+mira los links abajo para m&aacute;s informaci&oacute;n y mira en diagrama
+de debajo para un ejemplo simplificado de un diagrama de E-R.</FONT></LI>
+</UL>
+&nbsp;
+
+<P><A HREF="http://w3.one.net/~jhoffman/erdiagrm.gif"><IMG SRC="erdiagrm.gif" BORDER=0 HEIGHT=280 WIDTH=561></A>
+
+<P>&nbsp;
+<BR><FONT SIZE=-1><B><I>&iquest;Qu&eacute; hay de algunas construcciones
+no est&aacute;ndar importantes de SQL (pregunta extremadamente com&uacute;n)?
+</I></B>Bueno, veamos la siguiente secci&oacute;n...</FONT><FONT SIZE=-1></FONT>
+
+<P>
+<HR SIZE=3 WIDTH="100%">
+<CENTER><A NAME="CAPÍTULO_7__SQL_no_estándar"></A><FONT COLOR="#000080"><FONT SIZE=+1>CAP&Iacute;TULO
+7. SQL no est&aacute;ndar</FONT></FONT></CENTER>
+
+<HR SIZE=3 WIDTH="100%">
+<BR>&nbsp;
+
+<P>&nbsp;<FONT SIZE=-1>&nbsp;</FONT>
+<BR><A NAME="INTERSECT"></A><FONT SIZE=-1><B><FONT COLOR="#000080">INTERSECT</FONT></B>
+y<B>&nbsp;<A NAME="MINUS"></A></B><FONT COLOR="#000080">MINUS</FONT> son
+como la sentencia UNION, excepto que INTERSECT produce filas que apareces
+en ambas consultas, y MINUS produce filas que resultan de la primera consulta,
+pero no de la segunda.</FONT>
+
+<P><FONT SIZE=-1>Generaci&oacute;n de construcciones de informe: la cl&aacute;usula&nbsp;<A NAME="COMPUTE"></A><B><FONT COLOR="#000080">COMPUTE</FONT></B>
+es puesta al final de una consulta para poner el resultado en una funci&oacute;n
+agregada al final del listado, como COMPUTE SUM(PRECIO); Otra opci&oacute;n
+es usar el <I>break</I> l&oacute;gico: definir un <I>break</I> para dividir
+un resultado de una consulta dentro de grupos basados en una columna, como&nbsp;<A NAME="BREAK"></A><B><FONT COLOR="#000080">BREAK</FONT></B>
+ON ID_COMPRADOR. Entonces, para producir un resultado despu&eacute;s de
+listar un grupo, usa COMPUTE SUM OF PRECIO ON ID_COMPRADOR. Si, por ejemplo,
+usas las tres cl&aacute;usulas juntas (BREAK primero, COMPUTE despu&eacute;s
+del BREAK, y COMPUTE sobre todo ), obtendr&aacute;s un informe que agrupe
+los productos por su ID_comprador, listando la suma de Precios despu&eacute;s
+de cada grupo de productos de un ID_comprador, y , despu&eacute;s que todos
+los grupos sean listados, la suma de todos los Precios listados, todos
+con cabeceras y l&iacute;neas generados por SQL.</FONT>
+
+<P><FONT SIZE=-1>Adem&aacute;s, algunos DBMS permiten usar m&aacute;s funciones
+en listas Select, excepto que estas funciones (algunas funciones de car&aacute;cter
+permite resultados de m&uacute;ltiples filas) vayan a ser usadas con un
+valor individual (no grupos), en consultas de simples filas. Las funciones
+deben ser usada s&oacute;lo con tipos de datos apropiados. Aqu&iacute;
+hay algunas funciones Matem&aacute;ticas:</FONT>
+<BR>&nbsp;
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <B><FONT SIZE=-1>Funciones
+num&eacute;ricas:</FONT></B>
+<BR>&nbsp;
+<CENTER><TABLE BORDER WIDTH="709" BORDERCOLOR="#000000" >
+<TR>
+<TD VALIGN=CENTER WIDTH="22%"><B><FONT SIZE=-1>ABS(X)</FONT></B></TD>
+
+<TD VALIGN=CENTER WIDTH="78%"><FONT SIZE=-1>Valor absoluto. Convierte n&uacute;mero
+negativos en positivos, o deja s&oacute;lo n&uacute;meros positivos.&nbsp;</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER WIDTH="22%"><B><FONT SIZE=-1>CEIL(X)</FONT></B></TD>
+
+<TD VALIGN=CENTER WIDTH="78%"><FONT SIZE=-1>X es un valor decimal que ser&aacute;
+redondeado hacia arriba.</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER WIDTH="22%"><B><FONT SIZE=-1>FLOOR(X)</FONT></B>&nbsp;</TD>
+
+<TD VALIGN=CENTER WIDTH="78%"><FONT SIZE=-1>X es un valor decimal que ser&aacute;
+redondeado hacia abajo.</FONT>&nbsp;</TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER WIDTH="22%"><B><FONT SIZE=-1>GREATEST(X,Y)</FONT></B>&nbsp;</TD>
+
+<TD VALIGN=CENTER WIDTH="78%"><FONT SIZE=-1>Devuelve el m&aacute;s grande
+de los dos valores.</FONT>&nbsp;</TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER WIDTH="22%"><B><FONT SIZE=-1>LEAST(X,Y)</FONT></B></TD>
+
+<TD VALIGN=CENTER WIDTH="78%"><FONT SIZE=-1>Devuelve el m&aacute;s peque&ntilde;o
+de los dos valores.</FONT>&nbsp;</TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER WIDTH="22%"><B><FONT SIZE=-1>MOD(X,Y)</FONT></B>&nbsp;</TD>
+
+<TD VALIGN=CENTER WIDTH="78%"><FONT SIZE=-1>Devuelve el resto de X/Y.</FONT>&nbsp;</TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER WIDTH="22%"><B><FONT SIZE=-1>POWER(X,Y)</FONT></B>&nbsp;</TD>
+
+<TD VALIGN=CENTER WIDTH="78%"><FONT SIZE=-1>Devuelve X elevado a Y</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER WIDTH="22%"><B><FONT SIZE=-1>ROUND(X,Y)</FONT></B>&nbsp;</TD>
+
+<TD VALIGN=CENTER WIDTH="78%"><FONT SIZE=-1>Redondea X a Y lugares decimales.
+Si se omite Y, X se redondea al entero m&aacute;s pr&oacute;ximo.</FONT></TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER WIDTH="22%"><B><FONT SIZE=-1>SIGN(X)</FONT></B>&nbsp;</TD>
+
+<TD VALIGN=CENTER WIDTH="78%"><FONT SIZE=-1>Devuelve menos si X&lt;0, sino
+un m&aacute;s.</FONT>&nbsp;</TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER WIDTH="22%"><B><FONT SIZE=-1>SQRT(X)</FONT></B>&nbsp;</TD>
+
+<TD VALIGN=CENTER WIDTH="78%"><FONT SIZE=-1>Devuelve la raiz cuadrada de
+X.</FONT>&nbsp;</TD>
+</TR>
+</TABLE></CENTER>
+&nbsp;
+<BR>&nbsp;<B><FONT SIZE=-1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Funciones de Caracteres</FONT></B>
+<BR>&nbsp;
+<CENTER><TABLE BORDER WIDTH="742" BORDERCOLOR="#000000" >
+<TR>
+<TD VALIGN=CENTER WIDTH="25%"><B><FONT SIZE=-1>LEFT(&lt;string,X)</FONT></B>&nbsp;</TD>
+
+<TD VALIGN=CENTER WIDTH="75%"><FONT SIZE=-1>Devuelve los X caracteres m&aacute;s
+a la izquierda de la cadena.</FONT>&nbsp;</TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER WIDTH="25%"><B><FONT SIZE=-1>RIGHT(&lt;string,X)</FONT></B>&nbsp;</TD>
+
+<TD VALIGN=CENTER WIDTH="75%"><FONT SIZE=-1>Devuelve los X caracteres m&aacute;s
+a la derecha de la cadena.</FONT>&nbsp;</TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER WIDTH="25%"><B><FONT SIZE=-1>UPPER(&lt;string)</FONT></B>&nbsp;</TD>
+
+<TD VALIGN=CENTER WIDTH="75%"><FONT SIZE=-1>Convierte la cadena a may&uacute;sculas.</FONT>&nbsp;</TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER WIDTH="25%"><B><FONT SIZE=-1>LOWER(&lt;string)</FONT></B>&nbsp;</TD>
+
+<TD VALIGN=CENTER WIDTH="75%"><FONT SIZE=-1>Convierte la cadena a min&uacute;sculas.</FONT>&nbsp;</TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER WIDTH="25%"><B><FONT SIZE=-1>INITCAP(&lt;string)</FONT></B>&nbsp;</TD>
+
+<TD VALIGN=CENTER WIDTH="75%"><FONT SIZE=-1>Convierte el primer car&aacute;cter
+de la cadena a may&uacute;scula.</FONT>&nbsp;</TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER WIDTH="25%"><B><FONT SIZE=-1>LENGTH(&lt;string)</FONT></B>&nbsp;</TD>
+
+<TD VALIGN=CENTER WIDTH="75%"><FONT SIZE=-1>Devuelve el n&uacute;mero de
+car&aacute;cteres de cadena.</FONT>&nbsp;</TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER WIDTH="25%"><B><FONT SIZE=-1>&lt;string||&lt;string</FONT></B>&nbsp;</TD>
+
+<TD VALIGN=CENTER WIDTH="75%"><FONT SIZE=-1>Concatena dos cadenas de texto.</FONT>&nbsp;</TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER WIDTH="25%"><B><FONT SIZE=-1>LPAD(&lt;string,X,'*')</FONT></B>&nbsp;</TD>
+
+<TD VALIGN=CENTER WIDTH="75%"><FONT SIZE=-1>Rellena la cadena por la izquierda
+con el * (o el car&aacute;cter que haya entre las comillas), para hacer
+la cadena X caracteres m&aacute;s larga.</FONT>&nbsp;</TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER WIDTH="25%"><B><FONT SIZE=-1>RPAD(&lt;string,X,'*')</FONT></B>&nbsp;</TD>
+
+<TD VALIGN=CENTER WIDTH="75%"><FONT SIZE=-1>Rellena la cadena por la derecha
+con el * (o con el car&aacute;cter que haya entre las comillas), para hacer
+la cadena X caracteres m&aacute;s larga.</FONT>&nbsp;</TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER WIDTH="25%"><B><FONT SIZE=-1>SUBSTR(&lt;string,X,Y)</FONT></B></TD>
+
+<TD VALIGN=CENTER WIDTH="75%"><FONT SIZE=-1>Extrae Y letras de la cadena
+comenzando en la posici&oacute;n X.</FONT>&nbsp;</TD>
+</TR>
+
+<TR>
+<TD VALIGN=CENTER WIDTH="25%"><B><FONT SIZE=-1>NVL(&lt;column,&lt;value)</FONT></B></TD>
+
+<TD VALIGN=CENTER WIDTH="75%"><FONT SIZE=-1>Cualquier Null de la &lt;column
+ser&aacute; sustituido por lo que haya en &lt;value. Si el valor de la
+columna no el NULL, NVL no tiene efecto</FONT></TD>
+</TR>
+</TABLE></CENTER>
+&nbsp;
+
+<P>
+<HR SIZE=3 WIDTH="100%">
+<CENTER><A NAME="CAPÍTULO_8__Resumen_de_Sintaxi_"></A><FONT COLOR="#000080"><FONT SIZE=+1>CAP&Iacute;TULO
+8. Resumen de Sintaxis &amp; Links importantes</FONT></FONT></CENTER>
+
+<HR SIZE=3 WIDTH="100%">
+
+<P><A NAME="Resumen_de_sintaxi"></A><B><FONT COLOR="#000080"><FONT SIZE=-1>Resumen
+de Sintaxis</FONT></FONT>.</B><FONT COLOR="#000080"> S&oacute;lo para usuarios
+avanzados.</FONT>
+
+<P><FONT SIZE=-1>Aqu&iacute; est&aacute;n las formas generales de las sentencias
+que hemos visto en este tutorial, adem&aacute;s de alguno informaci&oacute;n
+extra de algunas. RECUERDA que todos estas sentencias pueden o no pueden
+estar disponibles en tu sistema, as&iacute; que comprueba la documentaci&oacute;n
+del mismo.</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>ALTER TABLE
+&lt;TABLE NAME ADD|DROP|MODIFY (COLUMN SPECIFICATION[S]...ver Create Table);</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>Te permite a&ntilde;adir, borrar o modificar una columna
+o columnas de la tabla, o cambiar la especificaci&oacute;n (tipo de datos,
+etc) de una columna existente; esta sentencia tambi&eacute;n es usada para
+las especificaciones f&iacute;sicas de la tabla (como est&aacute; almacenada,
+etc.), pero estas definiciones estas especificadas en el DBMS, as&iacute;
+que l&eacute;ete la documentaci&oacute;n. Tambi&eacute;n, estas especificaciones
+f&iacute;sicas son usada con la sentencia Create Table, cuando una tabla
+es creada por primera vez. Adem&aacute;s, solo una opci&oacute;n puede
+ser realizada por la sentencia Alter Table en una simple sentencia: add,
+drop o modificar.</FONT>
+
+<P><FONT COLOR="#FF0000"><FONT SIZE=-1>COMMIT;</FONT></FONT>
+
+<P><FONT SIZE=-1>Hace cambios hechos por alg&uacute;n sistema permanente
+de base de datos (desde el &uacute;ltimo COMMIT; conocido por transacci&oacute;n)</FONT>
+
+<P><FONT SIZE=-1>&nbsp;</FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>CREATE
+[UNIQUE] INDEX &lt;INDEX NAME</FONT></FONT></FONT>
+<BR><FONT SIZE=-1><FONT FACE="Courier New"><FONT COLOR="#FF0000">ON &lt;TABLE
+NAME (&lt;COLUMN LIST);</FONT></FONT> --UNIQUE es opcional; entre corchetes.</FONT>
+
+<P><FONT COLOR="#FF0000"><FONT SIZE=-1>&nbsp;<FONT FACE="Courier New">CREATE
+TABLE &lt;TABLE NAME</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>(&lt;COLUMN
+NAME &lt;DATA TYPE [(&lt;SIZE)] &lt;COLUMN CONSTRAINT,</FONT></FONT></FONT>
+<BR><FONT SIZE=-1>...otras columnas; (tambi&eacute;n valido con ALTER TABLE)</FONT>
+<BR><FONT SIZE=-1>--donde SIZE s&oacute;lo se utiliza en determinados tipos,
+y CONSTRAIN incluye las siguientes posibilidades (forzado autom&aacute;tico
+por la DBMS; causas de fallos y generaci&oacute;n de errores):</FONT>
+
+<P><FONT SIZE=-1>1.<B>NULL</B> o <B>NOT NULL</B> (ver arriba)</FONT>
+
+<P><FONT SIZE=-1>2.<B>UNIQUE </B>fuerza que dos filas no puedan tener el
+mismo valor para esa columna.</FONT>
+
+<P><FONT SIZE=-1>3.<B>PRIMARY KEY </B>le dice a la base de datos que la
+columna es la columna clave primaria (s&oacute;lo usado si la clave primaria
+es s&oacute;lo un columna, sino, la sentencia PRIMARY KEY(columna, columna,...)
+aparece despu&eacute;s de la definici&oacute;n de la &uacute;ltima columna)</FONT>
+
+<P><FONT SIZE=-1>4.<B>CHECK</B> permite que se comprueba una condici&oacute;n
+cuando un dato es esa columna es actualizado o insertado; por ejemplo,
+<FONT COLOR="#FF0000"><FONT FACE="Courier New">CHECK(PRECIO 0)</FONT>,
+</FONT>hace que el sistema compruebe que el precio de la columna es mayor
+de cero antes de aceptar el valor... algunas veces implementado como&nbsp;
+sentencia <B>CONSTRAINT</B>.</FONT>
+
+<P><FONT SIZE=-1>5.<B>DEFAULT</B> inserta el valor por defecto en la base
+de datos si una fila es insertada sin insertar ning&uacute;n dato en la
+columna; por ejemplo: <FONT FACE="Courier New"><FONT COLOR="#FF0000">BENEFICIOS
+INTEGER DEFAULT=10000;</FONT></FONT></FONT>
+
+<P><FONT SIZE=-1>6.<B>FOREIGN KEY</B> hace lo mismo que la clave primaria,
+pero es seguida por::<FONT COLOR="#FF0000"> <FONT FACE="Courier New">REFERENCES
+&lt;TABLE NAME (&lt;COLUMN NAME),</FONT></FONT> que hacen referencia a
+la clave primaria relacionada.</FONT>
+
+<P><FONT SIZE=-1>&nbsp;</FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>CREATE
+VIEW &lt;TABLE NAME AS &lt;QUERY;</FONT></FONT></FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>DELETE
+FROM &lt;TABLE NAME WHERE &lt;CONDITION;</FONT></FONT></FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>INSERT
+INTO &lt;TABLE NAME [(&lt;COLUMN LIST)]</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>VALUES
+(&lt;VALUE LIST);</FONT></FONT></FONT>
+
+<P><B><FONT SIZE=-1>ROLLBACK</FONT>; --</B><FONT SIZE=-1>deshace los cambios
+en la base de datos que hallas hecho desde el &uacute;ltimo Commit... cuidado!
+Algunos software usan autom&aacute;ticamente Commit’s en sistemas que usan
+construcciones de transacci&oacute;n, as&iacute; que el comando RollBack
+podr&iacute;a no ir.</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>SELECT
+[DISTINCT|ALL] &lt;LISTA DE COLUMNAS, FUNCTIONES, CONSTANTES, ETC.</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>FROM &lt;LISTA
+DE TABLAS OR VISTAS</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>[WHERE
+&lt;CONDICION(S)]</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>[GROUP
+BY &lt;GROUPING COLUMN(S)]</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>[HAVING
+&lt;CONDITION]</FONT></FONT></FONT>
+<BR><FONT SIZE=-1><FONT FACE="Courier New"><FONT COLOR="#FF0000">[ORDER
+BY &lt;ORDERING COLUMN(S) [ASC|DESC]]; </FONT></FONT>--donde ASC|DESC permite
+ordenas en orden ASCendente o</FONT>
+<BR><FONT SIZE=-1>DESCendente</FONT>
+
+<P><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>UPDATE
+&lt;TABLE NAME</FONT></FONT></FONT>
+<BR><FONT FACE="Courier New"><FONT COLOR="#FF0000"><FONT SIZE=-1>SET &lt;COLUMN
+NAME = &lt;VALUE</FONT></FONT></FONT>
+<BR><FONT SIZE=-1><FONT FACE="Courier New"><FONT COLOR="#FF0000">[WHERE
+&lt;CONDITION]; </FONT></FONT>- si no se completa la cl&aacute;usula Where,
+todas las filas ser&aacute;n actualizadas de acuerdo con la sentencia SET.</FONT>
+
+<P>
+<HR SIZE=1>
+<BR>&nbsp;
+
+<P><A NAME="Links_importantes"></A><B><FONT COLOR="#000080"><FONT SIZE=-1>Links
+Importantes</FONT></FONT></B>
+
+<P><FONT SIZE=-1>Computing &amp; SQL/DB Links: <A HREF="http://home.netscape.com/">Netscape</A>
+-- <A HREF="http://www.oracle.com/">Oracle</A> -- <A HREF="http://www.sybase.com/">Sybase</A>
+-- <A HREF="http://www.informix.com/">Informix</A> --<A HREF="http://www.microsoft.com/">Microsoft</A></FONT>
+<BR><FONT SIZE=-1><A HREF="http://www.contrib.andrew.cmu.edu/~shadow/sql.html">SQL
+Reference Page</A> -- <A HREF="http://www.inquiry.com/techtips/thesqlpro/">Ask
+the SQL Pro</A> -- <A HREF="http://www.inquiry.com/techtips/thesqlpro/usefulsites.html">SQL
+Pro's Relational DB Useful Sites</A></FONT>
+<BR><FONT SIZE=-1><A HREF="http://www.progsource.com/index.html">Programmer's
+Source</A> -- <A HREF="http://info.itu.ch/special/wwwfiles/comp_db.html">DBMS
+Sites</A> -- <A HREF="http://www.inquiry.com/">inquiry.com</A> -- <A HREF="http://www.compapp.dcu.ie/databases/f017.html">DB
+Ingredients</A></FONT>
+<BR><FONT SIZE=-1><A HREF="http://www.stars.com/Tutorial/CGI/">Web Authoring</A>
+-- <A HREF="http://wfn-shop.princeton.edu/cgi-bin/foldoc">Computing Dictionary</A>
+-- <A HREF="http://www-ccs.cs.umass.edu/db.html">DBMS Lab/Links</A> --
+<A HREF="http://epoch.CS.Berkeley.EDU:8000/sequoia/dba/montage/FAQ/SQL_TOC.html">SQL
+FAQ</A> -- <A HREF="http://ashok.pair.com/sql.htm">Query List</A></FONT>
+<BR><FONT SIZE=-1><A HREF="http://www.it.rit.edu/~wjs/IT/199602/icsa720/icsa720postings.html">RIT
+Database Design Page</A> -- <A HREF="http://www.pcslink.com/~ej/dbweb.html">Database
+Jump Site</A> -- <A HREF="http://www.eng.uc.edu/~jtilley/tutorial.html">Programming
+Tutorials on the Web</A></FONT>
+<BR><FONT SIZE=-1><A HREF="http://thebestweb.com/db/sqlrefs.htm">DB Stuff</A>
+-- <A HREF="http://faculty.babson.edu/gordon/ispages/chapt7.htm">DBMS/IS
+Pages</A> -- <A HREF="http://www.princeton.edu/~hannahk/WebPubl.htm">Access
+on the Web</A> -- <A HREF="http://www.cs.ucsb.edu/~jingw/tutor.html">Online
+Books</A> -- <A HREF="http://www.shelby.net/abotts/database.htm">A Good
+DB Course</A></FONT>
+<BR><FONT SIZE=-1><A HREF="http://www.muppetlabs.com/library/tech/tutorials.html">Tutorial
+Page</A> -- <A HREF="http://www.dbmsmag.com/">DBMS Magazine</A> -- <A HREF="http://databases.miningco.com/">Database
+Mining</A></FONT>
+
+<P><FONT SIZE=-1>Miscellaneous: <A HREF="http://www.cnn.com/">CNN</A> --
+<A HREF="http://www.usatoday.com/">USA Today</A> -- <A HREF="http://www.pathfinder.com/">Pathfinder</A>
+-- <A HREF="http://www.zdnet.com/">ZDNet</A> -- <A HREF="http://www.cnet.com/">CNet</A>
+-- <A HREF="http://www.techweb.com/">TechWeb</A> -- <A HREF="http://www.looksmart.com/">LookSmart</A></FONT>
+
+<P><FONT SIZE=-1>Buscadores:: <A HREF="http://www.yahoo.com/">Yahoo</A>
+-- <A HREF="http://www.altavista.digital.com/">Alta Vista</A> -- <A HREF="http://www.excite.com/">Excite</A>
+-- <A HREF="http://webcrawler.com/">WebCrawler</A> -- <A HREF="http://www.lycos.com/">Lycos</A>
+-- <A HREF="http://www.infoseek.com/">Infoseek</A> -- <A HREF="http://www.search.com/">search.com</A></FONT>
+
+<P>
+<HR SIZE=1>
+
+<P><A NAME="Agradecimientos_"></A><B><FONT COLOR="#000080">Agradecimientos.</FONT></B>
+
+<P>
+<HR SIZE=1><FONT SIZE=-1>&nbsp;</FONT>
+<BR><FONT SIZE=-1>Espero que hayas aprendido algo m&aacute;s de esta introducci&oacute;n
+a uno de los lenguajes m&aacute;s importantes y que m&aacute;s prevalece
+en el mundo de la computaci&oacute;n cliente-servidor. Escrib&iacute; esta
+p&aacute;gina web para contribuir con algo de valor a la web y a la comunidad
+de la web. De hecho, he sido informado que este documento esta siendo usado
+en algunos colegios para su uso en clases de bases de datos y por investigadores.
+Adem&aacute;s, quiero agradecer a todo el mundo de los cinco continentes
+que han contactado conmigo agradeci&eacute;ndome esta p&aacute;gina web.</FONT>
+
+<P><FONT SIZE=-1>Espero continuar a&ntilde;adiendo m&aacute;s material
+a este tutorial, algo como t&oacute;picos sobre dise&ntilde;o de bases
+de datos y extensiones SQL est&aacute;ndar, incluso deseo estar alejado
+de material sobre Sistemas de Administraci&oacute;n de Bases de datos individuales.
+Buena suerte en tu SQL y otras aventuras computacionales.</FONT>
+
+<P><B><I><FONT COLOR="#000080"><FONT SIZE=-1>Jim Hoffman</FONT></FONT></I></B>
+
+<P><FONT SIZE=-1>Comentarios o sugerencias? Escribidme a <A HREF="mailto:jhoffman@one.net">jhoffman@one.net</A>.</FONT>
+
+<P><FONT SIZE=-1>Si quer&eacute;is m&aacute;s informaci&oacute;n sobre
+mi pod&eacute;is mirar mi p&aacute;gina Web, o mi nuevo Algorithms Tutorial.</FONT>
+
+<P><FONT SIZE=-1>Tambi&eacute;n pod&eacute;is echar un vistazo a mi p&aacute;gina
+<A HREF="http://w3.one.net/~jhoffman/index.html">Jim Hoffman's Web Pages</A>
+para m&aacute;s informaci&oacute;n sobre mi, o mi nuevo <A HREF="http://w3.one.net/~jhoffman/algorithms.htm">Algorithms
+Tutorial</A>. Si quer&eacute;is tambi&eacute;n pod&eacute;is bajaros una
+versi&oacute;n modificada del tutorial: <A HREF="http://w3.one.net/~jhoffman/sql_tutorial.pdf">PDF
+version of the tutorial (142k)</A> <A HREF="http://www.highcroft.com/">(courtesy
+of Matt Kelly at www.highcroft.com).</A> <B><I>Muchas Gracias.</I></B>
+Conseguid el Lector Acrobat de Adobe para documentos PDF en <A HREF="http://www.adobe.com/prodindex/acrobat/readstep.html">the
+Adobe web site.</A></FONT>
+
+<P><FONT SIZE=-1>Copyright 1996-1998, James Hoffman. Este documento puede
+ser usado de forma gratuita por cualquier usuario de Internet, pero no
+puede ser incluido en otro documento, publicado en cualquier otra forma
+de ning&uacute;n modo.</FONT>
+
+<P><FONT SIZE=-1>Esta p&aacute;gina se ve mejor con <A HREF="http://home.netscape.com/">Netscape
+Navigator</A>; no se ve demasiado bien con <A HREF="http://www.microsoft.com/ie">Microsoft
+Internet Explorer.</A></FONT>
+
+<P>&nbsp;
+
+<P><FONT SIZE=-1>Copyright 1996-1998, James Hoffman.</FONT>
+<BR><FONT SIZE=-1>Traducido por: Germ&aacute;n L&oacute;pez</FONT>
+<BR><FONT SIZE=-1>Valencia, 17-5-1998;</FONT>
+<BR><FONT SIZE=-1>Last updated: 5-1-1998;</FONT>
+
+<P><FONT SIZE=-1>Versi&oacute;n original: <A HREF="http://w3.one.net/~jhoffman/sqltut.htm">http://w3.one.net/~jhoffman/sqltut.htm</A></FONT>
+
+<P>&nbsp;
+
+<P>&nbsp;
+<HR SIZE=3 WIDTH="100%">
+<CENTER><IMG SRC="715.gif" HEIGHT=50 WIDTH=50>&nbsp; <B><FONT COLOR="#000080"><FONT SIZE=-1>Esta
+es una versi&oacute;n Beta, la traducci&oacute;n no es muy buena, estamos
+trabajando para mejorarla&nbsp;</FONT></FONT></B>
+
+</BODY>
+</HTML>

@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Practica pre parcial con JQ</title>
+		<link rel="stylesheet" href="p2.css"/>
+		<script type="text/javascript" src="jquery-1.8.2.min.js"></script>
+		<script type="text/javascript" src="p2.js"></script>
+	</head>
+	<body>
+		<div id="contenedor">
+			<form id="contacto" action="http://www.google.com.ar">
+				<div id="arriba">
+					Registrarse
+				</div>
+				<div id="medio">
+					Usuario:<br/>
+					<input type="text" name="usuario" id="user"/><br/>
+					Password:<br/>
+					<input type="password" name="contrasenia" id="pass"/><br/>
+					Reingrese password:<br/>
+					<input type="password" name="reingresarpass" id="repass"/><br/>
+					Sexo:<br/>
+					<input type="radio" name="sexo" id="masculino"/>Masculino
+					<input type="radio" name="sexo" id="femenino"/>Femenino<br/>
+					Generacion:<br/>
+					<select id="generacion">
+						<option value="0">---</option>
+						<option value="1">80</option>
+						<option value="2">90</option>
+					</select><br/>
+					E-Mail<br/>
+					<input type="text" name="correo" id="mail"/><br/>
+					<input type="submit" name="enviar" id="send" value="Env&iacute;ar" onclick="validacion();"/>
+					<input type="reset" name="limpiar"/>
+				</div>
+				<div id="abajo">
+					<input type="button" name="vernombre" id="showname" value="Alumno"/>
+				</div>
+			</form>	
+		</div>
+	</body>
+</html>

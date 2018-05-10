@@ -1,0 +1,7 @@
+Codigo	Nombre de producto	Precio
+--------------------------------------
+
+
+3		ee		$30.00
+2		ww		$20.00
+1		qq		$10.00

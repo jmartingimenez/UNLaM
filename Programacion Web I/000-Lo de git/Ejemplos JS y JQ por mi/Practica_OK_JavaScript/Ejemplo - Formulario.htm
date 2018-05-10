@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Ejemplo validaci&oacute;n de campos</title>
+<style type="text/css">
+<!--
+#form {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 12px;
+color: #666;
+}
+.campo {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 12px;
+color: #666;
+margin-bottom: 10px;
+width: 270px;
+border: 2px solid #CCC;
+}
+.bt {
+font-family: Arial, Helvetica, sans-serif;
+font-size: 12px;
+color: #666;
+}
+-->
+</style>
+<script type="text/javascript">
+
+//Nombramos la función
+function valida_envia(){
+
+//Definimos los caracteres permitidos en una dirección de correo electrónico
+var regexp = /^[0-9a-zA-Z._.-]+\@[0-9a-zA-Z._.-]+\.[0-9a-zA-Z]+$/;
+
+//Validamos un campo o área de texto, por ejemplo el campo nombre
+if (document.form.nombre.value.length==0){
+alert("Tiene que escribir su nombre")
+document.form.nombre.focus()
+return 0;
+}
+
+//Validamos un campo o área de texto, por ejemplo el campo apellidos
+if (document.form.apellidos.value.length==0){
+alert("Tiene que escribir sus apellidos")
+document.form.apellidos.focus()
+return 0;
+}
+
+//Validamos un campo o área de texto, por ejemplo el campo dirección
+if (document.form.direccion.value.length==0){
+alert("Tiene que escribir su dirección")
+document.form.direccion.focus()
+return 0;
+}
+
+//Validamos un campo o área de texto, por ejemplo el campo localidad
+if (document.form.localidad.value.length==0){
+alert("Tiene que escribir su localidad")
+document.form.localidad.focus()
+return 0;
+}
+
+//Validamos un campo de lista/menú, por ejemplo el campo provincia
+if (document.form.provincia.selectedIndex==0){
+alert("Tiene que seleccionar su provincia")
+document.form.provincia.focus()
+return 0;
+}
+
+//Validamos un campo de texto como numérico, por ejemplo el campo código postal de 5 dígitos
+valor = document.form.cp.value;
+if( !(/^\d{5}$/.test(valor)) ) {
+alert("Tiene que escribir su código postal (5 dígitos)");
+document.form.cp.focus();
+return 0;
+}
+
+//Validamos un campo de texto como numérico, por ejemplo el campo teléfono de 9 dígitos
+valor = document.form.telefono.value;
+if( !(/^\d{9}$/.test(valor)) ) {
+alert("Tiene que escribir un teléfono de 9 dígitos");
+document.form.telefono.focus();
+return 0;
+}
+
+//Validamos un campo de texto como email
+if ((regexp.test(document.form.email.value) == 0) || (document.form.email.value.length = 0)){
+alert("Introduzca una dirección de email válida");
+document.form.email.focus();
+return 0;
+} else {
+var c_email=true;
+}
+
+//Validamos un campo de tipo checkbox, por ejemplo condiciones
+if (document.form.condiciones.checked==0){
+alert("Debe aceptar las condiciones")
+document.form.condiciones.focus()
+return 0;
+}
+
+//Si todos los campos han validado correctamente, se envía el formulario
+document.form.submit();
+}
+
+//Cerramos el Script
+</script>
+</head>
+<body>
+<form id="form" name="form" method="POST" action="">
+<table width="560" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td width="504"><table width="560" border="0" align="left" cellpadding="0" cellspacing="0">
+<tr>
+<td width="270" align="left" valign="top">
+<label>*Nombre:<br />
+<input name="nombre" type="text" class="campo" id="nombre" />
+</label>
+</td>
+<td width="20" align="left" valign="top">&nbsp;</td>
+<td width="270" align="left" valign="top">
+<label>*Apellidos:<br />
+<input name="apellidos" type="text" class="campo" id="apellidos" />
+</label>
+</td>
+</tr>
+<tr>
+<td width="270" align="left" valign="top">
+<label>*Direcci&oacute;n:<br />
+<input name="direccion" type="text" class="campo" id="direccion" />
+</label>
+</td>
+<td width="20" align="left" valign="top">&nbsp;</td>
+<td width="270" align="left" valign="top">
+<label>*Localidad:<br />
+<input name="localidad" type="text" class="campo" id="localidad" />
+</label>
+</td>
+</tr>
+<tr>
+<td width="270" align="left" valign="top">
+<label for="provincia">*Provincia:</label>
+<select name="provincia" class="campo" id="provincia">
+<option value="0" selected="selected">Seleccione ...</option>
+<option value="A CORUÑA">A CORUÑA</option>
+<option value="ALAVA">ALAVA</option>
+
+</select>
+</td>
+<td width="20" align="left" valign="top">&nbsp;</td>
+<td width="270" align="left" valign="top">
+<label>*CP:<br />
+<input name="cp" type="text" class="campo" id="cp" />
+</label>
+</td>
+</tr>
+<tr>
+<td width="270" align="left" valign="top">
+<label>*Tel&eacute;fono:<br />
+<input name="telefono" type="text" class="campo" id="telefono" />
+</label>
+</td>
+<td width="20" align="left" valign="top">&nbsp;</td>
+<td width="270" align="left" valign="top">
+<label>*Email:<br />
+<input name="email" type="text" class="campo" id="email" />
+</label>
+</td>
+</tr>
+</table></td>
+</tr>
+<tr>
+<td width="504"><table width="100%" border="0" align="left" cellpadding="0" cellspacing="0">
+<tr>
+<td align="left" valign="top">
+<input name="condiciones" type="checkbox" id="condiciones" />
+He le&iacute;do y acepto las Condiciones Generales
+</td>
+<td width="20" align="left" valign="top">&nbsp;</td>
+<td align="right" valign="top"><input name="Bot&oacute;n" type="button" onclick="valida_envia()" class="bt" id="Enviar" value="Enviar" / />
+<br /></td>
+</tr>
+</table></td>
+</tr>
+</table>
+<input type="hidden" name="MM_insert" value="form1" />
+</form>
+</body>
+</html>
