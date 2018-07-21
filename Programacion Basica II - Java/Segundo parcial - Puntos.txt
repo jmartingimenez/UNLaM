@@ -1,0 +1,8 @@
+*Me lo pasaron y esta de memoria (no es literal los enunciados)
+
+
+- Diferencia entre arraylist y linkedlist y en qué caso utilizaría cada uno
+- Que es una clase abstracta y una interfaz, diferencias entre las dos y en qué caso las utilizaria
+- Que es la interfaz compare y hacer un ejemplo que lo demuestre
+- Que son las excepciones , explicar las tipos de excepciones que existen y hacer un ejemplo que captures una excepción por medio de una clase y un test
+- Y hacer un ejercicio con un mapa (Resuelto en el sitio de prog básica II supuestamente)
