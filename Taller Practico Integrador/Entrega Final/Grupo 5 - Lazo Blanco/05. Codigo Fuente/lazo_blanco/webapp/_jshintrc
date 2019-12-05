@@ -1,0 +1,35 @@
+{
+// --------------------------------------------------------------------
+// JSHint Configuration, Strict Edition
+// --------------------------------------------------------------------
+
+// --------------------------------------------------------------------
+// Enforcing Options
+// --------------------------------------------------------------------
+// These options tell JSHint to be more strict towards your code. Use
+// them if you want to allow only a safe subset of JavaScript, very
+// useful when your codebase is shared with a big number of developers
+// with different skill levels.
+
+    "bitwise"       : true,     // Prohibit bitwise operators (&, |, ^, etc.).
+    "curly"         : false,    //Require {} for every new block or scope.
+    "eqeqeq"        : true,     // Require triple equals i.e. `===`.
+    "forin"         : false,    // Tolerate `for in` loops without `hasOwnPrototype`.
+    "freeze"        : true,     // Prohibits overwriting prototypes of native objects such as Array, Date
+    "immed"         : true,     // Require immediate invocations to be wrapped in parens e.g. `( function(){}() );`
+    "latedef"       : false,    // Prohibit variable use before definition.
+    "newcap"        : true,     // Require capitalization of all constructor functions e.g. `new F()`.
+    "noarg"         : true,     // Prohibit use of `arguments.caller` and `arguments.callee`.
+    "noempty"       : true,     // Prohibit use of empty blocks.
+    "nonew"         : false,    // Prohibit use of constructors for side-effects.
+    "plusplus"      : false,    // Prohibit use of `++` & `--`.
+    "quotmark"      : true,     // Force consistency of quotemarks
+    "undef"         : false,    // Require all non-global variables be declared before they are used.
+    "strict"        : true,     // Require `use strict` pragma in every file.
+    "trailing"      : true,     // Prohibit trailing whitespaces.
+    "unused"        : false,    // Warn when you define and never use your variables
+    "laxbreak"      : true,
+    "sub"           : true,
+    "loopfunc"      : true,
+    "maxerr"        : 50
+}

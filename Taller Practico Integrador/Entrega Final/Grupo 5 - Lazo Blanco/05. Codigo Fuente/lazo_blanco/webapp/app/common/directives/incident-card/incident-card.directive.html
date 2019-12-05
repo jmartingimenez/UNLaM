@@ -1,0 +1,16 @@
+<div class="card incident-card" ng-class="{'incident-happened' : incident.happened}">
+    <div class="card-body text-center">
+      <h5 class="card-title " style="font-size:15px;">{{incident.title}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted" ng-if="incident.caption">{{incident.caption}}</h6>
+      <p class="card-text " ng-if="incident.description"> <span style="font-size:13px;"> {{incident.description}}</span> </p>
+      <div class="text-center">
+          <button ng-click="incident.happened = false" ng-if="incident.happened" class="btn text-white" style="background-color: #8b57e0">
+              Me pasó
+            </button>
+            <button ng-click="incident.happened = true" ng-if="!incident.happened" class="btn btn-default">
+              No me pasó
+            </button>
+      </div>
+    
+    </div>
+</div>

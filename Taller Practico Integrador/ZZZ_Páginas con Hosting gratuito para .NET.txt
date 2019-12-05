@@ -1,0 +1,6 @@
+- SmarterASP
+(Hasta 60 días, tanto para archivos como base de datos)
+
+
+- Somee
+(No muy probado así que no conozco límites de tiempo. Archivos y BDD)

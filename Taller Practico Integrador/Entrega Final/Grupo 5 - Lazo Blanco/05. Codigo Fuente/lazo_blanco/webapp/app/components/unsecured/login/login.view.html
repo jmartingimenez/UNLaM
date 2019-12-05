@@ -1,0 +1,60 @@
+<div class="container-fluid lb_bkg_color h-100">
+  <div class="row align-items-center h-100">
+    <div class="col-12 d-flex justify-content-center">
+      <div class="login_card white_bkg">
+        <div class="login_logo_container">
+          <img src="/resources/img/iso_bkg.png" class="login_logo" alt="Lazo Blanco Logo">
+        </div>
+        <div class="login_form_container">
+          <form name="form" ng-submit="form.$valid && vm.login()" novalidate>
+            <div class="form-group mb-4">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text white_bkg lb_txt_color">
+                    <i class="fas fa-user"></i>
+                  </span>
+                </div>
+                <input type="text" name="username" placeholder="Nombre" class="form-control login_input shadowless_input" ng-model="vm.username" autocomplete="off" required />
+              </div>
+            </div>
+            <div class="form-group mb-4">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text white_bkg lb_txt_color">
+                    <i class="fas fa-key"></i>
+                  </span>
+                </div>
+                <input type="password" placeholder="Contrase&ntilde;a" name="password" class="form-control login_input shadowless_input" ng-model="vm.password" autocomplete="off" required />
+              </div>
+              <div class="form-text text-danger text-center">
+                <div ng-messages="form.$submitted && form.username.$error">
+                  <small ng-message="required">El email no puede estar vac&iacute;o</small>
+                </div>
+                <div ng-messages="form.$submitted && form.password.$error">
+                  <small ng-message="required">La contrase&ntilde;a no puede estar vac&iacute;a</small>
+                </div>
+                <div ng-if="vm.error">
+                  {{ vm.errorMessage }}
+                </div>
+              </div>
+            </div>
+            <div>
+              <input type="checkbox" class="lb_checkbox" id="rememberCheckbox" ng-model="vm.rememberMe">
+              <label for="rememberCheckbox" class="lb_checkbox_label grey_border_label">
+                Recordarme
+              </label>
+              <button class="btn lb_btn float-right ">
+                Ingresar<i class="fas fa-sign-in-alt ml-2"></i>
+              </button>
+            </div>
+          </form>
+          <div class="text-center mt-5 text-right">
+            <button class="btn btn-sm lb_link font-weight-bold" ui-sref="signup">
+              Registrarse
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

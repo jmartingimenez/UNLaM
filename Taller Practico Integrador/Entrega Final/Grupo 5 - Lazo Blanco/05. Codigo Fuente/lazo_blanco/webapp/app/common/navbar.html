@@ -1,0 +1,93 @@
+<div id="wrapper">
+    <div id="sidebar_wrapper">
+        <div class="btn-ocultar m-3">
+            <h2>
+                <a data-target="#sidebar" data-toggle="collapse" class="d-md-none text-white">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </h2>
+        </div>
+        <div class="collapse hide d-md-flex " id="sidebar">
+            <ul class="sidebar_nav">
+                <div class="sidebar_header text-center py-3 mostrar_logo d-none text-center">
+                    <a ui-sref="index.user.home" has-permission="VICTIM">
+                        <img class="sidebar_logo2 " src="/resources/img/iso_nobkg.png">
+                    </a>
+                    <a ui-sref="index.prof.home" has-permission="PROFESSIONAL">
+                        <img class="sidebar_logo2 " src="/resources/img/iso_nobkg.png">
+                    </a>
+                </div>
+                <div class="sidebar_header text-center p-2 ocultar_logo">
+                    <a ui-sref="index.user.home" has-permission="VICTIM">
+                        <img class="sidebar_logo" src="/resources/img/isologo_nobkg.png">
+                    </a>
+                    <a ui-sref="index.prof.home" has-permission="PROFESSIONAL">
+                        <img class="sidebar_logo" src="/resources/img/isologo_nobkg.png">
+                    </a>
+                </div>
+                <div class="px-3 my-5">
+                    <div has-permission="VICTIM" class="navbar-victim-panel">
+                        <li class="my-5" ng-class="{active: ('index.user.chat' | includedByState)}">
+                            <a ui-sref="index.user.chat">
+                                <i class="fas fa-comments"></i>
+                                <span class="">Chate&aacute;</span>
+                            </a>
+                        </li>
+                        <li class="my-5" ng-class="{active: ('index.user.entities' | includedByState)}">
+                            <a ui-sref="index.user.entities.home">
+                                <i class="fas fa-info-circle"></i>
+                                <span class="">Informate</span>
+                            </a>
+                        </li>
+                        <!-- <li class="my-5" ng-class="{active: ('index.user.document-abuse' | includedByState)}">
+                            <a ui-sref="index.user.document-abuse">
+                                <i class="fas fa-file-archive"></i>
+                                <span class="">Document&aacute;</span>
+                            </a>
+                        </li> -->
+                        <hr />
+                        <li class="my-5" ng-class="{active: ('index.user.profile' | includedByState)}">
+                            <a ui-sref="index.user.profile">
+                                <i class="fas fa-user-alt"></i>
+                                <span class="">Perfil</span>
+                            </a>
+                        </li>
+                        <li class="my-5">
+                            <a ui-sref="login">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span class="">Salir</span>
+                            </a>
+                        </li>
+                    </div>
+                    <div has-permission="PROFESSIONAL" class="navbar-professional-panel">
+                        <li class="my-5" ng-class="{active: ('index.prof.chat' | includedByState)}">
+                            <a ui-sref="index.prof.chat">
+                                <i class="fas fa-comments"></i>
+                                <span class="">Chate&aacute;</span>
+                            </a>
+                        </li>
+                        <!-- <li class="my-5" ng-class="{active: ('index.prof.calendar' | includedByState)}" >
+                            <a ui-sref="index.prof.calendar">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span class="">Organizate</span>
+                            </a>
+                        </li> -->
+                        <hr />
+                        <li class="my-5" ng-class="{active: ('index.prof.profile' | includedByState)}">
+                            <a ui-sref="index.prof.profile">
+                                <i class="fas fa-user-alt"></i>
+                                <span class="">Perfil</span>
+                            </a>
+                        </li>
+                        <li class="my-5">
+                            <a ui-sref="login">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span class="">Salir</span>
+                            </a>
+                        </li>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,81 @@
+<div class="wrapper">
+  <!-- HEADER -->
+  <div class="b-u-fixed d-flex justify-content-between ">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb lb_breadcrumb">
+        <li class="breadcrumb-item" ui-sref="index.user.home">Inicio</li>
+        <li class="breadcrumb-item" ui-sref="index.user.entities.home">Informate</li>
+        <li class="breadcrumb-item active">{{ vm.type.description }}</li>
+      </ol>
+    </nav>
+  </div>
+  <!-- MAIN -->
+  <div class="row p-4 d-flex justify-content-center align-items-center lb_txt_color" ng-if="vm.entities.length == 0">
+    <h3>No tenemos datos de este tipo de entidad</h3>
+  </div>
+  <div class="row mx-2 mt-4" ng-if="vm.entities.length != 0">
+    <div class="col-6 f-vh overflow-auto lista-entidades">
+      <div class="input-group w-50 my-2 float-right">
+        <div class="input-group-prepend">
+          <span class="input-group-text lb-prepend-input-icon">
+            <i class="fas fa-search-location fa-sm"></i>
+          </span>
+        </div>
+        <input type="text" class="entity-search form-control" ng-model="vm.searchByCity" placeholder="Busc&aacute; por ciudad..." />
+      </div>
+      <div class="clearfix"></div>
+      <div class="shadow">
+        <div class="list-item-container" ng-repeat="entity in vm.entities | filter: { location: { city: vm.searchByCity} }">
+          <div ng-click="vm.viewDetail(entity)">
+            <span class="list-item" ng-class="{'item-active': entity.uuid == vm.chosenEntity.uuid}">{{ entity.name }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 f-vh">
+      <div class="shadow p-3 mb-3">
+        <div class="detail-container w-100">
+          <div>
+            <img class="detail-logo" ng-src="{{ vm.type.logo }}" />
+          </div>
+          <div class="p-4">
+            {{ vm.chosenEntity.name }}
+          </div>
+        </div>
+        <hr />
+        <div>
+          <div class="d-flex">
+            <div class="mr-2">
+              <i class="fas fa-phone"></i>
+            </div>
+            <div>
+              {{ vm.chosenEntity.phoneNumber }}
+            </div>
+          </div>
+          <div class="d-flex">
+            <div class="mr-2">
+              <i class="fas fa-map-marked-alt"></i>
+            </div>
+            <div>
+              {{ vm.chosenLocation.addressStreet }}
+              {{ vm.chosenLocation.addressNumber }} <span ng-if="vm.chosenLocation.apartment != ''">- <span>{{ vm.chosenLocation.apartment }}</span></span>
+            </div>
+          </div>
+          <div class="d-flex">
+            <div class="mr-2">
+              <i class="fas fa-city"></i>
+            </div>
+            <div>{{ vm.chosenLocation.city }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="shadow p-3 mt-5">
+            <div map-lazy-load="https://maps.google.com/maps/api/js" map-lazy-load-params="{{ vm.googleMapsUrl }}">
+            <ng-map center="{{ vm.chosenEntity.coordinates }}" zoom="15" class="location-map">
+                <marker id="can" position="{{ vm.chosenEntity.coordinates }}"></marker>
+            </ng-map>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

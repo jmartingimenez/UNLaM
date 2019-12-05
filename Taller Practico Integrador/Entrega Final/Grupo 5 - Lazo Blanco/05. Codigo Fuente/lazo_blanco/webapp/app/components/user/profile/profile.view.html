@@ -1,0 +1,149 @@
+<div class="wrapper ">
+  <div class="b-u-fixed d-flex justify-content-between ">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb lb_breadcrumb">
+        <li class="breadcrumb-item" ui-sref="index.user.home">Inicio</li>
+        <li class="breadcrumb-item active">Perfil</li>
+      </ol>
+    </nav>
+  </div>
+
+  <div class="row mx-2 mt-5">
+    <div class="col-3 text-center">
+      <div class="shadow h-100 d-flex flex-column bg-white p-4">
+        <div>
+          <img src="/resources/img/user-o-placeholder.png" class="logo_perfil mt-5" />
+          <br>
+          <a href="" data-toggle="modal" data-target="#editarfoto" class="btn btn-info mt-5">Cambiar foto</a>
+        </div>
+        <!-- modal -->
+        <div class="modal fade" id="editarfoto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Editar Foto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <img src="/resources/img/user.png">
+                <form>
+                  <div class="form-group mt-3">
+                    <label for="Foto">Seleccione una foto</label>
+                    <input type="file" class="form-control-file" id="Foto">
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- info user -->
+    <div class="col-9 ">
+      <div class="d-flex h-100 flex-column bg-white shadow p-5">
+        <div class="text-center">
+          <p>
+            <h3>{{ vm.userData.firstName }} {{ vm.userData.lastName }}</h3>
+          </p>
+        </div>
+        <div>
+          <h6>
+            <div class="tj">
+              <div>
+                <span><i class="fas fa-dna mr-2"></i> </span>
+                <span class="font-weight-bold"> DNI: </span> {{ vm.userData.idNumber | number }}
+              </div>
+            </div>
+            <hr>
+            <div class="tj">
+              <div>
+                <span><i class="fas fa-venus-mars mr-2"></i></span>
+                <span class="font-weight-bold"> Sexo: </span> {{ vm.userData.sex }}
+              </div>
+            </div>
+            <hr>
+            <div class="tj">
+              <div>
+                <span><i class="fas fa-envelope mr-2"></i></span>
+                <span class="font-weight-bold"> Email: </span> {{ vm.userData.email }} </div>
+            </div>
+            <hr>
+            <div class="tj">
+              <div>
+                <span><i class="fas fa-phone mr-2"></i></span> <span class="font-weight-bold">Telefono: </span>
+                {{ vm.userData.phoneNumber }}</div>
+              <!--  -->
+            </div>
+            <hr>
+            <div class="tj">
+              <div>
+                <span><i class="fas fa-map-marker-alt mr-2"></i></span>
+                <span class="font-weight-bold"> Dirección: </span> {{ vm.userData.location  || '--' }}</div>
+            </div>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-info float-right" data-toggle="modal" data-target="#exampleModal">
+              Editar información
+            </button>
+          </h6>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ 
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class=" m-auto pt-3">
+          <h5 class="modal-title " id="exampleModalLabel">Editar información</h5>
+        </div>
+        <div class="modal-body">
+          <hr>
+          <form>
+            <div class="form-group">
+              <label for="">Sexo</label>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"
+                  checked>
+                <label class="form-check-label" for="exampleRadios1">
+                  Mujer
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                <label class="form-check-label" for="exampleRadios2">
+                  Hombre
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Mail</label>
+              <input type="email" class="form-control" id="" aria-describedby="emailHelp" placeholder="{{vm.mail}}">
+            </div>
+            <div class="form-group">
+              <label for="">Telefono</label>
+              <input type="number" class="form-control" id="" placeholder="{{vm.tel}}">
+            </div>
+            <div class="form-group">
+              <label for="">Dirección</label>
+              <input type="number" class="form-control" id="" placeholder="{{vm.direc}}">
+            </div>
+            <div class="text-right">
+              <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancelar</button>
+              <button type="submit" class="btn color_tabla text-white ">Enviar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

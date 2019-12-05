@@ -1,0 +1,47 @@
+.incident-card-container {
+    align-items: stretch;
+    flex-grow: 1;
+}
+.incident-card-container .card {
+    height: 100%;
+}
+.incident-card .card-body {
+    display: flex;
+    flex-flow: column;
+}
+.incident-card .card-body .card-text {
+    flex-grow: 1;
+}
+.incident-card .card-text {
+    opacity: 0.5;
+    filter: grayscale(100%);
+}
+.incident-card .btn {
+    transition: none;
+    background-color: gray;
+    color: white;
+}
+.incident-card.incident-happened .card-text {
+    opacity: 1;
+    filter: initial;
+}
+
+.comments-and-button {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.comments-and-button > * {
+    margin: 10px;
+}
+
+.comments-and-button .extra-comments {
+    flex-grow: 1;
+}
+
+.comments-and-button .extra-comments textarea {
+    width: 100%;
+    min-height: 8em;
+}

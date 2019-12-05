@@ -1,0 +1,2 @@
+Letra: Arial MT Rounded Bold
+Colores (en RGB): [163,46,155] y [94,32,90]

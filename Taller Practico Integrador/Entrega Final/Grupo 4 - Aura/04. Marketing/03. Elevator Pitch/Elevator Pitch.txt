@@ -1,0 +1,3 @@
+Mi nombre es Jonatan, y soy co-fundador de Aura. Tenemos una aplicación capaz de detectar crisis de epilepsia durante el sueño y emitir alertas a personas seleccionadas. Sabemos que muchos pacientes sufren crisis sin que nadie este cerca para asistirlos, y el objetivo de nuestra aplicación, es poder ayudarlos advirtiendo a sus seres queridos. Además, brindamos la posibilidad de recopilar datos estadisticos a fin de que puedan llevar una agenda con información de todos los episodios.
+
+Si tenes ganas de ayudar, sumate a nuestra campaña de donaciones, o seguinos en nuestras redes sociales.

@@ -1,0 +1,25 @@
+<div class="wrapper">
+  <!-- HEADER -->
+  <div>
+    <div class="b-u-fixed d-flex justify-content-between ">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb lb_breadcrumb">
+          <li class="breadcrumb-item" ui-sref="index.user.home">Inicio</li>
+          <li class="breadcrumb-item active">Informate</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+  <!-- MAIN -->
+  <p class="ml-3">Seleccioná una categoria para acceder a la información de distintos centros:</p>
+  <div class=" justify-content-around mt-5">
+    <div class="d-flex flex-wrap d">
+      <div class="col-lg-4 col-sm-6 mt-2 mb-3" ng-repeat="type in vm.types">
+        <div class="text-center">
+          <img ng-src="{{ type.logo }}" class="entity_type_img cursor-pointer" ui-sref="index.user.entities.detail({'type': type.uuid})" />
+          <h5 class="mt-3 font-weight-bold lb_txt_color">{{ type.description }}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

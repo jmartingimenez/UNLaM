@@ -1,0 +1,80 @@
+<div class="wrapper">
+    <!-- HEADER -->
+    <div class="b-u-fixed d-flex justify-content-between">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb lb_breadcrumb">
+                <li class="breadcrumb-item active">Inicio</li>
+            </ol>
+        </nav>
+    </div>
+    <!-- MAIN -->
+    <div class="row mr-3 mt-2">
+        <div class="col-7">
+            <div class="f-vh lb-scroll overflow-auto incident-category-cards-container">
+
+                <!-- INCIDENT CARDS -->
+                <div ng-repeat="incidentCategory in vm.commonIncidents" class="mt-3 ">
+                    <div class="d-flex flex-wrap">
+
+                        <div ng-repeat="incident in incidentCategory.possibleIncidents "
+                            class="incident-card-container m-2 t_c shadow">
+
+                            <incident-card incident="incident" />
+                        </div>
+
+                    </div>
+                </div>
+
+                <hr />
+                <!-- TEXTAREA -->
+                <div class="comments-and-button">
+                    <div class="extra-comments">
+                        <h5>&iquest;Algo m&aacute;s que quieras contarnos?</h5>
+                        <textarea name="comments" ng-model="vm.customComment" class="help-textarea"></textarea>
+                        <label class="incomplete-warning" ng-if="vm.incompleteWarningVisible">
+                            Por favor, seleccion&aacute; al menos una tarjeta; o comentanos tu problema, estamos para escucharte
+                        </label>
+                    </div>
+                    <div class="final-confirmation-button">
+                        <button type="button" class="btn lb_btn" ng-disabled="vm.disableSubmitButton" ng-click="vm.submitHelpRequest()">Enviar</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!--INCIDENTS-->
+
+        <!--CHATBOT-->
+        <div class="col-5 f-vh chatbot-component">
+            <div class="card overflow-auto lb-scroll shadow chatbot-messages-container mt-3">
+                <div ng-repeat="chatEntry in vm.chatbotData.messageLog">
+                    <div ng-if="chatEntry.sender == 'Blanca'">
+                        <img ng-src="/resources/img/chatbot-icon.png" class="chatbot-blanca-img">
+                        <div class="chatbot-blanca-message">
+                            <span>{{ chatEntry.text }}</span>
+                        </div>
+                    </div>
+                    <div ng-if="chatEntry.sender == 'Usuario'">
+                        <div class="chatbot-user-message">
+                            <span>{{ chatEntry.text }}</span>
+                        </div>
+                        <img ng-src="/resources/img/user-o-placeholder.png" class="chatbot-user-img">
+                    </div>
+                </div>
+            </div>
+            <div ng-if="vm.chatbotData.lastMessage" class="card-footer chatbot-bottom">
+                <div class="chatbot-buttons-container" ng-if="vm.chatbotData.availableAnswers && vm.chatbotData.availableAnswers.length">
+                    <button class="btn lb_btn" ng-repeat="answer in vm.chatbotData.availableAnswers" ng-click="vm.answerSelected(answer)" ng-if="answer.sender != 'Blanca'">
+                        {{ answer.text }}
+                    </button>
+                </div>
+                <div ng-if="!vm.chatbotData.availableAnswers || !vm.chatbotData.availableAnswers.length" class="chatbot-textarea-container">
+                    <textarea name="comments" ng-model="vm.customComment" class="help-textarea form-control" autofocus></textarea>
+                    <button class="btn lb_btn" ng-disabled="vm.disableSubmitButton" ng-click="vm.submitChatbotRequest()">Listo</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

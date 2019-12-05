@@ -1,0 +1,46 @@
+html, body {
+    height: 100%;
+    font-family: "Arial Rounded MT Bold";
+    color: rgb(94, 32, 90);
+    background-image: url("../img/persona-durmiendo-greyscale.jpg");
+    background-attachment:fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.color-aura-dark{
+	background-color: rgb(20, 0, 20);
+}
+
+.contenido{	
+	padding-top: 50px;
+}
+
+.foto-derecha{
+	padding-right: 0px;
+	margin-right: 0px;
+}
+
+.btn
+{
+    background-color: rgb(163, 46, 155);
+    border: none;
+    color: white;
+
+}
+
+.btn:focus,.btn:active {
+   outline: none !important;
+   box-shadow: none;
+}
+
+.btn:hover
+{
+    background-color: rgb(94, 32, 90);
+    color: white;
+}
+
+.texto-landing{
+	font-size: 20px;
+}
+

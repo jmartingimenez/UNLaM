@@ -1,0 +1,258 @@
+<div class="wrapper">
+  <div class="b-u-fixed d-flex justify-content-between ">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb lb_breadcrumb">
+        <li class="breadcrumb-item" ui-sref="index.user.home">Inicio</li>
+        <li class="breadcrumb-item active">Perfil</li>
+      </ol>
+    </nav>
+  </div>
+  <!-- foto perfil -->
+  <div class="col-md-3 col-xs-3 text-center float-left mt-5">
+    <img src="/resources/img/user.png" class="logo_perfil" />
+    <br>
+    <br>
+    <a href="" class="btn btn-info">editar</a>
+  </div>
+  <!-- info user -->
+  <div class="col-md-9 col-xs-9 info  mt-3">
+    <div class="text-center">
+      <p>
+        <h3>nombre apellido </h3>
+      </p>
+    </div>
+    <div class="sub_con2">
+      <h6>
+        <div class="tj">
+          <div>DNI: {{vm.dni}} </div>
+          <!--  <div>
+                            <a href="" data-toggle="modal" data-target="#editarDNI">editar</a>
+                         </div>
+  
+                         
+                         <div class="modal fade" id="editarDNI" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                             <div class="modal-dialog" role="document">
+                               <div class="modal-content">
+                                 <div class="modal-header">
+                                   <h5 class="modal-title">Editar</h5>
+                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                     <span aria-hidden="true">&times;</span>
+                                   </button>
+                                 </div>
+                                 <div class="modal-body">
+                               
+                                     <div class="form-group">
+                                         <label for="exampleInputEmail1">DNI </label>
+                                        
+                                         <label for="exampleInputEmail1">DNI</label>
+                                         <input type="text" class="form-control"   placeholder="Enter DNI">
+                                       </div>
+  
+                                 </div>
+                                 <div class="modal-footer">
+                                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                   <button type="button" class="btn btn-primary">Save changes</button>
+                                 </div>
+                               </div>
+                             </div>
+                           </div> -->
+        </div>
+        <hr>
+        <!-------------------------- sexo----------------------->
+        <div class="tj">
+          <div>Sexo: {{vm.sexo}} </div>
+          <div>
+            <a href="" data-toggle="modal" data-target="#editarsexo">editar</a>
+          </div>
+          <!-- Modal -->
+          <div class="modal fade" id="editarsexo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Editar</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">sexo </label>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                        value="option1" checked>
+                      <label class="form-check-label" for="exampleRadios1">
+                        Hombre
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
+                        value="option2">
+                      <label class="form-check-label" for="exampleRadios2">
+                        Mujer
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="tj">
+          <div>Email: {{vm.mail}} </div>
+          <div>
+            <a href="" data-toggle="modal" data-target="#editarEmail">editar</a>
+          </div>
+          <!-- Modal -->
+          <div class="modal fade" id="editarEmail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Editar mail</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="tj">
+          <div>Telefono: {{vm.tel}}</div>
+          <div>
+            <a href="" data-toggle="modal" data-target="#editarTel">editar</a>
+          </div>
+          <!-- Modal -->
+          <div class="modal fade" id="editarTel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Editar mail</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="exampleInputTel">Telefono</label>
+                    <input type="number" class="form-control" aria-describedby="tel" placeholder="Enter tel">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--  -->
+        </div>
+        <hr>
+        <div class="tj">
+          <div>Direccion: {{vm.direc}}</div>
+          <div>
+            <a href="" data-toggle="modal" data-target="#editarDireccion">editar</a>
+          </div>
+          <!-- Modal -->
+          <div class="modal fade" id="editarDireccion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Editar mail</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="exampleInputdireccion">direccion</label>
+                    <input type="text" class="form-control" aria-describedby="tel" placeholder="direccion">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="tj">
+          <div>Matr&iacute;cula: {{vm.direc}}</div>
+          <div>
+            <a href="" data-toggle="modal" data-target="#editarMatricula">Validar/editar</a>
+          </div>
+          <!-- Modal -->
+          <div class="modal fade" id="editarMatricula" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Matr&iacute;cula </h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="exampleInputValidar">Validar</label>
+                    <input type="text" class="form-control" aria-describedby="tel" placeholder="Matricula">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </h6>
+    </div>
+  </div>
+  <!-- contactos -->
+  <div class="sub_con2 overflow-auto contactos_user">
+    <div class="text-center">
+      <h5>Contactos</h5>
+    </div>
+    <hr>
+    <table class="table table-striped">
+      <thead class="color_tabla text-white">
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Tel&eacute;fono</th>
+          <th scope="col">mail</th>
+          <th scope="col">DNI</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="mt-5" ng-repeat="entity in vm.entities">
+          <th scope="col">{{entity.name}}</th>
+          <th scope="col">{{entity.phone}}</th>
+          <th scope="col">{{entity.location.addressStreet}}</th>
+          <th scope="col">{{entity.location.addressNumber}}</th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

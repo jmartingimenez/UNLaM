@@ -1,0 +1,68 @@
+<div class="wrapper">
+  <div class="b-u-fixed d-flex justify-content-between ">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb lb_breadcrumb">
+        <li class="breadcrumb-item" ui-sref="index.user.home">Inicio</li>
+        <li class="breadcrumb-item active">Chate&aacute;</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="row mr-3 ml-1 mt-3">
+    <!-- Chat Rooms -->
+    <div class="col-4">
+      <div class="f-vh lb-scroll overflow-auto">
+        <ul class="contacts">
+          <li ng-repeat="chatRoom in vm.chatRooms" ng-class="{'active-chat': vm.selectedRoom.uuid == chatRoom.uuid}">
+            <div class="chat-room d-flex cursor-pointer" ng-click="vm.selectRoom(chatRoom.uuid)">
+              <div class="img_cont">
+                <img ng-src="/resources/img/profesional-placeholder.png" class="user_img rounded-circle">
+              </div>
+              <div class="user_info">
+                <span
+                  ng-class="{'active-chat-user': vm.selectedRoom.uuid == chatRoom.uuid}">{{ chatRoom.professional.firstName }}
+                  {{ chatRoom.professional.lastName }}</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-8 chat-messages-col">
+      <div class="f-vh">
+        <div class="chat-area lb-scroll overflow-auto p-5">
+          <div ng-repeat="message in vm.messageLog" class="chat-log">
+            <div ng-if="message.sender != 'Usuario'">
+              <img ng-if="message.sender == 'Blanca'" ng-src="/resources/img/chatbot-icon.png" class="incoming-img">
+              <img ng-if="message.sender == 'Profesional'" ng-src="/resources/img/profesional-placeholder.png"
+                class="incoming-img">
+              <div class="incoming-message">
+                <span>{{ message.content }}</span>
+                <br>
+                <p class="msg-time">{{ message.timestamp | date: 'medium' }}</p>
+              </div>
+            </div>
+            <div ng-if="message.sender == 'Usuario'">
+              <div class="outgoing-message">
+                <span>{{ message.content }}</span>
+                <br>
+                <p class="msg-time">{{ message.timestamp | date: 'medium' }}</p>
+              </div>
+              <img ng-src="/resources/img/user-o-placeholder.png" class="outgoing-img">
+            </div>
+          </div>
+        </div>
+        <div class="my-2">
+          <div class="input-group">
+            <textarea ng-model="vm.messageInput" class="form-control chat-textarea"
+              placeholder="Escrib&iacute; un mensaje..."
+              ng-keypress="$event.keyCode === 13 && vm.submitMessage()"></textarea>
+            <div class="input-group-append">
+              <button class="btn lb_btn input-group-text" ng-click="vm.submitMessage()">
+                <i class="fas fa-paper-plane"></i> </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+{
+  "name": "lazoblanco",
+  "version": "1.0.0",
+  "description": "Lazo Blanco Frontend",
+  "main": "gulpfile.js",
+  "author": "Rodrigo Andreoli",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-connect": "^5.6.1",
+    "gulp-html-replace": "^1.6.2",
+    "gulp-htmlhint": "^2.2.1",
+    "gulp-jshint": "^2.0.4",
+    "gulp-ng-config": "^1.4.0",
+    "gulp-uglify": "^2.0.1",
+    "jshint": "^2.9.4",
+    "run-sequence": "^1.2.2",
+    "yargs": "^6.6.0"
+  },
+  "dependencies": {
+    "@uirouter/angularjs": "^1.0.22",
+    "dotenv": "^4.0.0",
+    "event-stream": "^3.3.4",
+    "gulp-cli": "^2.2.0",
+    "package.json": "^2.0.1"
+  },
+  "scripts": {
+    "test": "gulpTest"
+  }
+}
